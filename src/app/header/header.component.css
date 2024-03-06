@@ -150,6 +150,7 @@ li ul.dropdown li:hover {
 li:hover ul.dropdown {
     transition: ease-in 2s;
     display: block;
+    z-index: 99;
 }
 
 li:hover {
