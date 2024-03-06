@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class QuickSmsComponent {
   
-  selectedOption:any;
+  // selectedOption:any;
   isChecked: boolean = false;
   showFirst:boolean = true;
   showSecond:boolean = false;
@@ -31,19 +31,32 @@ enableAnableRule(){
     this.showFirst = true;
     this.showSecond = false;
   }
-
   showSnddiv(){
     this.showFirst = false;
     this.showSecond = true;
   }
-
-
   doSomething(){
     if(this.isChecked==false){
       this.isChecked =true;
     }
     else if(this.isChecked==true){
       this.isChecked = false;
+    }
+  }
+
+  selectedOption: string='';
+  getMessage(): string {
+    
+    switch(this.selectedOption) {
+      case '1':
+        return "Your My SMS verification Code id. Do not share this code with others Team Nuevas";
+      case '2':
+        return "Dear User your OTP is Kindly use OTP to validate your Registration. Team Trackzia";
+      case '3':
+        return "Dear, Your Complaint with Complaint Id: has Been Resolve Kindly Share OTP, The OTP is \n From Nuevas";
+      // Add more cases as needed
+      default:
+        return "";
     }
   }
 

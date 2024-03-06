@@ -58,7 +58,7 @@
             cols="30"
             rows="10"
             placeholder="You can add upto 50,000 Phone Numbers"
-            >{{ selectedOption }}</textarea
+            >{{ getMessage() }}</textarea
           >
           <span>SMS length :</span>
         </div>
@@ -93,9 +93,10 @@
                 style="width: 40%; height: 5vh; font-size: 1.2vw"
               />
             </div>
-            <div>
-              <button style="width: 20%; margin-top: 10px">Confirm</button>
-            </div>
+            
+          </div>
+          <div>
+            <button style="width: 20%; margin-top: 10px">Confirm</button>
           </div>
         </div>
         <div class="outer-div">
@@ -141,7 +142,7 @@
         <div class="overlay2" *ngIf="showSecond">
           <div class="over21">
             <h5>Download .xls File Format</h5>
-            <a href="https://www.google.com">Click Here</a>
+            <a href="../../assets/Phone.xlsx">Click Here</a>
           </div>
           <div class="cfile">
             <input type="file">
