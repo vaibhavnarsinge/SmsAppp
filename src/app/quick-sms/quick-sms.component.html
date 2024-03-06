@@ -1,103 +1,161 @@
 <div class="main">
-
-    <div class="main-form">
-        <div class="content">
-            <div>
-                <h3>Sender ID</h3>
-                <select name="" id="">
-                    <option value="">--Select--</option>
-                    <option value="">NUEVAS</option>
-                    <option value="">TRKZIA</option>
-                </select>
-            </div>
-            <div>
-                <h3>Template</h3>
-                <select name="" id="">
-                    <option>--Select--</option>
-                    <option value=""><p>Your My SMS verification Code id . Do not share this code with others Team Nuevas</p></option>
-                    <option value=""><p>Dear User your OTP is  Kindly use OTP to validate your Registration. Team Trackzia</p></option>
-                    <option value=""><p>Dear  , Your Complaint with Complaint Id: has Been Resolve Kindly Share OTP, The OTP is  \n From Nuevas</p></option>
-                </select>
-            </div>
-            <div>
-                <h3>Mobile NO</h3>
-                <textarea name="" id="" cols="30" rows="10" placeholder="You can add upto 50,000 Phone Numbers" ></textarea>
-                <div style="display: flex; flex-direction: row;  border: none;
-                outline: none; width: 100%; padding: 0;">
-                    <span style="width: 40%;">Mobile No  Count :</span>            <span style="width: 40%;">Invalid Mobile No Count :</span>
-                </div>
-                <button >Clear Text</button>
-            </div>
-            <div>
-                <h3>Message</h3>
-                <textarea name="" id="" cols="30" rows="10" placeholder="You can add upto 50,000 Phone Numbers" ></textarea>
-                <span>SMS length :</span>
-                <button >Clear Text</button>
-            </div>
-            <div>
-                <h3>Schedule</h3>
-               <div  style="display: flex;  border: none;
-               outline: none; width: 100%; padding:0; flex-direction: row;">
-                <label for="">Date :</label>
-                <input type="date" style="width: 40%; height: 5vh;">
-                <label for="">Time :</label>
-                <input type="time" style="width: 40%; height: 5vh;">
-               </div>
-                <button>Confirm</button>
-            </div>
-            <div>
-                <h3>Enter Phone Number for Test</h3>
-                <input type="number" placeholder="9586457812">
-                <button>Test SMS</button>
-            </div>
+  <div class="main-form">
+    <div class="content">
+      <form [formGroup]="quicksms">
+        <h4>Send SMS</h4>
+        <div class="outer-div">
+          <h3>Sender ID</h3>
+          <select formControlName="senderid">
+            <option value="">--Select--</option>
+            <option value="">NUEVAS</option>
+            <option value="">TRKZIA</option>
+          </select>
         </div>
-    </div>
-    <div class="side-form">
-        <div class="content">
-            <div>
-                <label for="">Sender ID</label>
-                <select name="" id="">
-                    <option value="">--Select--</option>
-                    <option value="">NUEVAS</option>
-                    <option value="">TRKZIA</option>
-                </select>
-            </div>
-            <!-- <div>
-                <label for="">Template</label>
-                <select name="" id="">
-                    <option>--Select--</option>
-                    <option value=""><p>Your My SMS verification Code id . Do not share this code with others Team Nuevas</p></option>
-                    <option value=""><p>Dear User your OTP is  Kindly use OTP to validate your Registration. Team Trackzia</p></option>
-                    <option value=""><p>Dear  , Your Complaint with Complaint Id: has Been Resolve Kindly Share OTP, The OTP is  \n From Nuevas</p></option>
-                </select>
-            </div>
-            <div>
-                <label for="">Mobile NO</label>
-                <textarea name="" id="" cols="30" rows="10" placeholder="You can add upto 50,000 Phone Numbers" ></textarea>
-                <span>Mobile No  Count :</span>            <span>Invalid Mobile No Count :</span>
-                <button>Clear Text</button>
-            </div>
-            <div>
-                <label for="">Message</label>
-                <textarea name="" id="" cols="30" rows="10" placeholder="You can add upto 50,000 Phone Numbers" ></textarea>
-                <span>SMS length :</span>
-                <button>Clear Text</button>
-            </div> -->
-            <div>
-                <h3>Schedule</h3>
-                <label for="">Date :</label>
-                <input type="date">
-                <label for="">Time :</label>
-                <input type="time">
-                <button>Confirm</button>
-            </div>
-            <div>
-                <label for="">Enter Phone Number for Test</label>
-                <input type="tel">
-                <button>Test SMS</button>
-            </div>
+        <div class="outer-div">
+          <h3>Template</h3>
+          <select formControlName="template" [(ngModel)]="selectedOption">
+            <option>--Select--</option>
+            <option value="1">
+              Your My SMS verification Code id . Do not share this code with
+              others Team Nuevas
+            </option>
+            <option value="2">
+              Dear User your OTP is Kindly use OTP to validate your
+              Registration. Team Trackzia
+            </option>
+            <option value="3">
+              Dear , Your Complaint with Complaint Id: has Been Resolve Kindly
+              Share OTP, The OTP is \n From Nuevas
+            </option>
+          </select>
         </div>
+        <div class="outer-div">
+          <h3>Mobile NO</h3>
+          <textarea
+            formControlName="mobno"
+            cols="30"
+            rows="10"
+            placeholder="You can add upto 50,000 Phone Numbers"
+          ></textarea>
+          <div class="inner-div">
+            <span style="width: 40%">Mobile No Count :</span>
+            <span style="width: 40%; margin-left: 20%"
+              >Invalid Mobile No Count :</span
+            >
+          </div>
+          <button>Clear Text</button>
+        </div>
+        <div class="outer-div">
+          <div class="inner-div">
+            <input type="checkbox" style="width: 4%; height: 1.4svw" />
+            <label style="width: 96%; font-size: 0.9vw; margin: 3px 0 0 5px"
+              >Unicode (Hindi, Marathi SMS)</label
+            >
+          </div>
+          <h3>Message</h3>
+          <textarea
+            formControlName="message"
+            cols="30"
+            rows="10"
+            placeholder="You can add upto 50,000 Phone Numbers"
+            >{{ selectedOption }}</textarea
+          >
+          <span>SMS length :</span>
+        </div>
+        <div class="outer-div">
+          <div class="inner-div">
+            <input
+              type="checkbox"
+              formControlName="chkbox"
+              [(ngModel)]="isChecked"
+              (click)="doSomething()"
+              style="width: 4%; height: 1.4svw"
+            />
+            <h3 style="margin: 3px 0 0 5px">Schedule</h3>
+          </div>
+
+          <div
+            class="ScheduleContain"
+            formControlName="ScheduleContain"
+            *ngIf="isChecked"
+          >
+            <div class="inner-div">
+              <label for="">Date:</label>
+              <input
+                formControlName="date"
+                type="date"
+                style="width: 40%; height: 5vh"
+              />
+              <label for="">Time:</label>
+              <input
+                formControlName="time"
+                type="time"
+                style="width: 40%; height: 5vh; font-size: 1.2vw"
+              />
+            </div>
+            <div>
+              <button style="width: 20%; margin-top: 10px">Confirm</button>
+            </div>
+          </div>
+        </div>
+        <div class="outer-div">
+          <h3>Enter Phone Number for Test</h3>
+          <input
+            formControlName="phoneno"
+            type="number"
+            placeholder="9586457812"
+          />
+          <button>Test SMS</button>
+        </div>
+      </form>
     </div>
+  </div>
+  <div class="side-form">
+    <div class="sdiv1">
+      <div>
+        <h4>Select Option</h4>
+      </div>
+      <div class="sdiv1option">
+        <button (click)="showFirstdiv()" 
+        (click)="enableDisableRule()" 
+        [ngClass]="{'green' : toggle, 'red': !toggle}">Groups</button>
+        <button (click)="showSnddiv()"
+            (click)="enableAnableRule()" 
+        [ngClass]="{'green' : !toggle, 'red': toggle}">Choose File(.xlx,.txt,.csv)</button>
+      </div>
+      <div>
+        <div class="overlay1" *ngIf="showFirst">
+          <div class="over1">
+            <input type="checkbox" />
+            <h5>Select All</h5>
+          </div>
+          <div class="over1">
+            <input type="checkbox" />
+            <h5>Poo (2)</h5>
+          </div>
+          <div class="over1">
+            <input type="checkbox" />
+            <h5>Test (2)</h5>
+          </div>
+        </div>
+        <div class="overlay2" *ngIf="showSecond">
+          <div class="over21">
+            <h5>Download .xls File Format</h5>
+            <a href="https://www.google.com">Click Here</a>
+          </div>
+          <div class="cfile">
+            <input type="file">
+            <button>Import Contacts</button>
+          </div>
+         
+        </div>
+      </div>
+      
+    </div>
+<!-- 
+    <div class="sdiv1"></div>
+    <div class="sdiv1"></div> -->
+  </div>
 
-
+  <!-- <button (click)="SendMsg()">Send Message</button> -->
 </div>

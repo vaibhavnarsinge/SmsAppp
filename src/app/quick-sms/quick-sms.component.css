@@ -2,47 +2,50 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 .main {
+  padding: 2vw 5vw 2vw 5vw;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
+  min-height: 60vh;
   width: 100%;
 }
 .main-form {
-  background-color: rgb(213, 213, 213);
-  width: 50%;
+  background-color: rgb(229, 229, 229);
+  width: 60%;
 }
-.side-form {
-  background-color: rgb(213, 213, 213);
-  width: 50%;
-}
-.content {
+
+.content form {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 100%;
-  padding: 1vw;
-  border: 2px solid black;
+  border: 2px solid rgba(0, 57, 80, 0.611);
+}
+.inner-div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 0;
 }
 
-.content div {
+.content form .outer-div{
   display: flex;
   justify-content: center;
   align-items: start;
   flex-direction: column;
   gap: 10px;
   margin: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.513);
+  border:1px solid rgba(0, 57, 80, 0.611);
   padding: 1vw;
   width: 70%;
 }
+
 select {
   position: relative;
   width: 100%;
   padding: 0.6vw;
-  border: none;
-  outline: none;
   padding: 0.5vw;
 }
 option {
@@ -50,40 +53,148 @@ option {
   width: 5vw;
 }
 textarea {
-  border: none;
-  outline: none;
   padding: 0.5vw;
   height: 10vh;
   width: 100%;
-  font-size: 1.2vw;
+  font-size: 1vw;
 }
-input {
+.content input {
   width: 100%;
-  border: none;
-  outline: none;
   height: 5vh;
   padding: 0.5vw;
 }
 button {
   border-radius: 8px;
-  background-color: #262626;
+  background-color: #00578a;
   padding: 0.8vw;
   border: none;
   outline: none;
-  width: 22%;
-  height: 5.5vh;
-  font-size: 1vw;
+  width: 20%;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2vh;
   color: white;
   cursor: pointer;
+  right: 0;
+  margin-left: 26vw;
 }
 h3 {
-  font-size: 1.2vw;
+  font-size: 1vw;
   font-weight: 600;
-  text-align: center;
+  /* text-align: center; */
   width: 100%;
+}
+label {
+  font-size: 1.2vw;
+}
+h4 {
+  border-bottom:1px solid rgba(0, 57, 80, 0.611);
+  width: 100%;
+  padding: 1vw;
+  font-size: 1.6vw;
 }
 
 span {
-  color: red;
+  color: rgb(255, 255, 255);
   font-size: 0.9vw;
+  background-color: #006d89;
+  padding: 0.6vh;
 }
+
+.ScheduleContain{
+  display: flex; 
+  flex-direction: column; 
+  width: 100%
+}
+
+/*             */
+.side-form {
+  background-color: rgb(229, 229, 229);
+  width: 40%;
+  padding: 1vw;
+  border:2px solid rgba(0, 57, 80, 0.611);
+  border-left: none;
+
+}
+
+.sdiv1{
+border: 1px solid black;
+padding: 1vw;
+
+}
+
+.sdiv1option{
+  border: 1px solid black;
+  margin-top: 10px;
+  display: flex;
+  justify-content: start;
+  width: 60%;
+
+}
+
+.sdiv1option button{
+  margin: 0vw 0vw 0 0vw;
+  border-radius: 0;
+  font-size: 0.9vw;
+  font-weight: 900;
+  padding: 4vh 1.5vw;
+  background-color: transparent;
+  color: #006d89;
+  width: 50%;
+}
+.sdiv1option  .green {
+  font-size: 1vw;
+  font-weight: 900;
+  color:#004759;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-top: 2px solid black;
+
+
+}
+
+.sdiv1option  .red {
+  color: #004759;
+}
+
+.overlay1{
+  border: 2px solid black;
+  padding: 2vw;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.overlay2{
+  border: 2px solid black;
+  padding: 2vw;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.over1{
+  margin: 1vw;
+  display: flex;
+}
+.over1 input{
+  width: 5%;
+}
+.over21{
+  display: flex;
+}
+
+.over21 a{
+  margin-left: 10px;
+  text-decoration: none;
+}
+.cfile{
+  padding: 2vw 1vw;
+  border: 1px solid rgba(0, 0, 0, 0.411);
+}
+.cfile button{
+  margin-left: 18vw;
+  width: 30%;
+}
+
