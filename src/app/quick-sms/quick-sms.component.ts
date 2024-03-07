@@ -8,55 +8,76 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './quick-sms.component.html',
   styleUrls: ['./quick-sms.component.css'],
 })
-
 export class QuickSmsComponent {
-  
   // selectedOption:any;
   isChecked: boolean = false;
-  showFirst:boolean = true;
-  showSecond:boolean = false;
+  showFirst: boolean = true;
+  showSecond: boolean = false;
+  showFirstt: boolean = true;
+  showSecondd: boolean = false;
 
   toggle = true;
-  status = 'Enable'; 
+  status = 'Enable';
+  toggl = true;
 
-enableDisableRule() {
+
+
+
+  enableDisableRule() {
     this.toggle = !this.toggle;
     this.status = this.toggle ? 'Enable' : 'Disable';
-}
-enableAnableRule(){
-  this.toggle = !this.toggle;
-  this.status = this.toggle ? 'Disable' : 'Enable';
-}
-  showFirstdiv(){
+  }
+  enableAnableRule() {
+    this.toggle = !this.toggle;
+    this.status = this.toggle ? 'Disable' : 'Enable';
+  }
+
+  enableDisableRulee() {
+    this.toggl = !this.toggl;
+    this.status = this.toggl ? 'Enable' : 'Disable';
+  }
+  enableAnableRulee() {
+    this.toggl = !this.toggl;
+    this.status = this.toggl ? 'Disable' : 'Enable';
+  }
+  showFirstdiv() {
     this.showFirst = true;
     this.showSecond = false;
   }
-  showSnddiv(){
+  showSnddiv() {
     this.showFirst = false;
     this.showSecond = true;
   }
-  doSomething(){
-    if(this.isChecked==false){
-      this.isChecked =true;
-    }
-    else if(this.isChecked==true){
+  showFirstdivv() {
+    this.showFirstt = true;
+    this.showSecondd = false;
+  }
+  showSnddivv() {
+    this.showFirstt = false;
+    this.showSecondd = true;
+  }
+  doSomething() {
+    if (this.isChecked == false) {
+      this.isChecked = true;
+    } else if (this.isChecked == true) {
       this.isChecked = false;
     }
   }
 
-  selectedOption: string='';
-  getMessage(): string {
-    
-    switch(this.selectedOption) {
-      case '1':
-        return "Your My SMS verification Code id. Do not share this code with others Team Nuevas";
-      case '2':
-        return "Dear User your OTP is Kindly use OTP to validate your Registration. Team Trackzia";
-      case '3':
-        return "Dear, Your Complaint with Complaint Id: has Been Resolve Kindly Share OTP, The OTP is \n From Nuevas";
-      // Add more cases as needed
-      default:
-        return "";
+  selectedOption: any;
+  selectedOptionText: any;
+
+  updateText() {
+    switch (this.selectedOption) {
+      case '1707161891201501738':
+        this.selectedOptionText = 'Your My SMS verification Code id 12. Do not share this code with others Team Nuevas';
+        break;
+      case '1707161855199873979':
+        this.selectedOptionText = 'Dear User your OTP is 12 Kindly use OTP to validate your Registration. Team Trackzia';
+        break;
+      case '1707161899992775140':
+        this.selectedOptionText = 'Dear 12 , Your Complaint with Complaint Id:21 has Been Resolve Kindly Share OTP, The OTP is 43 \n From Nuevas';
+        break;
     }
   }
 
@@ -67,26 +88,46 @@ enableAnableRule(){
     private route: ActivatedRoute,
     private router: Router,
     private formbuilder: FormBuilder
-  ) {}
-
-  ngOnInit(): void {
+  ) {
     
-      this.quicksms=this.formbuilder.group({
-        username:["demotr"],
-        password:["tr@1234"],
-        sender:["NUEVAS"],
-        templateid:["1707161891201501738"],
-        mob:["9665687983"],
-        msg:["Your My SMS verification Code id . Do not share this code with others Team Nuevas"],
-       coding:["1"]
-      });    
   }
 
 
-  SendMsg(){
-    return this.msgService.SendMsg(this.quicksms.value).subscribe((res)=>{
-      console.log("Success");
+  ngOnInit(): void {
+
+    var vall = this.isUnicode();
+
+    this.quicksms = this.formbuilder.group({
+      username: ['demotr'],
+      password: ['tr@1234'],
+      sender: [''],
+      templateid: [''],
+      mob: [''],
+      msg: [''],
+      coding:vall
+    });
+    
+  }
+
+ isUnicode(){
+
+    if(this.isChecked){
+      return 2;
+    }
+    else if(!this.isChecked){
+      return 1;
+    }
+    else{
+      return 3;
+    }
+  }
+ 
+
+  SendMsg() {
+    debugger
+    return this.msgService.SendMsg(this.quicksms.value).subscribe((res) => {
+      console.log(res);
       alert('Message Sent Successfully');
-  })
-}
+    });
+  }
 }

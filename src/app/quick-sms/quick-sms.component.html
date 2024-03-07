@@ -3,63 +3,61 @@
     <div class="content">
       <form [formGroup]="quicksms">
         <h4>Send SMS</h4>
-        <div class="outer-div">
+        <div class="outer-divv">
           <h3>Sender ID</h3>
-          <select formControlName="senderid">
+          <select formControlName="sender">
             <option value="">--Select--</option>
-            <option value="">NUEVAS</option>
-            <option value="">TRKZIA</option>
+            <option value="NUEVAS">NUEVAS</option>
+            <option value="TRKZIA">TRKZIA</option>
           </select>
-        </div>
-        <div class="outer-div">
+        <!-- </div>
+        <div class="outer-div"> -->
           <h3>Template</h3>
-          <select formControlName="template" [(ngModel)]="selectedOption">
+          <select formControlName="templateid" [(ngModel)]="selectedOption" (change)="updateText()">
             <option>--Select--</option>
-            <option value="1">
-              Your My SMS verification Code id . Do not share this code with
+            <option value="1707161891201501738">
+              Your My SMS verification Code id 12. Do not share this code with
               others Team Nuevas
             </option>
-            <option value="2">
-              Dear User your OTP is Kindly use OTP to validate your
+            <option value="1707161855199873979">
+              Dear User your OTP is 12 Kindly use OTP to validate your
               Registration. Team Trackzia
             </option>
-            <option value="3">
-              Dear , Your Complaint with Complaint Id: has Been Resolve Kindly
-              Share OTP, The OTP is \n From Nuevas
+            <option value="1707161899992775140">
+              Dear 12 , Your Complaint with Complaint Id:21 has Been Resolve Kindly
+              Share OTP, The OTP is 43 \n From Nuevas
             </option>
           </select>
         </div>
         <div class="outer-div">
           <h3>Mobile NO</h3>
           <textarea
-            formControlName="mobno"
+            formControlName="mob"
             cols="30"
             rows="10"
             placeholder="You can add upto 50,000 Phone Numbers"
           ></textarea>
           <div class="inner-div">
-            <span style="width: 40%">Mobile No Count :</span>
-            <span style="width: 40%; margin-left: 20%"
-              >Invalid Mobile No Count :</span
-            >
+            <span style="width: 16%">Mobile No Count :</span>
+            <span style="width: 21%; margin-left: 20%">Invalid Mobile No Count :</span>
           </div>
           <button>Clear Text</button>
         </div>
         <div class="outer-div">
           <div class="inner-div">
-            <input type="checkbox" style="width: 4%; height: 1.4svw" />
+            <input type="checkbox" (click)="isUnicode()"   formControlName="coding" style="width: 4%; height: 1.4svw" />
             <label style="width: 96%; font-size: 0.9vw; margin: 3px 0 0 5px"
-              >Unicode (Hindi, Marathi SMS)</label
-            >
+              >Unicode (Hindi, Marathi SMS)</label>
           </div>
           <h3>Message</h3>
-          <textarea
-            formControlName="message"
+          
+          <textarea 
+          [value]="selectedOptionText"
+          formControlName="msg"
             cols="30"
             rows="10"
-            placeholder="You can add upto 50,000 Phone Numbers"
-            >{{ getMessage() }}</textarea
-          >
+            placeholder="You can add upto 500 characters"
+            ></textarea>
           <span>SMS length :</span>
         </div>
         <div class="outer-div">
@@ -96,13 +94,13 @@
             
           </div>
           <div>
-            <button style="width: 20%; margin-top: 10px">Confirm</button>
+            <button style="width: 15%; margin-top: 10px" (click)="SendMsg()">Send</button>
           </div>
         </div>
         <div class="outer-div">
           <h3>Enter Phone Number for Test</h3>
           <input
-            formControlName="phoneno"
+            formControlName="mob"
             type="number"
             placeholder="9586457812"
           />
@@ -112,51 +110,85 @@
     </div>
   </div>
   <div class="side-form">
-    <div class="sdiv1">
-      <div>
-        <h4>Select Option</h4>
-      </div>
-      <div class="sdiv1option">
-        <button (click)="showFirstdiv()" 
-        (click)="enableDisableRule()" 
-        [ngClass]="{'green' : toggle, 'red': !toggle}">Groups</button>
-        <button (click)="showSnddiv()"
-            (click)="enableAnableRule()" 
-        [ngClass]="{'green' : !toggle, 'red': toggle}">Choose File(.xlx,.txt,.csv)</button>
-      </div>
-      <div>
-        <div class="overlay1" *ngIf="showFirst">
-          <div class="over1">
-            <input type="checkbox" />
-            <h5>Select All</h5>
+    <div class="content">
+      <form >
+        <div class="sdiv1">
+          <h4>Select Option</h4>
+          <div class="sdiv1option">
+            <button (click)="showFirstdiv()" 
+            (click)="enableDisableRule()" 
+            [ngClass]="{'green' : toggle, 'red': !toggle}">Groups</button>
+            <button (click)="showSnddiv()"
+                (click)="enableAnableRule()" 
+            [ngClass]="{'green' : !toggle, 'red': toggle}">Choose File(.xlx,.txt,.csv)</button>
           </div>
-          <div class="over1">
-            <input type="checkbox" />
-            <h5>Poo (2)</h5>
-          </div>
-          <div class="over1">
-            <input type="checkbox" />
-            <h5>Test (2)</h5>
+          <div>
+            <div class="overlay1" *ngIf="showFirst">
+              <div class="over1">
+                <input type="checkbox" />
+                <h5>Select All</h5>
+              </div>
+              <div class="over1">
+                <input type="checkbox" />
+                <h5>Poo (2)</h5>
+              </div>
+              <div class="over1">
+                <input type="checkbox" />
+                <h5>Test (2)</h5>
+              </div>
+            </div>
+            <div class="overlay2" *ngIf="showSecond">
+              <div class="over21">
+                <h5>Download .xls File Format</h5>
+                <a href="../../assets/Phone.xlsx">Click Here</a>
+              </div>
+              <div class="cfile">
+                <input type="file">
+                <button>Import Contacts</button>
+              </div>
+             
+            </div>
           </div>
         </div>
-        <div class="overlay2" *ngIf="showSecond">
-          <div class="over21">
-            <h5>Download .xls File Format</h5>
-            <a href="../../assets/Phone.xlsx">Click Here</a>
-          </div>
-          <div class="cfile">
-            <input type="file">
-            <button>Import Contacts</button>
-          </div>
-         
+     
+        <div class="sdiv1">
+          <h4>Select ChatBot</h4>
+          <h5 style="margin: 10px;">Select Chatbot</h5>
+          <select formControlName="chatbot">
+            <option value="">--Select--</option>
+            <option value="">ChatGPT</option>
+            <option value="">Google Bard</option>
+            <option value="">Microsoft Copilot</option>
+          </select>
         </div>
-      </div>
-      
+        
+        <div class="sdiv1">
+          <h4>Select Media</h4>
+          <div class="sdiv1option">
+            <button (click)="showFirstdivv()" 
+            (click)="enableDisableRulee()" 
+            [ngClass]="{'greenn' : toggl, 'redd': !toggl}">Image</button>
+            <button (click)="showSnddivv()"
+                (click)="enableAnableRulee()" 
+            [ngClass]="{'greenn' : !toggl, 'redd': toggl}">Video</button>
+          </div>
+          <div>
+            <div class="overlay1" *ngIf="showFirstt">
+              <h5>Select File</h5>
+              <select formControlName="chatbot">
+                <option value="">--Select--</option> 
+              </select>
+            </div>
+            <div class="overlay2" *ngIf="showSecondd">
+              <h5>Select Media</h5>
+              <select formControlName="chatbot">
+                <option value="">--Select--</option> 
+              </select>             
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
-<!-- 
-    <div class="sdiv1"></div>
-    <div class="sdiv1"></div> -->
   </div>
 
-  <!-- <button (click)="SendMsg()">Send Message</button> -->
 </div>
