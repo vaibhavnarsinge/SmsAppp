@@ -1,6 +1,6 @@
-<div class="main">
+<div class= "main">
   <div class="main-form">
-    <div class="content">
+    <div class="contentt">
       <form [formGroup]="quicksms">
         <h4>Send SMS</h4>
         <div class="outer-divv">
@@ -41,24 +41,25 @@
             <span style="width: 16%">Mobile No Count :</span>
             <span style="width: 21%; margin-left: 20%">Invalid Mobile No Count :</span>
           </div>
-          <button>Clear Text</button>
+          <button (click)="clearTextarea()">Clear Text</button>
         </div>
         <div class="outer-div">
-          <div class="inner-div">
-            <input type="checkbox" (click)="isUnicode()"   formControlName="coding" style="width: 4%; height: 1.4svw" />
-            <label style="width: 96%; font-size: 0.9vw; margin: 3px 0 0 5px"
+          
+          <h3>Message 
+            <input type="checkbox" (click)="isUnicode()"  formControlName="coding" style="width: 4%; margin: 5px 0 0 10px; box-shadow: none; height: 1vw" />
+            <label style="width: 96%; font-size: 0.9vw; margin: 1px 0 0 0px"
               >Unicode (Hindi, Marathi SMS)</label>
-          </div>
-          <h3>Message</h3>
+          </h3>
           
           <textarea 
           [value]="selectedOptionText"
+          (input)="calculateCharacterCount()"
           formControlName="msg"
             cols="30"
             rows="10"
             placeholder="You can add upto 500 characters"
             ></textarea>
-          <span>SMS length :</span>
+          <span>SMS length : {{ characterCount }}</span>
         </div>
         <div class="outer-div">
           <div class="inner-div">
@@ -67,9 +68,9 @@
               formControlName="chkbox"
               [(ngModel)]="isChecked"
               (click)="doSomething()"
-              style="width: 4%; height: 1.4svw"
+              style="width: 3%; margin: 0; box-shadow: none; height: 1vw"
             />
-            <h3 style="margin: 3px 0 0 5px">Schedule</h3>
+            <h3 style="margin: 1px 0 0 5px">Schedule</h3>
           </div>
 
           <div
@@ -98,12 +99,14 @@
           </div>
         </div>
         <div class="outer-div">
-          <h3>Enter Phone Number for Test</h3>
+          <div style="display: flex; width:70%; space-between;">
+            <h3>Test Number</h3>
           <input
             formControlName="mob"
             type="number"
             placeholder="9586457812"
           />
+          </div>
           <button>Test SMS</button>
         </div>
       </form>
@@ -125,15 +128,15 @@
           <div>
             <div class="overlay1" *ngIf="showFirst">
               <div class="over1">
-                <input type="checkbox" />
+                <input type="checkbox" style="width: 3%; margin: 0 1vw 0 0; box-shadow: none; height: 1vw" />
                 <h5>Select All</h5>
               </div>
               <div class="over1">
-                <input type="checkbox" />
+                <input type="checkbox" style="width: 3%; margin: 0 1vw 0 0; box-shadow: none; height: 1vw" />
                 <h5>Poo (2)</h5>
               </div>
               <div class="over1">
-                <input type="checkbox" />
+                <input type="checkbox" style="width: 3%; margin: 0 1vw 0 0 ; box-shadow: none; height: 1vw" />
                 <h5>Test (2)</h5>
               </div>
             </div>
@@ -151,7 +154,7 @@
           </div>
         </div>
      
-        <div class="sdiv1">
+        <div class="sdiv1 sdiv12">
           <h4>Select ChatBot</h4>
           <h5 style="margin: 10px;">Select Chatbot</h5>
           <select formControlName="chatbot">
@@ -190,5 +193,4 @@
       </form>
     </div>
   </div>
-
 </div>

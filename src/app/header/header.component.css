@@ -99,13 +99,13 @@ li h4 {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  cursor: pointer;
   padding: 10px 5px;
   font-size: 0.9vw;
   border: none;
   width: 10vw;
   text-align: center;
-  border-radius: 50px;
+  /* border-radius: 50px; */
+  background-color: rgba(0, 122, 156, 0.273);
   box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
     -5px -5px 5px -1px rgba(255, 255, 255, 0.7);
 }
@@ -115,6 +115,7 @@ li {
 }
 
 li ul.dropdown {
+  width: 10vw;
   position: absolute;
   margin-top: 6vh;
   display: none;
@@ -122,9 +123,10 @@ li ul.dropdown {
     -5px -5px 5px -1px rgba(255, 255, 255, 0.7);
 }
 ul.dropdown li {
+  font-size: 0.9vw;
   background-color: rgb(240, 240, 240);
   text-align: center;
-  padding: 10px 5px;
+  padding: 5px 5px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.498);
 }
 .outer-ul li{
@@ -155,8 +157,7 @@ li:hover ul.dropdown {
 
 li:hover {
 
-  background-color: rgb(240, 240, 240);
-  border-radius: 50px;
+  background-color: rgb(255, 255, 255);
   border: none;
   box-shadow: inset 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
     inset -5px -5px 5px -1px rgba(255, 255, 255, 0.7);

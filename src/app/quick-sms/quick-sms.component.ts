@@ -19,6 +19,7 @@ export class QuickSmsComponent {
   toggle = true;
   status = 'Enable';
   toggl = true;
+  characterCount: number = 0;
 
 
 
@@ -80,6 +81,7 @@ export class QuickSmsComponent {
         break;
     }
   }
+ 
 
   quicksms!: FormGroup;
 
@@ -88,15 +90,12 @@ export class QuickSmsComponent {
     private route: ActivatedRoute,
     private router: Router,
     private formbuilder: FormBuilder
-  ) {
-    
-  }
+  ) {}
+
 
 
   ngOnInit(): void {
-
     var vall = this.isUnicode();
-
     this.quicksms = this.formbuilder.group({
       username: ['demotr'],
       password: ['tr@1234'],
@@ -106,7 +105,14 @@ export class QuickSmsComponent {
       msg: [''],
       coding:vall
     });
-    
+  }
+  clearTextarea() {
+    this.quicksms.get('mob')?.setValue(''); // Reset the value of the 'mob' form control to an empty string
+  }
+  calculateCharacterCount() {
+    debugger
+    const message = this.quicksms.controls['msg'].value;
+  this.characterCount = message ? message.length : 0;
   }
 
  isUnicode(){
