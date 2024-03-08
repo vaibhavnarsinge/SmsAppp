@@ -2,6 +2,7 @@
   <div class="main-form">
     <div class="contentt">
       <form [formGroup]="quicksms">
+
         <h4>Send SMS</h4>
         <div class="outer-divv">
           <h3>Sender ID</h3>
@@ -31,22 +32,22 @@
         </div>
         <div class="outer-div">
           <h3>Mobile NO</h3>
-          <textarea
+          <textarea [(ngModel)]="InputNo" (keydown.enter)="updateCount()"
             formControlName="mob"
             cols="30"
             rows="10"
             placeholder="You can add upto 50,000 Phone Numbers"
           ></textarea>
           <div class="inner-div">
-            <span style="width: 16%">Mobile No Count :</span>
-            <span style="width: 21%; margin-left: 20%">Invalid Mobile No Count :</span>
+            <span style="width: 16%">Mobile No Count :{{validCount}}</span>
+            <span style="width: 21%; margin-left: 20%">Invalid Mobile No Count :{{InvalidCount}}</span>
           </div>
           <button (click)="clearTextarea()">Clear Text</button>
         </div>
         <div class="outer-div">
           
           <h3>Message 
-            <input type="checkbox" (click)="isUnicode()"  formControlName="coding" style="width: 4%; margin: 5px 0 0 10px; box-shadow: none; height: 1vw" />
+            <input type="checkbox" class="chbox" (click)="isUnicode()"  formControlName="coding" style="width: 4%; margin: 5px 0 0 10px; box-shadow: none; height: 1vw" />
             <label style="width: 96%; font-size: 0.9vw; margin: 1px 0 0 0px"
               >Unicode (Hindi, Marathi SMS)</label>
           </h3>
@@ -64,7 +65,7 @@
         <div class="outer-div">
           <div class="inner-div">
             <input
-              type="checkbox"
+              type="checkbox" class="chbox"
               formControlName="chkbox"
               [(ngModel)]="isChecked"
               (click)="doSomething()"
@@ -128,15 +129,15 @@
           <div>
             <div class="overlay1" *ngIf="showFirst">
               <div class="over1">
-                <input type="checkbox" style="width: 3%; margin: 0 1vw 0 0; box-shadow: none; height: 1vw" />
+                <input type="checkbox" class="chbox"  />
                 <h5>Select All</h5>
               </div>
               <div class="over1">
-                <input type="checkbox" style="width: 3%; margin: 0 1vw 0 0; box-shadow: none; height: 1vw" />
+                <input type="checkbox" class="chbox"  />
                 <h5>Poo (2)</h5>
               </div>
               <div class="over1">
-                <input type="checkbox" style="width: 3%; margin: 0 1vw 0 0 ; box-shadow: none; height: 1vw" />
+                <input type="checkbox" class="chbox"  />
                 <h5>Test (2)</h5>
               </div>
             </div>

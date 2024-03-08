@@ -8,13 +8,13 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
 
   currentDate: Date = new Date();
-
-
+  SmsBalance:number=500;
   constructor() { }
 
   ngOnInit(): void {
+    //function to update time continue
     setInterval(() => {
       this.currentDate = new Date();
-    }, 1000); // Update every second
+    }, 1000); 
   }
 }

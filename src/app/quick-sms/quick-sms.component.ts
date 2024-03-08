@@ -20,9 +20,31 @@ export class QuickSmsComponent {
   status = 'Enable';
   toggl = true;
   characterCount: number = 0;
+  SmsBalance: number = 500;
 
+  quicksms!: FormGroup;
 
+  ngOnInit(): void {
+    var vall = this.isUnicode();
+    this.quicksms = this.formbuilder.group({
+      username: ['demotr'],
+      password: ['tr@1234'],
+      sender: [''],
+      templateid: [''],
+      mob: [''],
+      msg: [''],
+      coding:vall
+    });
+  }
 
+  constructor(
+    private msgService: MsgServiceService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private formbuilder: FormBuilder
+  ) { }
+  
+  
 
   enableDisableRule() {
     this.toggle = !this.toggle;
@@ -57,6 +79,7 @@ export class QuickSmsComponent {
     this.showFirstt = false;
     this.showSecondd = true;
   }
+  //function for optional showing date and time for Schedule
   doSomething() {
     if (this.isChecked == false) {
       this.isChecked = true;
@@ -68,6 +91,7 @@ export class QuickSmsComponent {
   selectedOption: any;
   selectedOptionText: any;
 
+  //assigning template text to template Id
   updateText() {
     switch (this.selectedOption) {
       case '1707161891201501738':
@@ -82,41 +106,17 @@ export class QuickSmsComponent {
     }
   }
  
-
-  quicksms!: FormGroup;
-
-  constructor(
-    private msgService: MsgServiceService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private formbuilder: FormBuilder
-  ) {}
-
-
-
-  ngOnInit(): void {
-    var vall = this.isUnicode();
-    this.quicksms = this.formbuilder.group({
-      username: ['demotr'],
-      password: ['tr@1234'],
-      sender: [''],
-      templateid: [''],
-      mob: [''],
-      msg: [''],
-      coding:vall
-    });
-  }
+  //clear text of Mobile Number Textarea
   clearTextarea() {
-    this.quicksms.get('mob')?.setValue(''); // Reset the value of the 'mob' form control to an empty string
+    this.quicksms.get('mob')?.setValue(''); 
   }
+  //calculating count of characters of message
   calculateCharacterCount() {
-    debugger
-    const message = this.quicksms.controls['msg'].value;
+  const message = this.quicksms.controls['msg'].value;
   this.characterCount = message ? message.length : 0;
   }
-
- isUnicode(){
-
+  //checking checkbox of Unicode
+  isUnicode(){
     if(this.isChecked){
       return 2;
     }
@@ -128,12 +128,44 @@ export class QuickSmsComponent {
     }
   }
  
+  InputNo:string='';
+  validCount:number=0;
+  InvalidCount:number=0;
+
+  //counting number of phones entered in Phone no TextArea
+updateCount(){
+  let phoneNumber = this.InputNo.split('\r\n').map(number => number.trim());
+  let NumSet = new Set<string>(phoneNumber);
+
+  for(let number of NumSet){
+    if(this.ValidNumbers(number)){
+      this.validCount++;
+    }
+    else if(!this.ValidNumbers(number)){
+      this.InvalidCount ++;
+    }
+  }
+}
+
+ValidNumbers(numb:any):boolean{
+  if(numb.length == 10){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
 
   SendMsg() {
-    debugger
     return this.msgService.SendMsg(this.quicksms.value).subscribe((res) => {
       console.log(res);
+
       alert('Message Sent Successfully');
+      // if(res.Success == true){
+        this.SmsBalance = this.SmsBalance - 1;
+        console.log("sms balance : "+this.SmsBalance)
+      // }
     });
   }
 }

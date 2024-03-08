@@ -7,3 +7,20 @@ body{
     height: 100%;
     width: 100%;
 }
+
+/* body::-webkit-scrollbar {
+    display: block;
+  width: 10em;
+  overflow: auto;
+  height: 2em;
+  padding: 1em;
+  margin: 1em auto;
+  outline: 2px solid  rgb(0, 101, 151);
+    width: 10px;
+    height: 8px;
+    background-color: #ffffff; 
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background: rgb(0, 101, 151);
+  } */
