@@ -155,6 +155,12 @@ ValidNumbers(numb:any):boolean{
     return false;
   }
 }
+hidediv1:boolean=true;
+
+hideDiv1(){
+  this.hidediv1!=this.hidediv1
+
+}
 
 
   SendMsg() {

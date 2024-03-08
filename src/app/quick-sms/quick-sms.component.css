@@ -8,7 +8,8 @@
   min-height: 60vh;
   width: 100%;
   /* border: 2px solid rgba(0, 57, 80, 0.611); */
-  background-color: rgba(0, 122, 156, 0.233);
+  /* background-color: rgba(0, 122, 156, 0.233); */
+  background-color: rgb(99 172 183 / 83%);;
 
 }
 .main-form {

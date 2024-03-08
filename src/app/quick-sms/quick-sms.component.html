@@ -79,7 +79,7 @@
             formControlName="ScheduleContain"
             *ngIf="isChecked"
           >
-            <div class="inner-div">
+            <div class="inner-div ">
               <label for="">Date:</label>
               <input
                 formControlName="date"
@@ -117,8 +117,8 @@
     <div class="content">
       <form >
         <div class="sdiv1">
-          <h4>Select Option</h4>
-          <div class="sdiv1option">
+          <h4>Select Option<i class="bx bxs-chevron-down" style="margin-left: 26vw; cursor: pointer;"  (click)="hideDiv1()"></i></h4>
+          <div class="sdiv1option" *ngIf="hidediv1">
             <button (click)="showFirstdiv()" 
             (click)="enableDisableRule()" 
             [ngClass]="{'green' : toggle, 'red': !toggle}">Groups</button>
@@ -126,7 +126,7 @@
                 (click)="enableAnableRule()" 
             [ngClass]="{'green' : !toggle, 'red': toggle}">Choose File(.xlx,.txt,.csv)</button>
           </div>
-          <div>
+          <div [(ngModel)]="hidediv1">
             <div class="overlay1" *ngIf="showFirst">
               <div class="over1">
                 <input type="checkbox" class="chbox"  />
@@ -156,9 +156,9 @@
         </div>
      
         <div class="sdiv1 sdiv12">
-          <h4>Select ChatBot</h4>
-          <h5 style="margin: 10px;">Select Chatbot</h5>
-          <select formControlName="chatbot">
+          <h4>Select ChatBot<i class="bx bxs-chevron-down" style="margin-left: 26vw;"  (click)="hideDiv1()"></i></h4>
+          <h5  [(ngModel)]="hidediv1" style="margin: 10px;">Select Chatbot</h5>
+          <select formControlName="chatbot" [(ngModel)]="hidediv1">
             <option value="">--Select--</option>
             <option value="">ChatGPT</option>
             <option value="">Google Bard</option>
@@ -167,8 +167,8 @@
         </div>
         
         <div class="sdiv1">
-          <h4>Select Media</h4>
-          <div class="sdiv1option">
+          <h4>Select Media<i class="bx bxs-chevron-down" style="margin-left: 26vw;" (click)="hideDiv1()"></i></h4>
+          <div class="sdiv1option" [(ngModel)]="hidediv1">
             <button (click)="showFirstdivv()" 
             (click)="enableDisableRulee()" 
             [ngClass]="{'greenn' : toggl, 'redd': !toggl}">Image</button>
@@ -176,7 +176,7 @@
                 (click)="enableAnableRulee()" 
             [ngClass]="{'greenn' : !toggl, 'redd': toggl}">Video</button>
           </div>
-          <div>
+          <div [(ngModel)]="hidediv1">
             <div class="overlay1" *ngIf="showFirstt">
               <h5>Select File</h5>
               <select formControlName="chatbot">
