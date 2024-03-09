@@ -1,22 +1,17 @@
 <div class="main-header">
   <div class="upper-h">
-    <div class="logo">
-      <img class="img"
-        src="../../assets/dn-logo.png"
-        style="height: 8vh; width: 12vw; border-radius: 0px; margin: 0 0 0 0"
-        alt=""
-      />
-    </div>
-    <div class="current-datetime">
-      <p>{{ currentDate | date : "medium" }}</p>
-    </div>
-    <div>
+    <div class="balance-div">
+      <ul class="outer-ul">
+        <li>
+          <h4>{{ currentDate | date : "medium" }}</h4>
+        </li>
+      </ul>
+
       <ul class="outer-ul">
         <li>
           <h4>
             Balance
             <i class="bx bxs-chevron-down"></i>
-
           </h4>
           <ul class="dropdown" style="text-align: left">
             <li>
@@ -33,57 +28,74 @@
       </ul>
     </div>
     <div class="rotate">
-      <h4 style="color: #007a9c; font-size: 1.2vw;">
+      <h4 style="color: #007a9c; font-size: 1vw">
         View DLT Approved Sender ID List in Support Section 🡺
       </h4>
     </div>
-    <div class="support n-icn">
-      <i class="bx bxs-help-circle" style="font-size: 1.4vw;"></i>
+    <div class="profile-div">
+      <div class="support n-icn">
+        <i class="bx bxs-help-circle" style="font-size: 1.4vw"></i>
+      </div>
+      <div class="notificationn n-icn" style="position: relative">
+        <i class="bx bxs-envelope" style="font-size: 1.4vw"></i>
+        <span
+          style="
+            height: 15px;
+            width: 15px;
+            font-size: 10px;
+            padding: 2px;
+            position: absolute;
+            border-radius: 5px;
+            margin: -19px 0 0 0;
+            color: white;
+            background-color: rgba(223, 0, 0, 0.884);
+          "
+          >10</span
+        >
+      </div>
+      <div class="profile">
+        <i class="bx bxs-user-circle" style="font-size: 1.4vw"></i>
+        <h6>UserName</h6>
 
-    </div>
-    <div class="notificationn n-icn" style="position: relative">
-      <i class="bx bxs-envelope" style="font-size: 1.4vw;"></i>
-      <span
-        style="
-          height:15px;
-          width: 15px;
-          font-size: 10px;
-          padding: 2px;
-          position: absolute;
-          border-radius: 5px;
-          margin: -22px 0 0 0;
-          color: white;
-          background-color: rgba(223, 0, 0, 0.884);
-        "
-        >10</span
-      >
-    </div>
-    <div class="profile">
-      <i class="bx bxs-user-circle" style="font-size: 1.4vw;"></i>
-      <h6>UserName</h6>
-
-      <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
+        <ul>
+          <!-- <li></li>
+          <li></li>
+          <li></li>
+          <li></li> -->
+        </ul>
+      </div>
     </div>
   </div>
 
   <div class="main-nav">
+    <!-- <div class="logo">
+      <img
+        class="img"
+        src="../../assets/dn-logo.png"
+        style="
+          height: 6vh;
+          width: 8vw;
+          box-shadow: inset 5px 5px 5px -1px rgba(2, 182, 74, 0.16),
+            inset -5px -5px 5px -1px rgba(255, 255, 255, 0.7);
+          border-radius: 5px;
+          margin-left: -2vw;
+          border: 0px solid rgba(0, 138, 138, 0.296);
+        "
+        alt=""
+      />
+    </div> -->
     <ul class="outer-ul">
       <li>
         <h4>
-          <i class="bx bxs-dashboard"></i>
-          Dashboard
+          <div>
+            <i class="bx bxs-dashboard"></i>
+            Dashboard
+          </div>
         </h4>
       </li>
       <li>
         <h4>
-          <i class="bx bxs-network-chart"></i>
-
-          API
+          <div><i class="bx bxs-network-chart"></i> API</div>
           <i class="bx bxs-chevron-down"></i>
         </h4>
         <ul class="dropdown">
@@ -93,8 +105,10 @@
       </li>
       <li>
         <h4>
-          <i class="bx bxs-message-dots"></i>
-          Send sms
+          <div>
+            <i class="bx bxs-message-dots"></i>
+            Send sms
+          </div>
           <i class="bx bxs-chevron-down"></i>
         </h4>
         <ul class="dropdown">
@@ -106,16 +120,20 @@
       </li>
       <li>
         <h4>
-          <i class="bx bxs-message-rounded"></i>
+          <div>
+            <i class="bx bxs-message-rounded"></i>
 
-          Whatsapp
+            Whatsapp
+          </div>
         </h4>
       </li>
       <li>
         <h4>
-          <i class="bx bxs-group"></i>
+          <div>
+            <i class="bx bxs-group"></i>
 
-          Manage Item
+            Manage Item
+          </div>
           <i class="bx bxs-chevron-down"></i>
         </h4>
         <ul class="dropdown">
@@ -130,9 +148,11 @@
       </li>
       <li>
         <h4>
-          <i class="bx bxs-report"></i>
+          <div>
+            <i class="bx bxs-report"></i>
 
-          View Reports
+            View Reports
+          </div>
           <i class="bx bxs-chevron-down"></i>
         </h4>
         <ul class="dropdown">
@@ -153,8 +173,7 @@
       </li>
       <li>
         <h4>
-          <i class="bx bxs-cog"></i>
-          Setting
+          <div><i class="bx bxs-cog"></i> Setting</div>
           <i class="bx bxs-chevron-down"></i>
         </h4>
         <ul class="dropdown">

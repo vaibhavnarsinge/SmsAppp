@@ -1,8 +1,7 @@
-<div class= "main">
+<div class="main">
   <div class="main-form">
     <div class="contentt">
       <form [formGroup]="quicksms">
-
         <h4>Send SMS</h4>
         <div class="outer-divv">
           <h3>Sender ID</h3>
@@ -11,10 +10,14 @@
             <option value="NUEVAS">NUEVAS</option>
             <option value="TRKZIA">TRKZIA</option>
           </select>
-        <!-- </div>
+          <!-- </div>
         <div class="outer-div"> -->
           <h3>Template</h3>
-          <select formControlName="templateid" [(ngModel)]="selectedOption" (change)="updateText()">
+          <select
+            formControlName="templateid"
+            [(ngModel)]="selectedOption"
+            (change)="updateText()"
+          >
             <option>--Select--</option>
             <option value="1707161891201501738">
               Your My SMS verification Code id 12. Do not share this code with
@@ -25,47 +28,64 @@
               Registration. Team Trackzia
             </option>
             <option value="1707161899992775140">
-              Dear 12 , Your Complaint with Complaint Id:21 has Been Resolve Kindly
-              Share OTP, The OTP is 43 \n From Nuevas
+              Dear 12 , Your Complaint with Complaint Id:21 has Been Resolve
+              Kindly Share OTP, The OTP is 43 \n From Nuevas
             </option>
           </select>
         </div>
         <div class="outer-div">
           <h3>Mobile NO</h3>
-          <textarea [(ngModel)]="InputNo" (keydown.enter)="updateCount()"
+          <textarea
+            [(ngModel)]="InputNo"
+            (keydown.enter)="updateCount()"
             formControlName="mob"
             cols="30"
             rows="10"
             placeholder="You can add upto 50,000 Phone Numbers"
           ></textarea>
           <div class="inner-div">
-            <span style="width: 16%">Mobile No Count :{{validCount}}</span>
-            <span style="width: 21%; margin-left: 20%">Invalid Mobile No Count :{{InvalidCount}}</span>
+            <span style="width: 16%">Mobile No Count :{{ validCount }}</span>
+            <span style="width: 21%; margin-left: 20%"
+              >Invalid Mobile No Count :{{ InvalidCount }}</span
+            >
           </div>
           <button (click)="clearTextarea()">Clear Text</button>
         </div>
         <div class="outer-div">
-          
-          <h3>Message 
-            <input type="checkbox" class="chbox" (click)="isUnicode()"  formControlName="coding" style="width: 4%; margin: 5px 0 0 10px; box-shadow: none; height: 1vw" />
+          <h3>
+            Message
+            <input
+              type="checkbox"
+              class="chbox"
+              (click)="isUnicode()"
+              formControlName="coding"
+              style="
+                width: 4%;
+                margin: 5px 0 0 10px;
+                box-shadow: none;
+                height: 1vw;
+              "
+            />
             <label style="width: 96%; font-size: 0.9vw; margin: 1px 0 0 0px"
-              >Unicode (Hindi, Marathi SMS)</label>
+              >Unicode (Hindi, Marathi SMS)</label
+            >
           </h3>
-          
-          <textarea 
-          [value]="selectedOptionText"
-          (input)="calculateCharacterCount()"
-          formControlName="msg"
+
+          <textarea
+            [value]="selectedOptionText"
+            (input)="calculateCharacterCount()"
+            formControlName="msg"
             cols="30"
             rows="10"
             placeholder="You can add upto 500 characters"
-            ></textarea>
+          ></textarea>
           <span>SMS length : {{ characterCount }}</span>
         </div>
         <div class="outer-div">
           <div class="inner-div">
             <input
-              type="checkbox" class="chbox"
+              type="checkbox"
+              class="chbox"
               formControlName="chkbox"
               [(ngModel)]="isChecked"
               (click)="doSomething()"
@@ -79,7 +99,7 @@
             formControlName="ScheduleContain"
             *ngIf="isChecked"
           >
-            <div class="inner-div ">
+            <div class="inner-div">
               <label for="">Date:</label>
               <input
                 formControlName="date"
@@ -93,20 +113,21 @@
                 style="width: 40%; height: 5vh; font-size: 1.2vw"
               />
             </div>
-            
           </div>
           <div>
-            <button style="width: 15%; margin-top: 10px" (click)="SendMsg()">Send</button>
+            <button style="width: 15%; margin-top: 10px" (click)="SendMsg()">
+              Send
+            </button>
           </div>
         </div>
         <div class="outer-div">
           <div style="display: flex; width:70%; space-between;">
             <h3>Test Number</h3>
-          <input
-            formControlName="mob"
-            type="number"
-            placeholder="9586457812"
-          />
+            <input
+              formControlName="mob"
+              type="number"
+              placeholder="9586457812"
+            />
           </div>
           <button>Test SMS</button>
         </div>
@@ -115,79 +136,115 @@
   </div>
   <div class="side-form">
     <div class="content">
-      <form >
+      <form>
         <div class="sdiv1">
-          <h4>Select Option<i class="bx bxs-chevron-down" style="margin-left: 26vw; cursor: pointer;"  (click)="hideDiv1()"></i></h4>
-          <div class="sdiv1option" *ngIf="hidediv1">
-            <button (click)="showFirstdiv()" 
-            (click)="enableDisableRule()" 
-            [ngClass]="{'green' : toggle, 'red': !toggle}">Groups</button>
-            <button (click)="showSnddiv()"
-                (click)="enableAnableRule()" 
-            [ngClass]="{'green' : !toggle, 'red': toggle}">Choose File(.xlx,.txt,.csv)</button>
-          </div>
-          <div [(ngModel)]="hidediv1">
-            <div class="overlay1" *ngIf="showFirst">
-              <div class="over1">
-                <input type="checkbox" class="chbox"  />
-                <h5>Select All</h5>
-              </div>
-              <div class="over1">
-                <input type="checkbox" class="chbox"  />
-                <h5>Poo (2)</h5>
-              </div>
-              <div class="over1">
-                <input type="checkbox" class="chbox"  />
-                <h5>Test (2)</h5>
-              </div>
+          <h4>
+            Select Option<i
+              class="bx bxs-chevron-down"
+              style="margin-left: 26vw; cursor: pointer"
+              (click)="hideDiv1()"
+            ></i>
+          </h4>
+          <div class="innerSdiv1">
+            
+            <div class="sdiv1option" *ngIf="hidediv1">
+              <button
+                (click)="showFirstdiv()"
+                (click)="enableDisableRule()"
+                [ngClass]="{ green: toggle, red: !toggle }"
+              >
+                Groups
+              </button>
+              <button
+                (click)="showSnddiv()"
+                (click)="enableAnableRule()"
+                [ngClass]="{ green: !toggle, red: toggle }"
+              >
+                Choose File(.xlx,.txt,.csv)
+              </button>
             </div>
-            <div class="overlay2" *ngIf="showSecond">
-              <div class="over21">
-                <h5>Download .xls File Format</h5>
-                <a href="../../assets/Phone.xlsx">Click Here</a>
+            <div [(ngModel)]="hidediv1">
+              <div class="overlay1" *ngIf="showFirst">
+                <div class="over1">
+                  <input type="checkbox" class="chbox" />
+                  <h5>Select All</h5>
+                </div>
+                <div class="over1">
+                  <input type="checkbox" class="chbox" />
+                  <h5>Poo (2)</h5>
+                </div>
+                <div class="over1">
+                  <input type="checkbox" class="chbox" />
+                  <h5>Test (2)</h5>
+                </div>
               </div>
-              <div class="cfile">
-                <input type="file">
-                <button>Import Contacts</button>
+              <div class="overlay2" *ngIf="showSecond">
+                <div class="over21">
+                  <h5>Download .xls File Format</h5>
+                  <a href="../../assets/Phone.xlsx">Click Here</a>
+                </div>
+                <div class="cfile">
+                  <input type="file" />
+                  <button>Import Contacts</button>
+                </div>
               </div>
-             
             </div>
           </div>
         </div>
-     
+
         <div class="sdiv1 sdiv12">
-          <h4>Select ChatBot<i class="bx bxs-chevron-down" style="margin-left: 26vw;"  (click)="hideDiv1()"></i></h4>
-          <h5  [(ngModel)]="hidediv1" style="margin: 10px;">Select Chatbot</h5>
+          <h4>
+            Select ChatBot<i
+              class="bx bxs-chevron-down"
+              style="margin-left: 26vw"
+              (click)="hideDiv1()"
+            ></i>
+          </h4>
+          <div class="innerSdiv1">
+            <h5 [(ngModel)]="hidediv1" style="margin: 10px">Select Chatbot</h5>
           <select formControlName="chatbot" [(ngModel)]="hidediv1">
             <option value="">--Select--</option>
             <option value="">ChatGPT</option>
             <option value="">Google Bard</option>
             <option value="">Microsoft Copilot</option>
           </select>
-        </div>
-        
-        <div class="sdiv1">
-          <h4>Select Media<i class="bx bxs-chevron-down" style="margin-left: 26vw;" (click)="hideDiv1()"></i></h4>
-          <div class="sdiv1option" [(ngModel)]="hidediv1">
-            <button (click)="showFirstdivv()" 
-            (click)="enableDisableRulee()" 
-            [ngClass]="{'greenn' : toggl, 'redd': !toggl}">Image</button>
-            <button (click)="showSnddivv()"
-                (click)="enableAnableRulee()" 
-            [ngClass]="{'greenn' : !toggl, 'redd': toggl}">Video</button>
           </div>
-          <div [(ngModel)]="hidediv1">
-            <div class="overlay1" *ngIf="showFirstt">
-              <h5>Select File</h5>
-              <select formControlName="chatbot">
-                <option value="">--Select--</option> 
-              </select>
+        </div>
+
+        <div class="sdiv1">
+          <h4>
+            Select Media<i
+              class="bx bxs-chevron-down"
+              style="margin-left: 26vw"
+              (click)="hideDiv1()"
+            ></i>
+          </h4>
+          <div class="innerSdiv1">
+            <div class="sdiv1option" [(ngModel)]="hidediv1">
+              <button
+                (click)="showFirstdivv()"
+                (click)="enableDisableRulee()"
+                [ngClass]="{ greenn: toggl, redd: !toggl }"
+              >
+                Image
+              </button>
+              <button
+                (click)="showSnddivv()"
+                (click)="enableAnableRulee()"
+                [ngClass]="{ greenn: !toggl, redd: toggl }"
+              >
+                Video
+              </button>
             </div>
-            <div class="overlay2" *ngIf="showSecondd">
-              <h5>Select Media</h5>
-              <select formControlName="chatbot">
-                <option value="">--Select--</option> 
-              </select>             
+            <div style="  border: 1px solid rgba(0, 57, 80, 0.611); 
+                  border-radius: 8px;
+                  background-color: #fff;  padding: 1vw;">
+              <h5 [(ngModel)]="hidediv1" style="margin: 10px">Select MEdia</h5>
+            <select formControlName="chatbot" [(ngModel)]="hidediv1">
+              <option value="">--Select--</option>
+              <option value="">Video</option>
+              <option value="">Photo</option>
+            </select>
             </div>
           </div>
         </div>

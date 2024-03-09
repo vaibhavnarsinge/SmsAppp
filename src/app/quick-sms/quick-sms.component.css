@@ -1,32 +1,26 @@
-* {
-  font-family: Arial, Helvetica, sans-serif;
-}
+
 .main {
-  padding: 1vw 1vw 1vw 1vw;
+  padding: 2vw ;
   display: flex;
-  justify-content: center;
-  min-height: 60vh;
+  font-family:  arial, sans-serif;
+  justify-content: space-between;
+  min-height: 85vh;
   width: 100%;
-  /* border: 2px solid rgba(0, 57, 80, 0.611); */
-  /* background-color: rgba(0, 122, 156, 0.233); */
-  background-color: rgb(99 172 183 / 83%);;
+  position: relative;
+  background-color: #eaf4f4;
 
 }
+
 .main-form {
-  background-color: rgba(0, 122, 156, 0);
-  /* box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
-    -1px -1px 5px -1px rgb(0, 61, 107); */
-  width: 55%;
+  width: 50%;
   padding: 1vw;
-  /* display: none; */
-  /* border-right: 2px solid rgba(0, 57, 80, 0.611); */
 }
 
 .contentt form {
+  height: 100%;
   border-radius: 8px;
-  background-color: rgb(235, 235, 235);
-  padding: 0.5vw 1vw;
-
+  background-color: #ebebeb;
+  /* padding: 0.5vw 0vw; */
   box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
     -1px -1px 5px -1px rgb(0, 61, 107);
   display: flex;
@@ -46,18 +40,19 @@
 }
 
 .contentt form .outer-div {
-  box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
-    -5px -5px 5px -1px rgba(255, 255, 255, 0.971);
+ 
   display: flex;
   justify-content: center;
   /* align-items: start; */
   flex-direction: column;
-  gap: 5px;
+  gap: 12px;
   margin: 0.8vw 0vw;
-  border-radius: 8px;
   padding: 0.5vw 1vw;
   width: 90%;
-  background-color: rgba(0, 122, 156, 0.273);
+  border-radius: 8px;
+  box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
+  -5px -5px 5px -1px rgba(255, 255, 255, 0.971);
+  background-color: #cce3de;
 }
 .contentt form .outer-divv {
   border-radius: 8px;
@@ -71,7 +66,7 @@
   /* border:1.5px solid rgba(0, 80, 57, 0.782); */
   padding: 1vw;
   width: 90%;
-  background-color: rgba(0, 122, 156, 0.273);
+  background-color: #cce3de;
 }
 .contentt form .outer-divv h3 {
   width: 29%;
@@ -79,6 +74,8 @@
 
 select {
   border: 1px solid rgba(0, 57, 80, 0.294);
+  box-shadow: inset 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
+  inset -5px -5px 5px -1px rgba(255, 255, 255, 0.7);
   position: relative;
   outline: none;
   width: 100%;
@@ -104,6 +101,8 @@ textarea {
   inset -5px -5px 5px -1px rgba(255, 255, 255, 0.7);
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.294);
+  font-family:  arial, sans-serif;
+
   padding: 0.5vw;
   height: 10vh;
   width: 100%;
@@ -134,7 +133,7 @@ button {
   /* background-color: #002b31f8; */
   /* box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
     -5px -5px 5px -1px rgba(0, 87, 104, 0.7); */
-  background-color: rgb(59, 120, 191);
+  background-color: #527e6b;
   padding: 0.8vw;
   border: none;
   outline: none;
@@ -147,7 +146,7 @@ button {
   color: white;
   cursor: pointer;
   right: 0;
-  margin-left: 36vw;
+  margin-left: 33vw;
 }
 button:hover {
   background-color: #035569dc;
@@ -167,9 +166,12 @@ label {
 h4 {
   border-bottom: 1px solid rgba(0, 57, 80, 0.611);
   width: 100%;
+  background-color: #6b9080;
   padding: 0.5vw;
   font-size: 1.4vw;
-  color: #003031;
+  border-top-left-radius: 8px; 
+  border-top-right-radius: 8px; 
+  color: #000000;
 }
 
 span {
@@ -187,28 +189,38 @@ span {
 }
 
 /*             */
-.content form {
+
+.side-form {
+  width: 45%;
   padding: 1vw;
+
+}
+.content form {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 100%;
+  height: 100%;
 }
-.side-form {
-  background-color: rgba(0, 122, 156, 0);
 
-  width: 45%;
-}
 
 .sdiv1 {
   border-radius: 8px;
   box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
     -1px -1px 5px -1px rgb(0, 61, 107);
   background-color: rgb(232, 230, 230);
-  padding: 0.5vw 1vw 2vw 1vw;
   width: 100%;
   margin:  0 0  1.4vw 0; 
+}
+ .innerSdiv1{
+  border-radius: 8px;
+  box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
+  -5px -5px 5px -1px rgba(255, 255, 255, 0.971);
+  background-color: #cce3de;
+  margin: 1vw;
+  padding: 1vw;
+  line-height: 0;
 }
 
 .sdiv1option {
@@ -226,9 +238,9 @@ span {
     -1px -1px 5px -1px rgb(0, 61, 107);
   border: none;
   font-size: 0.9vw;
+  font-weight: 600;
   padding: 3vh 1vw;
   background-color: transparent;
-  color: #004759;
   width: 50%;
 }
 
@@ -238,16 +250,16 @@ span {
   /* background-color: red; */
 }
 .sdiv1option .green {
-  background-color: rgb(0, 138, 180);
+  background-color: rgb(255, 255, 255);
 
   font-weight: 900;
-  color: #ffffff;
+  color: #004759;
 }
 .sdiv1option .greenn {
-  background-color: rgb(0, 138, 180);
+  background-color: rgb(255, 255, 255);
 
   font-weight: 900;
-  color: #ffffff;
+  color: #004759;
 }
 
 .sdiv1option .red,
@@ -260,11 +272,14 @@ span {
   border: 1px solid rgba(0, 57, 80, 0.611);
   /* box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
   -1px -1px 5px -1px rgb(0, 61, 107); */
+  box-shadow: inset 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
+  inset -5px -5px 5px -1px rgba(255, 255, 255, 0.7);
   border-radius: 8px;
   padding: 1vw;
   display: flex;
   flex-direction: column;
   width: 100%;
+  background-color: #fff;
 }
 
 .over1 {
@@ -286,17 +301,17 @@ span {
   text-decoration: none;
 }
 .overlay2 .cfile {
-  padding: 2vw;
+padding: 1vw 0 0 ;
   /* border: 1px solid rgba(0, 0, 0, 0.411); */
 }
 .overlay2 .cfile input {
   width: auto;
   padding: 1vw;
-  height: 7vh;
+  height: 6vh;
   background-color: white;
 }
 .cfile button {
-  margin: 2vw 0 0 18vw;
+  margin: 0vw 0 0 24vw;
   width: 30%;
 }
 
