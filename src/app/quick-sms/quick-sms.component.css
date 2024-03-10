@@ -1,9 +1,9 @@
 
 .main {
-  padding: 2vw ;
+  padding: 1vw ;
   display: flex;
   font-family:  arial, sans-serif;
-  justify-content: space-between;
+  justify-content: space-around;
   min-height: 85vh;
   width: 100%;
   position: relative;
@@ -12,14 +12,14 @@
 }
 
 .main-form {
-  width: 50%;
+  width: 55%;
   padding: 1vw;
 }
 
 .contentt form {
   height: 100%;
   border-radius: 8px;
-  background-color: #ebebeb;
+  background-color: #eaf4f4;
   /* padding: 0.5vw 0vw; */
   box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
     -1px -1px 5px -1px rgb(0, 61, 107);
@@ -41,32 +41,33 @@
 
 .contentt form .outer-div {
  
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: center; */
   /* align-items: start; */
-  flex-direction: column;
-  gap: 12px;
+  /* flex-direction: column; */
+  /* gap: 12px; */
+  line-height: 3vh;
   margin: 0.8vw 0vw;
   padding: 0.5vw 1vw;
   width: 90%;
   border-radius: 8px;
-  box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
-  -5px -5px 5px -1px rgba(255, 255, 255, 0.971);
-  background-color: #cce3de;
+  box-shadow: 5px 5px 5px -1px rgba(10, 100, 169, 0.572),
+  -5px -5px 5px -1px rgba(10, 99, 169, 0.16);
+  background-color: #eaf4f4;
 }
 .contentt form .outer-divv {
+  /* display: flex;
+  justify-content: flex-start;
+  align-items: center;*/
   border-radius: 8px;
-  box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
-  -5px -5px 5px -1px rgba(255, 255, 255, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+  box-shadow: 5px 5px 5px -1px rgba(10, 100, 169, 0.572),
+  -5px -5px 5px -1px rgba(10, 99, 169, 0.16);
+
   margin: 1.4vw 0vw;
   /* border:1.5px solid rgba(0, 80, 57, 0.782); */
   padding: 1vw;
   width: 90%;
-  background-color: #cce3de;
+  background-color: #eaf4f4;
 }
 .contentt form .outer-divv h3 {
   width: 29%;
@@ -74,7 +75,7 @@
 
 select {
   border: 1px solid rgba(0, 57, 80, 0.294);
-  box-shadow: inset 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
+  box-shadow: inset 2px 2px 5px -1px rgba(10, 99, 169, 0.16),
   inset -5px -5px 5px -1px rgba(255, 255, 255, 0.7);
   position: relative;
   outline: none;
@@ -90,36 +91,37 @@ option {
   outline: none;
 }
 /* style="width: 3%; margin: 0 1vw 0 0; box-shadow: none; height: 1vw" */
-.chbox{
+/* .chbox{
   width: 3%; margin: 1vw 1vw 0 0;
   height: 1vw;
-  background-color: red;
   border: 2px solid black;
-}
+} */
 textarea {
-  box-shadow: inset 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
+  box-shadow: inset 2px 2px 5px -1px rgba(10, 99, 169, 0.16),
   inset -5px -5px 5px -1px rgba(255, 255, 255, 0.7);
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.294);
-  font-family:  arial, sans-serif;
-
+  border: 1px solid rgba(0, 57, 80, 0.294);
+  font-family: "Inter", sans-serif;
+  font-size: 1vw;
   padding: 0.5vw;
   height: 10vh;
   width: 100%;
-  font-size: 0.8vw;
+
   outline: none;
 }
 .contentt input {
-  box-shadow: inset 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
+  box-shadow: inset 2px 2px 5px -1px rgba(10, 99, 169, 0.16),
   inset -5px -5px 5px -1px rgba(255, 255, 255, 0.7);
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.294);
-  width: 100%;
-  font-size: 0.8vw;
+  border: 1px solid rgba(0, 57, 80, 0.294);
+  width: 70%;
+  font-family: "Inter", sans-serif;
+  font-size: 1vw;
   border-radius: 8px;
   height: 5vh;
   outline: none;
-  padding: 0.5vw;
+  word-spacing: 2px;
+  padding: 0.5vw 1vw;
 }
 .main-form .contentt form input:focus,
 textarea:focus,
@@ -133,7 +135,7 @@ button {
   /* background-color: #002b31f8; */
   /* box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
     -5px -5px 5px -1px rgba(0, 87, 104, 0.7); */
-  background-color: #527e6b;
+  background-color: rgb(0, 89, 130);
   padding: 0.8vw;
   border: none;
   outline: none;
@@ -146,12 +148,14 @@ button {
   color: white;
   cursor: pointer;
   right: 0;
-  margin-left: 33vw;
+  margin: 0vw 0 0 37.5vw;
 }
 button:hover {
-  background-color: #035569dc;
-  box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
-    -1px -1px 5px -1px rgb(0, 61, 107);
+  background-color: #008cafdc;
+  /* box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
+    -1px -1px 5px -1px rgb(0, 61, 107); */
+    transform: scale(1.1);
+    transition: transform 0.1s ease-out;
 }
 h3 {
   font-size: 1vw;
@@ -166,20 +170,20 @@ label {
 h4 {
   border-bottom: 1px solid rgba(0, 57, 80, 0.611);
   width: 100%;
-  background-color: #6b9080;
-  padding: 0.5vw;
+  background-color: rgb(0, 89, 130);
+  padding: 0.5vw 1vw;
   font-size: 1.4vw;
+  text-align: center;
   border-top-left-radius: 8px; 
   border-top-right-radius: 8px; 
-  color: #000000;
+  color: #ffffff;
 }
 
 span {
-  color: rgb(255, 255, 255);
+  color: rgba(0, 0, 0, 0.847);
   font-size: 0.6vw;
-  background-color: #347573;
-  padding: 0.5vh;
-  width: 12%;
+  width: 20vw;
+  font-weight: 600;
 }
 
 .ScheduleContain {
@@ -191,7 +195,7 @@ span {
 /*             */
 
 .side-form {
-  width: 45%;
+  width: 38%;
   padding: 1vw;
 
 }
@@ -209,7 +213,7 @@ span {
   border-radius: 8px;
   box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
     -1px -1px 5px -1px rgb(0, 61, 107);
-  background-color: rgb(232, 230, 230);
+  background-color: #eaf4f4;
   width: 100%;
   margin:  0 0  1.4vw 0; 
 }
@@ -246,7 +250,7 @@ span {
 
 .sdiv12{
   gap: 20px;
-  height: 28vh;
+  height: 30vh;
   /* background-color: red; */
 }
 .sdiv1option .green {
@@ -269,7 +273,7 @@ span {
 
 .overlay1,
 .overlay2 {
-  border: 1px solid rgba(0, 57, 80, 0.611);
+  border: 1px solid rgba(0, 57, 80, 0.294);
   /* box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
   -1px -1px 5px -1px rgb(0, 61, 107); */
   box-shadow: inset 5px 5px 5px -1px rgba(10, 99, 169, 0.16),

@@ -15,17 +15,23 @@ export class QuickSmsComponent {
   showSecond: boolean = false;
   showFirstt: boolean = true;
   showSecondd: boolean = false;
+  codingValue: number = 2;
+  InputNo: string = '';
+  validCount: number = 0;
+  InvalidCount: number = 0;
+  res:any;
 
   toggle = true;
   status = 'Enable';
   toggl = true;
   characterCount: number = 0;
   SmsBalance: number = 500;
-
+  checkValue: any;
   quicksms!: FormGroup;
+  checkedValue: number = 0;
 
   ngOnInit(): void {
-    var vall = this.isUnicode();
+    
     this.quicksms = this.formbuilder.group({
       username: ['demotr'],
       password: ['tr@1234'],
@@ -33,7 +39,7 @@ export class QuickSmsComponent {
       templateid: [''],
       mob: [''],
       msg: [''],
-      coding:vall
+      coding: ['1'],
     });
   }
 
@@ -42,9 +48,7 @@ export class QuickSmsComponent {
     private route: ActivatedRoute,
     private router: Router,
     private formbuilder: FormBuilder
-  ) { }
-  
-  
+  ) {}
 
   enableDisableRule() {
     this.toggle = !this.toggle;
@@ -95,83 +99,91 @@ export class QuickSmsComponent {
   updateText() {
     switch (this.selectedOption) {
       case '1707161891201501738':
-        this.selectedOptionText = 'Your My SMS verification Code id 12. Do not share this code with others Team Nuevas';
+        this.selectedOptionText =
+          'Your My SMS verification Code id 12. Do not share this code with others Team Nuevas';
         break;
       case '1707161855199873979':
-        this.selectedOptionText = 'Dear User your OTP is 12 Kindly use OTP to validate your Registration. Team Trackzia';
+        this.selectedOptionText =
+          'Dear User your OTP is 12 Kindly use OTP to validate your Registration. Team Trackzia';
         break;
       case '1707161899992775140':
-        this.selectedOptionText = 'Dear 12 , Your Complaint with Complaint Id:21 has Been Resolve Kindly Share OTP, The OTP is 43 \n From Nuevas';
+        this.selectedOptionText =
+          'Dear 12 , Your Complaint with Complaint Id:21 has Been Resolve Kindly Share OTP, The OTP is 43 \n From Nuevas';
         break;
     }
   }
- 
-  //clear text of Mobile Number Textarea
+
+  //clear text of Mobile Number Textarea, and count of valid and invalid count
   clearTextarea() {
-    this.quicksms.get('mob')?.setValue(''); 
+    this.quicksms.get('mob')?.setValue('');
+    this.InvalidCount = 0;
+    this.validCount = 0;
+
   }
   //calculating count of characters of message
   calculateCharacterCount() {
-  const message = this.quicksms.controls['msg'].value;
-  this.characterCount = message ? message.length : 0;
+    const message = this.quicksms.controls['msg'].value;
+    this.characterCount = message ? message.length : 0;
   }
-  //checking checkbox of Unicode
-  isUnicode(){
-    if(this.isChecked){
-      return 2;
-    }
-    else if(!this.isChecked){
-      return 1;
-    }
-    else{
-      return 3;
-    }
-  }
- 
-  InputNo:string='';
-  validCount:number=0;
-  InvalidCount:number=0;
+
+
 
   //counting number of phones entered in Phone no TextArea
-updateCount(){
-  let phoneNumber = this.InputNo.split('\r\n').map(number => number.trim());
-  let NumSet = new Set<string>(phoneNumber);
+  updateCount() {
+    debugger;
+    let phoneNumber = this.InputNo.split('\n').map((number) => number.trim());
+    let NumSet = new Set<string>(phoneNumber);
 
-  for(let number of NumSet){
-    if(this.ValidNumbers(number)){
+    const numArray = Array.from(NumSet); // Convert the Set to an array
+    const lastNumber = numArray[numArray.length - 1]; // Access the last element of the array
+
+    if (this.ValidNumbers(lastNumber)) {
       this.validCount++;
+    } else {
+      this.InvalidCount++;
     }
-    else if(!this.ValidNumbers(number)){
-      this.InvalidCount ++;
+
+    // for(let number of NumSet){
+    //   if(this.ValidNumbers(number)){
+    //     this.validCount++;
+    //   }
+    //   else if(!this.ValidNumbers(number)){
+    //     this.InvalidCount ++;
+    //   }
+    // }
+  }
+
+  ValidNumbers(numb: any): boolean {
+    if (numb.length == 10) {
+      return true;
+    } else {
+      return false;
     }
   }
-}
+  hidediv1: boolean = true;
 
-ValidNumbers(numb:any):boolean{
-  if(numb.length == 10){
-    return true;
+  hideDiv1() {
+    this.hidediv1 != this.hidediv1;
   }
-  else{
-    return false;
-  }
-}
-hidediv1:boolean=true;
-
-hideDiv1(){
-  this.hidediv1!=this.hidediv1
-
-}
-
 
   SendMsg() {
+    debugger
     return this.msgService.SendMsg(this.quicksms.value).subscribe((res) => {
       console.log(res);
+      alert(JSON.stringify(res));
 
-      alert('Message Sent Successfully');
-      // if(res.Success == true){
+      if (res == true) {
+        alert('Message Sent Successfully');
         this.SmsBalance = this.SmsBalance - 1;
-        console.log("sms balance : "+this.SmsBalance)
-      // }
+        console.log('sms balance : ' + this.SmsBalance);
+      }
+      this.res = JSON.stringify(res);
+      console.log(this.res.Success);
+
     });
   }
+
+  // {"Success":true,"ErrorCode":"000",
+  // "Message":"SMS Sent Successfully",
+  // "MobileNo":"7028704745","Status":"Submited"}
 }

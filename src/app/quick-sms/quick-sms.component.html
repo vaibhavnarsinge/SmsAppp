@@ -13,12 +13,9 @@
           <!-- </div>
         <div class="outer-div"> -->
           <h3>Template</h3>
-          <select
-            formControlName="templateid"
+          <select formControlName="templateid"
             [(ngModel)]="selectedOption"
-            (change)="updateText()"
-          >
-            <option>--Select--</option>
+            (change)="updateText()">
             <option value="1707161891201501738">
               Your My SMS verification Code id 12. Do not share this code with
               others Team Nuevas
@@ -57,15 +54,12 @@
             <input
               type="checkbox"
               class="chbox"
-              (click)="isUnicode()"
-              formControlName="coding"
+              formControlName="codding"
               style="
                 width: 4%;
                 margin: 5px 0 0 10px;
                 box-shadow: none;
-                height: 1vw;
-              "
-            />
+                height: 1vw; "/>
             <label style="width: 96%; font-size: 0.9vw; margin: 1px 0 0 0px"
               >Unicode (Hindi, Marathi SMS)</label
             >
@@ -85,8 +79,7 @@
           <div class="inner-div">
             <input
               type="checkbox"
-              class="chbox"
-              formControlName="chkbox"
+              class="chbox"      
               [(ngModel)]="isChecked"
               (click)="doSomething()"
               style="width: 3%; margin: 0; box-shadow: none; height: 1vw"
@@ -139,11 +132,12 @@
       <form>
         <div class="sdiv1">
           <h4>
-            Select Option<i
+            Select Option
+            <!-- <i
               class="bx bxs-chevron-down"
-              style="margin-left: 26vw; cursor: pointer"
+              style="margin-left: 23vw; cursor: pointer"
               (click)="hideDiv1()"
-            ></i>
+            ></i> -->
           </h4>
           <div class="innerSdiv1">
             
@@ -191,14 +185,39 @@
             </div>
           </div>
         </div>
+        <div class="sdiv1">
+          <table *ngIf="res"> <!-- Show table only if response data is available -->
+            <thead>
+              <tr>
+                <th>Success</th>
+                <th>ErrorCode</th>
+                <th>Message</th>
+                <th>MobileNo</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ res.Success }}</td>
+                <td>{{ res.ErrorCode }}</td>
+                <td>{{ res.Message }}</td>
+                <td>{{ res.MobileNo }}</td>
+                <td>{{ res.Status }}</td>
+              </tr>
+            </tbody>
+          </table>
+                  
+          
+        </div>
 
         <div class="sdiv1 sdiv12">
           <h4>
-            Select ChatBot<i
+            Select ChatBot
+            <!-- <i
               class="bx bxs-chevron-down"
-              style="margin-left: 26vw"
+              style="margin-left: 22vw"
               (click)="hideDiv1()"
-            ></i>
+            ></i> -->
           </h4>
           <div class="innerSdiv1">
             <h5 [(ngModel)]="hidediv1" style="margin: 10px">Select Chatbot</h5>
@@ -213,11 +232,12 @@
 
         <div class="sdiv1">
           <h4>
-            Select Media<i
+            Select Media
+            <!-- <i
               class="bx bxs-chevron-down"
-              style="margin-left: 26vw"
+              style="margin-left: 23vw"
               (click)="hideDiv1()"
-            ></i>
+            ></i> -->
           </h4>
           <div class="innerSdiv1">
             <div class="sdiv1option" [(ngModel)]="hidediv1">
@@ -239,7 +259,7 @@
             <div style="  border: 1px solid rgba(0, 57, 80, 0.611); 
                   border-radius: 8px;
                   background-color: #fff;  padding: 1vw;">
-              <h5 [(ngModel)]="hidediv1" style="margin: 10px">Select MEdia</h5>
+              <h5 [(ngModel)]="hidediv1" style="margin: 10px">Select Media</h5>
             <select formControlName="chatbot" [(ngModel)]="hidediv1">
               <option value="">--Select--</option>
               <option value="">Video</option>
@@ -252,3 +272,7 @@
     </div>
   </div>
 </div>
+
+
+
+
