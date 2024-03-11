@@ -130,19 +130,27 @@ export class QuickSmsComponent {
     const message = this.quicksms.controls['msg'].value;
     this.characterCount = message ? message.length : 0;
 
-
+    //this logic is used for if first msg is 160 chracter then textC = 1, 
+    //after that after every 140 characters textC should increase by 1
     this.msgLength = message.length;
-    if(this.msgLength < 160){
+    if(this.msgLength == 0){
+      this.textC = 0;
+    }
+    else if(this.msgLength < 160){
       this.textC = 1;
     }
-    else if(this.msgLength % 160 == 0){
-      let temp  = this.msgLength / 160
-      this.textC = Math.floor(temp);
+    else if((this.msgLength > 160) && (this.msgLength < 300)){
+      this.textC = 2;
     }
-    else{
-      let temp  = this.msgLength / 160
-      this.textC = Math.floor(temp)+1;
+    
+    else if(this.msgLength > 300){
+      let temp  = (this.msgLength-160) / 140
+      this.textC = Math.floor(temp)+2;
     }
+    // else{
+    //   let temp  = this.msgLength/160
+    //   this.textC = Math.floor(temp)+1;
+    // }
 
     this.TotalCreditChages =  this.phoneNumber.length * this.textC;
 
@@ -161,18 +169,32 @@ export class QuickSmsComponent {
 
   //counting number of phones entered in Phone no TextArea
   updateCount() {
+
+
+    const mobilenumbers = this.quicksms.controls['mob'].value.split(',').map((number:any) => number.trim());
+
+    this.validCount = 0;
+    this.InvalidCount = 0;
+    mobilenumbers.forEach((number:any) => {
+      if(number.length === 10 && /^\d+$/.test(number)){
+        this.validCount++;
+      }
+      else{
+        this.InvalidCount++;
+      }
+    });
     
-    this.phoneNumber = this.InputNo.split('\n').map((number) => number.trim());
-    let NumSet = new Set<string>(this.phoneNumber);
+    // this.phoneNumber = this.InputNo.split('\n').map((number) => number.trim());
+    // let NumSet = new Set<string>(this.phoneNumber);
 
-    const numArray = Array.from(NumSet); // Convert the Set to an array
-    const lastNumber = numArray[numArray.length - 1]; // Access the last element of the array
+    // const numArray = Array.from(NumSet); // Convert the Set to an array
+    // const lastNumber = numArray[numArray.length - 1]; // Access the last element of the array
 
-    if (this.ValidNumbers(lastNumber)) {
-      this.validCount++;
-    } else {
-      this.InvalidCount++;
-    }
+    // if (this.ValidNumbers(lastNumber)) {
+    //   this.validCount++;
+    // } else {
+    //   this.InvalidCount++;
+    // }
 
     // for(let number of NumSet){
     //   if(this.ValidNumbers(number)){
@@ -184,21 +206,13 @@ export class QuickSmsComponent {
     // }
   }
 
-  ValidNumbers(lastNumber: any): boolean {
-    if (lastNumber.length == 10) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-
-
-
-
-
-
-
+  // ValidNumbers(lastNumber: any): boolean {
+  //   if (lastNumber.length == 10) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
 
   hidediv1: boolean = true;
@@ -210,30 +224,31 @@ export class QuickSmsComponent {
   SendMsg() {
     
     return this.msgService.SendMsg(this.quicksms.value).subscribe((res:any) => {
-
-
-      
       if(res.Success == true){
-        this.msgService.balanceCount--;
-        localStorage.setItem('count', (this.msgService.balanceCount));
+        alert('Message Sent Successfully');
+        this.msgService.Username = this.quicksms.value.username
+        localStorage.setItem('Username', (this.msgService.Username));
       }
 
       console.log(res);
-      alert(JSON.stringify(res));
-      this.rData = JSON.stringify(res);
+      // alert(JSON.stringify(res));
+      // this.rData = JSON.stringify(res);
 
-      if (this.rData.Success == true) {
-        alert('Message Sent Successfully');
-        this.SmsBalance = this.SmsBalance - 1;
-        console.log('sms balance : ' + this.SmsBalance);
-      }
-      else{
-        alert('Incorrect Data');
-      }
+      // if (this.rData.Success == true) {
+      //   alert('Message Sent Successfully');
+      //   this.SmsBalance = this.SmsBalance - 1;
+      //   console.log('sms balance : ' + this.SmsBalance);
+      // }
+      
       // this.res = JSON.stringify(res);
       // console.log(this.res.Success);
     });
+
+
+    
   }
+
+ 
 
   // {"Success":true,"ErrorCode":"000",
   // "Message":"SMS Sent Successfully",

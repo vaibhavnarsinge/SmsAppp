@@ -9,8 +9,8 @@ import { MsgServiceService } from '../services/msg-service.service';
 })
 export class HeaderComponent {
 
+  Username:any;
   count:any;
-
   currentDate: Date = new Date();
   SmsBalance:number=500;
   constructor(private msgService:MsgServiceService) { }
@@ -22,12 +22,21 @@ export class HeaderComponent {
     }, 1000); 
 
     this.msgService.localBalanceData();
+    this.loadCount();
   
   }
 
 
+
+  
   loadCount(){
-    
-    this.count  = this.msgService.balanceCount;
-  }
+    debugger
+    this.Username  = this.msgService.Username;
+
+    return this.msgService.GetBalance(this.Username).subscribe((res:any) => {
+      if(res.Success == true){
+  
+        this.count = res.SMSBalance;
+      }})
+}
 }

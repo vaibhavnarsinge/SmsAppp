@@ -31,11 +31,21 @@ export class MsgServiceService {
   }
 
 
+  GetBalance(data:any){
+    debugger
+    return this.http.get(
+      'http://api.sms123.in/api/Credit/Credit?username='+data, this.httpOptions)
+      .pipe(
+        retry(1)
+      )
+  }
 
-  balanceCount:any= 100;
+
+
+  Username:any;
 
   localBalanceData(){
-    this.balanceCount = (localStorage.getItem('count') || 100);
+    this.Username = (localStorage.getItem('Username'));
     return
   }
 }

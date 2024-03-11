@@ -150,6 +150,30 @@ button {
   right: 0;
   margin: 0vw 0 0 37.5vw;
 }
+
+.clearTextBtn{
+  border-radius: 8px;
+  /* background-color: #002b31f8; */
+  /* box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
+    -5px -5px 5px -1px rgba(0, 87, 104, 0.7); */
+  background-color: rgb(160, 56, 56);
+  padding: 0.8vw;
+  border: none;
+  outline: none;
+  width: 12%;
+  height: 3vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7vh;
+  color: white;
+  margin: 0vw 0 0 39vw;
+}
+.clearTextBtn:hover{
+  background-color: rgb(156, 16, 16);
+  cursor: pointer;
+
+}
 button:hover {
   background-color: #008cafdc;
   /* box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
@@ -181,7 +205,7 @@ h4 {
 
 span {
   color: rgba(0, 0, 0, 0.847);
-  font-size: 0.6vw;
+  font-size: 0.7vw;
   width: 20vw;
   font-weight: 600;
 }
