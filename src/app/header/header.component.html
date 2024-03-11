@@ -7,7 +7,7 @@
         </li>
       </ul>
 
-      <ul class="outer-ul">
+      <ul class="outer-ul" (click)="loadCount()">
         <li>
           <h4>
             Balance
@@ -16,10 +16,10 @@
           <ul class="dropdown" style="text-align: left">
             <li>
               SMS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-                >:{{ SmsBalance }}</span
+                >:{{count}}</span
               >
             </li>
-            <li>My SMS&nbsp;&nbsp;&nbsp;<span>:20</span></li>
+            <li>My SMS&nbsp;&nbsp;&nbsp;<span>:0</span></li>
             <li>Notification<span>:0</span></li>
             <li>Whatsapp<span>:0</span></li>
             <li>Voicecall<span>:0</span></li>

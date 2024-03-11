@@ -24,6 +24,18 @@ export class MsgServiceService {
     return this.http.get(
       'http://api.sms123.in/api/QuickSend/QuickSend?username=' +data.username +'&password=' + data.password + '&mob=' +
         data.mob +'&msg=' +data.msg +'&sender=' +data.sender + '&templateid=' +data.templateid +
-        '&coding=' + data.coding );
+        '&coding=' + data.coding, this.httpOptions)
+        .pipe(
+          retry(1)
+        )
+  }
+
+
+
+  balanceCount:any= 100;
+
+  localBalanceData(){
+    this.balanceCount = (localStorage.getItem('count') || 100);
+    return
   }
 }

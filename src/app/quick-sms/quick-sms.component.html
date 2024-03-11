@@ -43,8 +43,7 @@
           <div class="inner-div">
             <span style="width: 16%">Mobile No Count :{{ validCount }}</span>
             <span style="width: 21%; margin-left: 20%"
-              >Invalid Mobile No Count :{{ InvalidCount }}</span
-            >
+              >Invalid Mobile No Count :{{ InvalidCount }}</span>
           </div>
           <button (click)="clearTextarea()">Clear Text</button>
         </div>
@@ -73,7 +72,8 @@
             rows="10"
             placeholder="You can add upto 500 characters"
           ></textarea>
-          <span>SMS length : {{ characterCount }}</span>
+          <span style="width: 16%">SMS length : {{ characterCount }} Text :{{textC}}</span>
+            <span style="width: 21%; margin-left: 20%">Total Credit Charge: {{TotalCreditChages}}</span>
         </div>
         <div class="outer-div">
           <div class="inner-div">
@@ -185,8 +185,8 @@
             </div>
           </div>
         </div>
-        <div class="sdiv1">
-          <table *ngIf="res"> <!-- Show table only if response data is available -->
+        <div class="sdiv1 table-container">
+          <table class="custom-table"> <!-- Show table only if response data is available -->
             <thead>
               <tr>
                 <th>Success</th>
@@ -197,12 +197,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>{{ res.Success }}</td>
-                <td>{{ res.ErrorCode }}</td>
-                <td>{{ res.Message }}</td>
-                <td>{{ res.MobileNo }}</td>
-                <td>{{ res.Status }}</td>
+              <tr *ngFor="let item of rData; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ item.Success }}</td>
+                <td>{{ item.ErrorCode }}</td>
+                <td>{{ item.Message }}</td>
+                <td>{{ item.MobileNo }}</td>
+                <td>{{ item.Status }}</td>
               </tr>
             </tbody>
           </table>

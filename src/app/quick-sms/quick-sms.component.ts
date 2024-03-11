@@ -19,7 +19,12 @@ export class QuickSmsComponent {
   InputNo: string = '';
   validCount: number = 0;
   InvalidCount: number = 0;
-  res:any;
+  rData:any;
+  textC:any;
+  msgLength:any;
+  TotalCreditChages:any;
+  phoneNumber:any;
+
 
   toggle = true;
   status = 'Enable';
@@ -124,15 +129,41 @@ export class QuickSmsComponent {
   calculateCharacterCount() {
     const message = this.quicksms.controls['msg'].value;
     this.characterCount = message ? message.length : 0;
+
+
+    this.msgLength = message.length;
+    if(this.msgLength < 160){
+      this.textC = 1;
+    }
+    else if(this.msgLength % 160 == 0){
+      let temp  = this.msgLength / 160
+      this.textC = Math.floor(temp);
+    }
+    else{
+      let temp  = this.msgLength / 160
+      this.textC = Math.floor(temp)+1;
+    }
+
+    this.TotalCreditChages =  this.phoneNumber.length * this.textC;
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
   //counting number of phones entered in Phone no TextArea
   updateCount() {
-    debugger;
-    let phoneNumber = this.InputNo.split('\n').map((number) => number.trim());
-    let NumSet = new Set<string>(phoneNumber);
+    
+    this.phoneNumber = this.InputNo.split('\n').map((number) => number.trim());
+    let NumSet = new Set<string>(this.phoneNumber);
 
     const numArray = Array.from(NumSet); // Convert the Set to an array
     const lastNumber = numArray[numArray.length - 1]; // Access the last element of the array
@@ -153,13 +184,23 @@ export class QuickSmsComponent {
     // }
   }
 
-  ValidNumbers(numb: any): boolean {
-    if (numb.length == 10) {
+  ValidNumbers(lastNumber: any): boolean {
+    if (lastNumber.length == 10) {
       return true;
     } else {
       return false;
     }
   }
+
+
+
+
+
+
+
+
+
+
   hidediv1: boolean = true;
 
   hideDiv1() {
@@ -167,19 +208,30 @@ export class QuickSmsComponent {
   }
 
   SendMsg() {
-    debugger
-    return this.msgService.SendMsg(this.quicksms.value).subscribe((res) => {
+    
+    return this.msgService.SendMsg(this.quicksms.value).subscribe((res:any) => {
+
+
+      
+      if(res.Success == true){
+        this.msgService.balanceCount--;
+        localStorage.setItem('count', (this.msgService.balanceCount));
+      }
+
       console.log(res);
       alert(JSON.stringify(res));
+      this.rData = JSON.stringify(res);
 
-      if (res == true) {
+      if (this.rData.Success == true) {
         alert('Message Sent Successfully');
         this.SmsBalance = this.SmsBalance - 1;
         console.log('sms balance : ' + this.SmsBalance);
       }
-      this.res = JSON.stringify(res);
-      console.log(this.res.Success);
-
+      else{
+        alert('Incorrect Data');
+      }
+      // this.res = JSON.stringify(res);
+      // console.log(this.res.Success);
     });
   }
 
