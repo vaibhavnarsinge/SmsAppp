@@ -171,11 +171,11 @@ export class QuickSmsComponent {
   updateCount() {
 
 
-    const mobilenumbers = this.quicksms.controls['mob'].value.split(',').map((number:any) => number.trim());
+    this.phoneNumber = this.quicksms.controls['mob'].value.split(',').map((number:any) => number.trim());
 
     this.validCount = 0;
     this.InvalidCount = 0;
-    mobilenumbers.forEach((number:any) => {
+    this.phoneNumber.forEach((number:any) => {
       if(number.length === 10 && /^\d+$/.test(number)){
         this.validCount++;
       }
