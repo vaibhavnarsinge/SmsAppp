@@ -8,12 +8,16 @@ import { ReactiveFormsModule} from '@angular/forms';
 import { FormsModule} from '@angular/forms';
 
 import { QuickSmsComponent } from './quick-sms/quick-sms.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MisReportComponent } from './mis-report/mis-report.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    QuickSmsComponent
+    QuickSmsComponent,
+    DashboardComponent,
+    MisReportComponent
   ],
   imports: [
     BrowserModule,

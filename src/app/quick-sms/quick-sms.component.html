@@ -257,21 +257,14 @@
   <table class="custom-table"> 
     <thead>
       <tr>
-        <th>Success</th>
-        <th>ErrorCode</th>
-        <th>Message</th>
-        <th>MobileNo</th>
-        <th>Status</th>
+        <th >Sr No.</th>
+        <th *ngFor="let key of rData">{{key[key]}}</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of rData; let i = index">
-        <td>{{ i + 1 }}</td>
-        <td>{{ item.Success }}</td>
-        <td>{{ item.ErrorCode }}</td>
-        <td>{{ item.Message }}</td>
-        <td>{{ item.MobileNo }}</td>
-        <td>{{ item.Status }}</td>
+
+      <td *ngFor="let value of rDataKey">{{ item[value] }}</td>
       </tr>
     </tbody>
   </table>

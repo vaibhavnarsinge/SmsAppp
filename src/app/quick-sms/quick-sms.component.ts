@@ -19,7 +19,8 @@ export class QuickSmsComponent {
   InputNo: string = '';
   validCount: number = 0;
   InvalidCount: number = 0;
-  rData:any;
+  rData:any []=[];
+  rDataKey:any;
   textC:any;
   msgLength:any;
   TotalCreditChages:any;
@@ -230,27 +231,19 @@ export class QuickSmsComponent {
         localStorage.setItem('Username', (this.msgService.Username));
       }
 
-      console.log(res);
-      // alert(JSON.stringify(res));
-      // this.rData = JSON.stringify(res);
 
-      // if (this.rData.Success == true) {
-      //   alert('Message Sent Successfully');
-      //   this.SmsBalance = this.SmsBalance - 1;
-      //   console.log('sms balance : ' + this.SmsBalance);
-      // }
-      
-      // this.res = JSON.stringify(res);
-      // console.log(this.res.Success);
+// this.rData = res;;
+
+       
+//           // Get keys from the first item assuming all items have the same structure
+//           this.rDataKey = Object.keys(this.rData[0]); 
+        
+
+      console.log(res);
+   
     });
 
 
     
   }
-
- 
-
-  // {"Success":true,"ErrorCode":"000",
-  // "Message":"SMS Sent Successfully",
-  // "MobileNo":"7028704745","Status":"Submited"}
 }

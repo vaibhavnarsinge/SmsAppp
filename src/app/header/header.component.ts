@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MsgServiceService } from '../services/msg-service.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class HeaderComponent {
   count:any;
   currentDate: Date = new Date();
   SmsBalance:number=500;
-  constructor(private msgService:MsgServiceService) { }
+  constructor(private msgService:MsgServiceService,private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     //function to update time continue
@@ -31,7 +32,8 @@ export class HeaderComponent {
   
   loadCount(){
     debugger
-    this.Username  = this.msgService.Username;
+    // this.Username  = this.msgService.Username;
+    this.Username = 'demotr'
 
     return this.msgService.GetBalance(this.Username).subscribe((res:any) => {
       if(res.Success == true){

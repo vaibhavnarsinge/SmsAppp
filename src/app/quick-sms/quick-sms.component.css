@@ -135,7 +135,7 @@ button {
   /* background-color: #002b31f8; */
   /* box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
     -5px -5px 5px -1px rgba(0, 87, 104, 0.7); */
-  background-color: rgb(0, 89, 130);
+  background-color:  #008cafdc;
   padding: 0.8vw;
   border: none;
   outline: none;
@@ -175,7 +175,7 @@ button {
 
 }
 button:hover {
-  background-color: #008cafdc;
+  background-color: rgb(0, 89, 130);
   /* box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
     -1px -1px 5px -1px rgb(0, 61, 107); */
     transform: scale(1.1);
@@ -339,7 +339,7 @@ padding: 1vw 0 0 ;
   background-color: white;
 }
 .cfile button {
-  margin: 0vw 0 0 24vw;
+  margin: 0vw 0 0 20vw;
   width: 30%;
 }
 
