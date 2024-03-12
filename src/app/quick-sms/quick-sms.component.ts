@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { MsgServiceService } from '../services/msg-service.service';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import * as XLSX from 'xlsx';
+
 
 @Component({
   selector: 'app-quick-sms',
@@ -9,33 +10,24 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./quick-sms.component.css'],
 })
 export class QuickSmsComponent {
-  // selectedOption:any;
   isChecked: boolean = false;
-  showFirst: boolean = true;
-  showSecond: boolean = false;
   showFirstt: boolean = true;
   showSecondd: boolean = false;
-  codingValue: number = 2;
-  InputNo: string = '';
   validCount: number = 0;
   InvalidCount: number = 0;
   rData: any;
   rDataKey: any;
-  textC: any;
+  textC:  number = 0;
   msgLength: any;
-  TotalCreditChages: any;
+  TotalCreditChages:  number = 0;
   phoneNumber: any;
-  // respArray = [];
-
-  toggle = true;
-  status = 'Enable';
-  toggl = true;
   characterCount: number = 0;
-  SmsBalance: number = 500;
-  checkValue: any;
+ 
+  showFirst = true;
+  showSecond = false;
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   quicksms!: FormGroup;
-  checkedValue: number = 0;
-
+  sideform!:FormGroup;
   ngOnInit(): void {
     this.quicksms = this.formbuilder.group({
       username: ['demotr'],
@@ -45,86 +37,79 @@ export class QuickSmsComponent {
       mob: [''],
       msg: [''],
       coding: ['1'],
+      testmob:['']
     });
 
+    this.sideform = this.formbuilder.group({
+      displayArray:[''],
+      chatbot:[''],
+      img:[''],
+      vdo:['']
+    });
+
+    this.quicksms.get('mob')?.valueChanges.subscribe(value => {
+      this.updateCounts(value);
+    });
   }
 
-  constructor(
-    private msgService: MsgServiceService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private formbuilder: FormBuilder
-  ) {}
-
-  enableDisableRule() {
-    this.toggle = !this.toggle;
-    this.status = this.toggle ? 'Enable' : 'Disable';
-  }
-  enableAnableRule() {
-    this.toggle = !this.toggle;
-    this.status = this.toggle ? 'Disable' : 'Enable';
-  }
-
-  enableDisableRulee() {
-    this.toggl = !this.toggl;
-    this.status = this.toggl ? 'Enable' : 'Disable';
-  }
-  enableAnableRulee() {
-    this.toggl = !this.toggl;
-    this.status = this.toggl ? 'Disable' : 'Enable';
-  }
-  showFirstdiv() {
+  constructor( private msgService: MsgServiceService,private formbuilder: FormBuilder) {}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  showFirstdiv() 
+  {
     this.showFirst = true;
     this.showSecond = false;
   }
-  showSnddiv() {
+
+  showSeconddiv() 
+  {
     this.showFirst = false;
     this.showSecond = true;
   }
-  showFirstdivv() {
-    this.showFirstt = true;
-    this.showSecondd = false;
-  }
-  showSnddivv() {
-    this.showFirstt = false;
-    this.showSecondd = true;
-  }
-  //function for optional showing date and time for Schedule
-  doSomething() {
-    if (this.isChecked == false) {
+
+  doSomething() 
+  {
+    if (this.isChecked == false) 
+    {
       this.isChecked = true;
-    } else if (this.isChecked == true) {
+    } else if (this.isChecked == true) 
+    {
       this.isChecked = false;
     }
   }
 
-  selectedOption: any;
+  // selectedOption: any;
   selectedOptionText: any;
 
   //assigning template text to template Id
-  updateText() {
-    switch (this.selectedOption) {
+  updateText() 
+  {
+    switch (this.quicksms.controls['templateid'].value) 
+    {
       case '1707161891201501738':
-        this.selectedOptionText =
-          'Your My SMS verification Code id 12. Do not share this code with others Team Nuevas';
+        this.quicksms.get('msg')!.setValue('Your My SMS verification Code id 12. Do not share this code with others Team Nuevas');
+       
         break;
       case '1707161855199873979':
         this.selectedOptionText =
-          'Dear User your OTP is 12 Kindly use OTP to validate your Registration. Team Trackzia';
+        this.quicksms.get('msg')!.setValue('Dear User your OTP is 12 Kindly use OTP to validate your Registration. Team Trackzia');
         break;
       case '1707161899992775140':
         this.selectedOptionText =
-          'Dear 12 , Your Complaint with Complaint Id:21 has Been Resolve Kindly Share OTP, The OTP is 43 \n From Nuevas';
+        this.quicksms.get('msg')!.setValue('Dear 12 , Your Complaint with Complaint Id:21 has Been Resolve Kindly Share OTP, The OTP is 43 \n From Nuevas');
         break;
     }
-    this.characterCount = this.selectedOptionText.length;
+    const textAreaCount = this.quicksms.get('msg')!.value;
+
+    const textareaLength = textAreaCount.length;
+    this.characterCount = textareaLength
     this.textC = 1;
     this.calculateCharacterCount();
 
   }
 
   //clear text of Mobile Number Textarea, and count of valid and invalid count
-  clearTextarea() {
+  clearTextarea() 
+  {
     this.quicksms.get('mob')?.setValue('');
     this.InvalidCount = 0;
     this.validCount = 0;
@@ -133,42 +118,30 @@ export class QuickSmsComponent {
 
 
   //calculating count of characters of message
-  calculateCharacterCount() {
-    debugger
-    // const message = this.quicksms.controls['msg'].value;
-    // this.characterCount = message ? message.length : 0;
+  calculateCharacterCount() 
+  {
     this.quicksms.get('msg')!.valueChanges.subscribe(value => {
-      
       this.characterCount = value.length;
-      this.msgLength = value.length;
-    if (this.msgLength == 0) {
-      this.textC = 0;
-    } else if (this.msgLength < 160) {
-      this.textC = 1;
-    } else if (this.msgLength > 160 && this.msgLength < 300) {
-      this.textC = 2;
-    } else if (this.msgLength > 300) {
-      let temp = (this.msgLength - 160) / 140;
-      this.textC = Math.floor(temp) + 2;
-    }
-    else{
-      let temp  = this.msgLength/160
-      this.textC = Math.floor(temp)+1;
-    }
-    this.TotalCreditChages = this.validCount * this.textC;
+      // this.characterCount = value.length;
 
-    })
-    
     //this logic is used for if first msg is 160 chracter then textC = 1,
     //after that after every 140 characters textC should increase by 1
-    
+    if (this.characterCount == 0) {
+      this.textC = 0;
+    } else if (this.characterCount < 160) {
+      this.textC = 1;
+    }
+     else if (this.characterCount > 160 ) {
+      const additionalBlocks = Math.floor((this.characterCount -1) / 160);
+      this.textC = 1+additionalBlocks;
+    } 
+    this.TotalCreditChages = this.validCount * this.textC;
+    }) 
   }
 
 
-
-  // pooGroupValue:string[] = ['9730023006,\n7028704745']
-  // assigning numbers from group to mobile textarea
-  UpdateTextArea(e: any) {
+  UpdateTextArea(e: any) 
+  {
     if (e.target.checked == true) {
       this.quicksms.patchValue({
         mob: ['9730023006,\n7028704745'],
@@ -178,74 +151,46 @@ export class QuickSmsComponent {
         mob: '',
       });
     }
-    // this.quicksms.get(this.pooGroupValue)?.setValue(this.quicksms.controls['mob'])
-    // const displayArray = this.quicksms.get'displayArray'].value;
-    // if(displayArray){
-
-    // }
   }
 
-  //counting number of phones entered in Phone no TextArea
-  updateCount() {
-    this.phoneNumber = this.quicksms.controls['mob'].value.split(',').map((number: any) => number.trim());
+  updateCounts(value: string): void {
+    const phoneNumberArray = value.split('\n').map((number: string) => number.trim());
 
     this.validCount = 0;
     this.InvalidCount = 0;
-    this.phoneNumber.forEach((number: any) => {
+
+    phoneNumberArray.forEach((number: string) => {
       if (number.length === 10 && /^\d+$/.test(number)) {
         this.validCount++;
-      } else {
+      } else if (number.trim().length > 0) 
+      { 
         this.InvalidCount++;
       }
     });
 
     this.TotalCreditChages = this.validCount * this.textC;
-    // this.phoneNumber = this.InputNo.split('\n').map((number) => number.trim());
-    // let NumSet = new Set<string>(this.phoneNumber);
-
-    // const numArray = Array.from(NumSet); // Convert the Set to an array
-    // const lastNumber = numArray[numArray.length - 1]; // Access the last element of the array
-
-    // if (this.ValidNumbers(lastNumber)) {
-    //   this.validCount++;
-    // } else {
-    //   this.InvalidCount++;
-    // }
-
-    // for(let number of NumSet){
-    //   if(this.ValidNumbers(number)){
-    //     this.validCount++;
-    //   }
-    //   else if(!this.ValidNumbers(number)){
-    //     this.InvalidCount ++;
-    //   }
-    // }
-    
-
   }
 
-  // ValidNumbers(lastNumber: any): boolean {
-  //   if (lastNumber.length == 10) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
-  hidediv1: boolean = true;
-
-  hideDiv1() {
-    this.hidediv1 != this.hidediv1;
-  }
+  
 
   SendMsg() {
     debugger
 
     let myArray:any[] = [];
+
+    //assigning phone numbers (,) separated to mobile number formbuilder value
+    let AllMobileNumbers: string = this.quicksms.get('mob')!.value;
+    const phoneNumberArray = AllMobileNumbers.split('\n').map(number => number.trim()).filter(number => number !== '');
+    const uniquePhoneNumbers = Array.from(new Set(phoneNumberArray));
+    const validPhoneNumbers = uniquePhoneNumbers.filter(number => number.length === 10 && /^\d+$/.test(number));
+    const formattedPhoneNumbers = validPhoneNumbers.join(',');
+    this.quicksms.get('mob')!.setValue(formattedPhoneNumbers);
+
+
     return this.msgService.SendMsg(this.quicksms.value).subscribe((res: any) => {
         if (res.Success == true) 
         {
-          alert('Message Sent Successfully');
+          alert(res.Message);
 
           myArray.push(res);
           localStorage.setItem('EMpData',JSON.stringify(myArray));
@@ -253,17 +198,60 @@ export class QuickSmsComponent {
           this.msgService.Username = this.quicksms.value.username;
           localStorage.setItem('Username', this.msgService.Username);
         }
-//         this.rData = JSON.stringify(res);
-// debugger
-// console.log(res.Success);
-//         console.log(this.rData[0])
-//         this.rData = res;
-        // this.rData = res;;
-
-        //           // Get keys from the first item assuming all items have the same structure
-        //           this.rDataKey = Object.keys(this.rData[0]);
-
+        else{
+          alert(res.Message);
+        }
         console.log(res);
+
+
       });
+  }
+
+
+  // npm install xlsx
+
+      // Call onFileSelected with the  event 
+
+  // importContacts(){
+  //   const dummyEvent = {
+  //     target: {
+  //       files: [new File([], 'dummyFile')]
+  //     }
+  //   };
+  //   this.onFileSelected(dummyEvent);
+
+  // }
+  allExcelNumbers:any;
+    
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    const reader: FileReader = new FileReader();
+
+    reader.onload = (e: any) => {
+      const binaryString: string = e.target.result;
+      const workbook: XLSX.WorkBook = XLSX.read(binaryString, { type: 'binary' });
+      const sheetName: string = workbook.SheetNames[0];
+      const worksheet: XLSX.WorkSheet = workbook.Sheets[sheetName];
+      const contacts: any[] = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+      // Extract mobile numbers from contacts (assuming they are in a specific column)
+      const mobileNumbers: string[] = contacts.map(row => row[0]); // Change 0 to the column index where mobile numbers are located
+
+      // Join mobile numbers with newline characters
+      const mobileNumbersString: string = mobileNumbers.join('\n');
+
+      // Set the mobile numbers string to the 'mob' control
+      this.allExcelNumbers = mobileNumbersString
+
+    };
+
+    reader.readAsBinaryString(file);
+  }
+
+
+
+  importContacts(): void {
+    // Update the 'mob' control with the mobileNumbersString
+    this.quicksms.patchValue({ mob: this.allExcelNumbers });
   }
 }

@@ -11,11 +11,12 @@
             <option value="TRKZIA">TRKZIA</option>
           </select>
           <!-- </div>
-        <div class="outer-div"> -->
+        <div class="outer-div"> 
+      [(ngModel)]="selectedOption" -->
           <h3>Template</h3>
           <select formControlName="templateid"
-            [(ngModel)]="selectedOption"
             (change)="updateText()">
+            <option value="">--Select--</option>
             <option value="1707161891201501738">
               Your My SMS verification Code id 12. Do not share this code with
               others Team Nuevas
@@ -33,8 +34,7 @@
         <div class="outer-div">
           <h3>Mobile NO</h3>
           <textarea
-            [(ngModel)]="InputNo"
-            (keydown.enter)="updateCount()"
+            
             formControlName="mob"
             cols="30"
             rows="10"
@@ -72,14 +72,13 @@
             placeholder="You can add upto 500 characters"
           ></textarea>
           <span style="width: 16%">SMS length : {{ characterCount }} Text :{{textC}}</span>
-            <span style="width: 21%; margin-left: 65%">Total Credit Charge: {{TotalCreditChages}}</span>
+            <span style="width: 21%; margin-left: 61%">Total Credit Charge: {{TotalCreditChages}}</span>
         </div>
         <div class="outer-div">
           <div class="inner-div">
             <input
               type="checkbox"
               class="chbox"      
-              [(ngModel)]="isChecked"
               (click)="doSomething()"
               style="width: 3%; margin: 0; box-shadow: none; height: 1vw"
             />
@@ -116,7 +115,7 @@
           <div style="display: flex; width:70%; space-between;">
             <h3>Test Number</h3>
             <input
-              formControlName="mobb"
+              formControlName="testmob"
               type="number"
               placeholder="9586457812"
             />
@@ -128,35 +127,23 @@
   </div>
   <div class="side-form">
     <div class="content">
-      <form>
+      <form [formGroup]="sideform">
         <div class="sdiv1">
           <h4>
             Select Option
-            <!-- <i
-              class="bx bxs-chevron-down"
-              style="margin-left: 23vw; cursor: pointer"
-              (click)="hideDiv1()"
-            ></i> -->
+           
           </h4>
           <div class="innerSdiv1">
             
-            <div class="sdiv1option" *ngIf="hidediv1">
-              <button
-                (click)="showFirstdiv()"
-                (click)="enableDisableRule()"
-                [ngClass]="{ green: toggle, red: !toggle }"
-              >
-                Groups
+            <div class="sdiv1option" >
+              <button (click)="showFirstdiv()" >
+               Groups
               </button>
-              <button
-                (click)="showSnddiv()"
-                (click)="enableAnableRule()"
-                [ngClass]="{ green: !toggle, red: toggle }"
-              >
+              <button (click)="showSeconddiv()">
                 Choose File(.xlx,.txt,.csv)
               </button>
             </div>
-            <div [(ngModel)]="hidediv1">
+            <div >
               <div class="overlay1" *ngIf="showFirst">
                 <div class="over1">
                   <input type="checkbox" class="chbox" />
@@ -177,8 +164,8 @@
                   <a href="../../assets/Phone.xlsx">Click Here</a>
                 </div>
                 <div class="cfile">
-                  <input type="file" />
-                  <button>Import Contacts</button>
+                  <input type="file" (change)="onFileSelected($event)" />
+                  <button (click)="importContacts()">Import Contacts</button>
                 </div>
               </div>
             </div>
@@ -196,8 +183,8 @@
             ></i> -->
           </h4>
           <div class="innerSdiv1">
-            <h5 [(ngModel)]="hidediv1" style="margin: 10px">Select Chatbot</h5>
-          <select formControlName="chatbot" [(ngModel)]="hidediv1">
+            <h5  style="margin: 10px">Select Chatbot</h5>
+          <select formControlName="chatbot" >
             <option value="">--Select--</option>
             <option value="">ChatGPT</option>
             <option value="">Google Bard</option>
@@ -209,38 +196,37 @@
         <div class="sdiv1">
           <h4>
             Select Media
-            <!-- <i
-              class="bx bxs-chevron-down"
-              style="margin-left: 23vw"
-              (click)="hideDiv1()"
-            ></i> -->
           </h4>
           <div class="innerSdiv1">
-            <div class="sdiv1option" [(ngModel)]="hidediv1">
-              <button
-                (click)="showFirstdivv()"
-                (click)="enableDisableRulee()"
-                [ngClass]="{ greenn: toggl, redd: !toggl }"
-              >
-                Image
+            <div class="sdiv1option" >
+              <button (click)="showFirstdiv()" >
+               Image
               </button>
-              <button
-                (click)="showSnddivv()"
-                (click)="enableAnableRulee()"
-                [ngClass]="{ greenn: !toggl, redd: toggl }"
-              >
+              <button (click)="showSeconddiv()" >
                 Video
               </button>
             </div>
-            <div style="  border: 1px solid rgba(0, 57, 80, 0.611); 
-                  border-radius: 8px;
-                  background-color: #fff;  padding: 1vw;">
-              <h5 [(ngModel)]="hidediv1" style="margin: 10px">Select Media</h5>
-            <select formControlName="chatbot" [(ngModel)]="hidediv1">
-              <option value="">--Select--</option>
-              <option value="">Video</option>
-              <option value="">Photo</option>
-            </select>
+            <div >
+              <div class="overlay1" *ngIf="showFirst">
+                <h5  style="margin: 10px">Select Image</h5>
+
+                <select formControlName="img" >
+                  <option value="">--Select--</option>
+                  <option value="Image1">Image1</option>
+                  <option value="Image2">Image2</option>
+                  <option value="Image3">Image3</option>
+                </select>
+              </div>
+              <div class="overlay2" *ngIf="showSecond">
+                <h5  style="margin: 10px">Select Video</h5>
+
+                <select formControlName="vdo" >
+                  <option value="">--Select--</option>
+                  <option value="Video1">Video1</option>
+                  <option value="Video2">Video2</option>
+                  <option value="Video3">Video3</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
@@ -249,7 +235,7 @@
   </div>
 </div>
 
-<h1>{{rData.Success}}</h1>
+<!-- <h1>{{rData.Success}}</h1> -->
 
 
 

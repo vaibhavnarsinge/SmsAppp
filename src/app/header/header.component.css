@@ -28,8 +28,8 @@ margin-left: -11vw;
 }
 
 .balance-div li h4{
-  box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
-    -5px -5px 5px -1px rgba(255, 255, 255, 0.7);
+  /* box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
+    -5px -5px 5px -1px rgba(255, 255, 255, 0.7); */
 
   border-radius: 50px;
   background-color: transparent;
@@ -45,9 +45,8 @@ span {
   right: 0;
 }
 .rotate {
-  box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
-  -5px -5px 5px -1px rgba(255, 255, 255, 0.7);
-
+  /* box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
+  -5px -5px 5px -1px rgba(255, 255, 255, 0.7); */
   border-radius: 50px;
   overflow: hidden;
   padding: 0px 10px;
@@ -58,7 +57,7 @@ span {
 .rotate h4 {
   display: inline-block;
   white-space: nowrap;
-  animation: rotateRightToLeft 19s linear infinite;
+  animation: rotateRightToLeft 10s linear infinite;
   backface-visibility: hidden; /* Adjust duration and timing function as needed */
 }
 @keyframes rotateRightToLeft {
@@ -78,8 +77,8 @@ span {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
-  -5px -5px 5px -1px rgba(255, 255, 255, 0.7);
+  /* box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
+  -5px -5px 5px -1px rgba(255, 255, 255, 0.7); */
 
   border-radius: 50%; /* Makes the element circular */
 }
@@ -97,8 +96,8 @@ span {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
-    -5px -5px 5px -1px rgba(255, 255, 255, 0.7);
+  /* box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
+    -5px -5px 5px -1px rgba(255, 255, 255, 0.7); */
 
   border-radius: 50px;
   padding: 0px 10px;

@@ -268,7 +268,7 @@ span {
   font-size: 0.9vw;
   font-weight: 600;
   padding: 3vh 1vw;
-  background-color: transparent;
+  background-color: #004759;
   width: 50%;
 }
 
@@ -277,24 +277,15 @@ span {
   height: 30vh;
   /* background-color: red; */
 }
-.sdiv1option .green {
-  background-color: rgb(255, 255, 255);
-
-  font-weight: 900;
-  color: #004759;
-}
-.sdiv1option .greenn {
-  background-color: rgb(255, 255, 255);
-
-  font-weight: 900;
-  color: #004759;
+.sdiv1option .clicked {
+  background-color: rgb(35, 0, 140); /* Change to your desired color */
+  color: white; /* Change to your desired color */
 }
 
-.sdiv1option .red,
-.redd {
-  color: #004759;
+.sdiv1option button{
+  background-color: white;
+  color: black;
 }
-
 .overlay1,
 .overlay2 {
   border: 1px solid rgba(0, 57, 80, 0.294);
