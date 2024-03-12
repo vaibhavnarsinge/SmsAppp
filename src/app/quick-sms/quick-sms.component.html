@@ -117,7 +117,7 @@
           <div style="display: flex; width:70%; space-between;">
             <h3>Test Number</h3>
             <input
-              formControlName="mob"
+              formControlName="mobb"
               type="number"
               placeholder="9586457812"
             />
@@ -164,12 +164,12 @@
                   <h5>Select All</h5>
                 </div>
                 <div class="over1">
-                  <input type="checkbox" class="chbox" />
-                  <h5>Poo (2)</h5>
+                  <input type="checkbox" formControlName="displayArray" (change)="UpdateTextArea($event)" class="chbox" />
+                  <h5>Manager (2)</h5>
                 </div>
                 <div class="over1">
                   <input type="checkbox" class="chbox" />
-                  <h5>Test (2)</h5>
+                  <h5>Employee (0)</h5>
                 </div>
               </div>
               <div class="overlay2" *ngIf="showSecond">
@@ -250,10 +250,12 @@
   </div>
 </div>
 
+<h1>{{rData.Success}}</h1>
 
 
 
-<!-- <div class="sdiv1 table-container">
+<!-- 
+<div class="sdiv1 table-container">
   <table class="custom-table"> 
     <thead>
       <tr>
@@ -268,4 +270,4 @@
       </tr>
     </tbody>
   </table>
-</div> -->
+</div>  -->

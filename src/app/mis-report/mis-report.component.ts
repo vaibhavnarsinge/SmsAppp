@@ -7,4 +7,22 @@ import { Component } from '@angular/core';
 })
 export class MisReportComponent {
 
+  alluser: any;
+
+  ngOnInit(): void {
+debugger
+
+    const localData = localStorage.getItem('EMpData');
+    if (localData != null) {
+      this.alluser = JSON.parse(localData);
+      console.log(this.alluser )
+    }
+  }
+  
+
+ 
+
+
+
 }
+

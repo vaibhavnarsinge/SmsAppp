@@ -19,13 +19,13 @@ export class QuickSmsComponent {
   InputNo: string = '';
   validCount: number = 0;
   InvalidCount: number = 0;
-  rData:any []=[];
-  rDataKey:any;
-  textC:any;
-  msgLength:any;
-  TotalCreditChages:any;
-  phoneNumber:any;
-
+  rData: any;
+  rDataKey: any;
+  textC: any;
+  msgLength: any;
+  TotalCreditChages: any;
+  phoneNumber: any;
+  // respArray = [];
 
   toggle = true;
   status = 'Enable';
@@ -37,7 +37,6 @@ export class QuickSmsComponent {
   checkedValue: number = 0;
 
   ngOnInit(): void {
-    
     this.quicksms = this.formbuilder.group({
       username: ['demotr'],
       password: ['tr@1234'],
@@ -124,67 +123,73 @@ export class QuickSmsComponent {
     this.quicksms.get('mob')?.setValue('');
     this.InvalidCount = 0;
     this.validCount = 0;
-
   }
+
+
+
   //calculating count of characters of message
   calculateCharacterCount() {
     const message = this.quicksms.controls['msg'].value;
     this.characterCount = message ? message.length : 0;
 
-    //this logic is used for if first msg is 160 chracter then textC = 1, 
+    //this logic is used for if first msg is 160 chracter then textC = 1,
     //after that after every 140 characters textC should increase by 1
     this.msgLength = message.length;
-    if(this.msgLength == 0){
+    if (this.msgLength == 0) {
       this.textC = 0;
-    }
-    else if(this.msgLength < 160){
+    } else if (this.msgLength < 160) {
       this.textC = 1;
-    }
-    else if((this.msgLength > 160) && (this.msgLength < 300)){
+    } else if (this.msgLength > 160 && this.msgLength < 300) {
       this.textC = 2;
-    }
-    
-    else if(this.msgLength > 300){
-      let temp  = (this.msgLength-160) / 140
-      this.textC = Math.floor(temp)+2;
+    } else if (this.msgLength > 300) {
+      let temp = (this.msgLength - 160) / 140;
+      this.textC = Math.floor(temp) + 2;
     }
     // else{
     //   let temp  = this.msgLength/160
     //   this.textC = Math.floor(temp)+1;
     // }
-
-    this.TotalCreditChages =  this.phoneNumber.length * this.textC;
-
-
+    this.TotalCreditChages = this.phoneNumber.length * this.textC;
   }
 
 
 
 
+  // pooGroupValue:string[] = ['9730023006,\n7028704745']
+  // assigning numbers from group to mobile textarea
+  UpdateTextArea(e: any) {
+    if (e.target.checked == true) {
+      this.quicksms.patchValue({
+        mob: ['9730023006,\n7028704745'],
+      });
+    } else if (e.target.checked == false) {
+      this.quicksms.patchValue({
+        mob: '',
+      });
+    }
+    // this.quicksms.get(this.pooGroupValue)?.setValue(this.quicksms.controls['mob'])
+    // const displayArray = this.quicksms.get'displayArray'].value;
+    // if(displayArray){
 
-
-
-
-
-
+    // }
+  }
 
   //counting number of phones entered in Phone no TextArea
   updateCount() {
-
-
-    this.phoneNumber = this.quicksms.controls['mob'].value.split(',').map((number:any) => number.trim());
+    this.phoneNumber = this.quicksms.controls['mob'].value
+      .split(',')
+      .map((number: any) => number.trim());
 
     this.validCount = 0;
     this.InvalidCount = 0;
-    this.phoneNumber.forEach((number:any) => {
-      if(number.length === 10 && /^\d+$/.test(number)){
+    this.phoneNumber.forEach((number: any) => {
+      if (number.length === 10 && /^\d+$/.test(number)) {
         this.validCount++;
-      }
-      else{
+      } else {
         this.InvalidCount++;
       }
     });
-    
+
     // this.phoneNumber = this.InputNo.split('\n').map((number) => number.trim());
     // let NumSet = new Set<string>(this.phoneNumber);
 
@@ -215,7 +220,6 @@ export class QuickSmsComponent {
   //   }
   // }
 
-
   hidediv1: boolean = true;
 
   hideDiv1() {
@@ -223,27 +227,31 @@ export class QuickSmsComponent {
   }
 
   SendMsg() {
-    
-    return this.msgService.SendMsg(this.quicksms.value).subscribe((res:any) => {
-      if(res.Success == true){
-        alert('Message Sent Successfully');
-        this.msgService.Username = this.quicksms.value.username
-        localStorage.setItem('Username', (this.msgService.Username));
-      }
+    debugger
 
+    let myArray:any[] = [];
+    return this.msgService.SendMsg(this.quicksms.value).subscribe((res: any) => {
+        if (res.Success == true) 
+        {
+          alert('Message Sent Successfully');
 
-// this.rData = res;;
+          myArray.push(res);
+          localStorage.setItem('EMpData',JSON.stringify(myArray));
 
-       
-//           // Get keys from the first item assuming all items have the same structure
-//           this.rDataKey = Object.keys(this.rData[0]); 
-        
+          this.msgService.Username = this.quicksms.value.username;
+          localStorage.setItem('Username', this.msgService.Username);
+        }
+//         this.rData = JSON.stringify(res);
+// debugger
+// console.log(res.Success);
+//         console.log(this.rData[0])
+//         this.rData = res;
+        // this.rData = res;;
 
-      console.log(res);
-   
-    });
+        //           // Get keys from the first item assuming all items have the same structure
+        //           this.rDataKey = Object.keys(this.rData[0]);
 
-
-    
+        console.log(res);
+      });
   }
 }

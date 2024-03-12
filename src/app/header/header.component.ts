@@ -19,6 +19,7 @@ export class HeaderComponent {
   ngOnInit(): void {
     //function to update time continue
     setInterval(() => {
+      
       this.currentDate = new Date();
     }, 1000); 
 
@@ -31,9 +32,9 @@ export class HeaderComponent {
 
   
   loadCount(){
-    debugger
-    // this.Username  = this.msgService.Username;
-    this.Username = 'demotr'
+    
+    this.Username  = this.msgService.Username;
+    // this.Username = 'demotr'
 
     return this.msgService.GetBalance(this.Username).subscribe((res:any) => {
       if(res.Success == true){

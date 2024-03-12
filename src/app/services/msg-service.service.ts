@@ -32,7 +32,7 @@ export class MsgServiceService {
 
 
   GetBalance(data:any){
-    debugger
+    
     return this.http.get(
       'http://api.sms123.in/api/Credit/Credit?username='+data, this.httpOptions)
       .pipe(
