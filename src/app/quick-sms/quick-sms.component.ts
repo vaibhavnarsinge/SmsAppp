@@ -46,6 +46,7 @@ export class QuickSmsComponent {
       msg: [''],
       coding: ['1'],
     });
+
   }
 
   constructor(
@@ -116,6 +117,10 @@ export class QuickSmsComponent {
           'Dear 12 , Your Complaint with Complaint Id:21 has Been Resolve Kindly Share OTP, The OTP is 43 \n From Nuevas';
         break;
     }
+    this.characterCount = this.selectedOptionText.length;
+    this.textC = 1;
+    this.calculateCharacterCount();
+
   }
 
   //clear text of Mobile Number Textarea, and count of valid and invalid count
@@ -129,12 +134,13 @@ export class QuickSmsComponent {
 
   //calculating count of characters of message
   calculateCharacterCount() {
-    const message = this.quicksms.controls['msg'].value;
-    this.characterCount = message ? message.length : 0;
-
-    //this logic is used for if first msg is 160 chracter then textC = 1,
-    //after that after every 140 characters textC should increase by 1
-    this.msgLength = message.length;
+    debugger
+    // const message = this.quicksms.controls['msg'].value;
+    // this.characterCount = message ? message.length : 0;
+    this.quicksms.get('msg')!.valueChanges.subscribe(value => {
+      
+      this.characterCount = value.length;
+      this.msgLength = value.length;
     if (this.msgLength == 0) {
       this.textC = 0;
     } else if (this.msgLength < 160) {
@@ -145,13 +151,18 @@ export class QuickSmsComponent {
       let temp = (this.msgLength - 160) / 140;
       this.textC = Math.floor(temp) + 2;
     }
-    // else{
-    //   let temp  = this.msgLength/160
-    //   this.textC = Math.floor(temp)+1;
-    // }
-    this.TotalCreditChages = this.phoneNumber.length * this.textC;
-  }
+    else{
+      let temp  = this.msgLength/160
+      this.textC = Math.floor(temp)+1;
+    }
+    this.TotalCreditChages = this.validCount * this.textC;
 
+    })
+    
+    //this logic is used for if first msg is 160 chracter then textC = 1,
+    //after that after every 140 characters textC should increase by 1
+    
+  }
 
 
 
@@ -176,9 +187,7 @@ export class QuickSmsComponent {
 
   //counting number of phones entered in Phone no TextArea
   updateCount() {
-    this.phoneNumber = this.quicksms.controls['mob'].value
-      .split(',')
-      .map((number: any) => number.trim());
+    this.phoneNumber = this.quicksms.controls['mob'].value.split(',').map((number: any) => number.trim());
 
     this.validCount = 0;
     this.InvalidCount = 0;
@@ -190,6 +199,7 @@ export class QuickSmsComponent {
       }
     });
 
+    this.TotalCreditChages = this.validCount * this.textC;
     // this.phoneNumber = this.InputNo.split('\n').map((number) => number.trim());
     // let NumSet = new Set<string>(this.phoneNumber);
 
@@ -210,6 +220,8 @@ export class QuickSmsComponent {
     //     this.InvalidCount ++;
     //   }
     // }
+    
+
   }
 
   // ValidNumbers(lastNumber: any): boolean {

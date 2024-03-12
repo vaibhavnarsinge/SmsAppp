@@ -12,7 +12,7 @@ const routes: Routes = [
     component:DashboardComponent
   },
   {
-    path:'quick',
+    path:'',
     component:QuickSmsComponent
   },
   {
@@ -20,7 +20,7 @@ const routes: Routes = [
     component:HeaderComponent
   },
   {
-    path:'',
+    path:'miss',
     component:MisReportComponent
   }
 
