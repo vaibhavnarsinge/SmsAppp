@@ -131,7 +131,6 @@
         <div class="sdiv1">
           <h4>
             Select Option
-           
           </h4>
           <div class="innerSdiv1">
             
@@ -146,16 +145,16 @@
             <div >
               <div class="overlay1" *ngIf="showFirst">
                 <div class="over1">
-                  <input type="checkbox" class="chbox" />
+                  <input type="checkbox" formControlName="displayArray" [checked]="isAllselect" (change)="UpdateTextAreaFirst($event)" class="chbox" />
                   <h5>Select All</h5>
                 </div>
                 <div class="over1">
-                  <input type="checkbox" formControlName="displayArray" (change)="UpdateTextArea($event)" class="chbox" />
+                  <input type="checkbox" formControlName="displayArray" [checked]="isPooselect" (change)="UpdateTextAreaSnd($event)" class="chbox" />
                   <h5>Manager (2)</h5>
                 </div>
                 <div class="over1">
-                  <input type="checkbox" class="chbox" />
-                  <h5>Employee (0)</h5>
+                  <input type="checkbox" formControlName="displayArray" [checked]="isTextselect" (change)="UpdateTextAreaTrd($event)" class="chbox" />
+                  <h5>Employee (1)</h5>
                 </div>
               </div>
               <div class="overlay2" *ngIf="showSecond">

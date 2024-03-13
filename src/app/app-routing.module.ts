@@ -20,7 +20,7 @@ const routes: Routes = [
     component:HeaderComponent
   },
   {
-    path:'miss',
+    path:'misreport',
     component:MisReportComponent
   }
 

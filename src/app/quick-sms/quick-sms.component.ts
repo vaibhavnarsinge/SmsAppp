@@ -113,6 +113,10 @@ export class QuickSmsComponent {
     this.quicksms.get('mob')?.setValue('');
     this.InvalidCount = 0;
     this.validCount = 0;
+
+    this.isPooselect=false;
+    this.isTextselect=false;
+    this.isAllselect=false;
   }
 
 
@@ -140,13 +144,60 @@ export class QuickSmsComponent {
   }
 
 
-  UpdateTextArea(e: any) 
-  {
+  isPooselect:boolean=false;
+  isTextselect:boolean=false;
+  isAllselect:boolean=false;
+
+  poolNumbers:any = '9730023006,\n7028704745';
+  textNumbers:any = '8805411737';
+
+
+  UpdateTextAreaFirst(e: any) {
     if (e.target.checked == true) {
       this.quicksms.patchValue({
-        mob: ['9730023006,\n7028704745'],
+        mob: [this.poolNumbers+',\n'+this.textNumbers],
+      });
+
+      this.isPooselect = true
+      this.isTextselect = true
+
+    } else if (e.target.checked == false) {
+      this.quicksms.patchValue({
+        mob: '',
+      });
+      this.isPooselect = false
+      this.isTextselect = false
+    }
+  }
+
+
+
+  UpdateTextAreaSnd(e: any) 
+  {
+    if (e.target.checked == true) {
+      this.isPooselect = true
+      this.quicksms.patchValue({
+        mob: [this.poolNumbers+'\n'+this.quicksms.get('mob')?.value],
       });
     } else if (e.target.checked == false) {
+      this.isPooselect = false
+
+      this.quicksms.patchValue({
+        mob: '',
+      });
+    }
+  }
+
+
+  UpdateTextAreaTrd(e: any) {
+    if (e.target.checked == true) {
+      this.isTextselect = true
+      this.quicksms.patchValue({
+        mob: [this.textNumbers+',\n'+this.quicksms.get('mob')?.value],
+      });
+    } else if (e.target.checked == false) {
+      this.isTextselect = false
+
       this.quicksms.patchValue({
         mob: '',
       });
