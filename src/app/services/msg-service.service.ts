@@ -41,10 +41,21 @@ export class MsgServiceService {
   }
 
 
+  setDataInJson(data:any){
+    return this.http.post('http://localhost:3000/report',data)
+  }
+
+  getDataInJson(){
+    debugger
+    return this.http.get('http://localhost:3000/report')
+  }
+
+
+
 
   Username:any;
 
-  localBalanceData(){
+  localBalanceDataa(){
     this.Username = (localStorage.getItem('Username'));
     return
   }

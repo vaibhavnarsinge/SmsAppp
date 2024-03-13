@@ -22,9 +22,13 @@ export class QuickSmsComponent {
   TotalCreditChages:  number = 0;
   phoneNumber: any;
   characterCount: number = 0;
+  imgvalue:any;
+  imgsrc:any;
  
   showFirst = true;
   showSecond = false;
+  currentDate: Date = new Date();
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   quicksms!: FormGroup;
   sideform!:FormGroup;
@@ -86,16 +90,16 @@ export class QuickSmsComponent {
     switch (this.quicksms.controls['templateid'].value) 
     {
       case '1707161891201501738':
-        this.quicksms.get('msg')!.setValue('Your My SMS verification Code id 12. Do not share this code with others Team Nuevas');
+        this.quicksms.get('msg')!.setValue(`Your My SMS verification Code id ${this.imgvalue}. Do not share this code with others Team Nuevas`);
        
         break;
       case '1707161855199873979':
         this.selectedOptionText =
-        this.quicksms.get('msg')!.setValue('Dear User your OTP is 12 Kindly use OTP to validate your Registration. Team Trackzia');
+        this.quicksms.get('msg')!.setValue(`Dear User your OTP is ${this.imgvalue} Kindly use OTP to validate your Registration. Team Trackzia`);
         break;
       case '1707161899992775140':
         this.selectedOptionText =
-        this.quicksms.get('msg')!.setValue('Dear 12 , Your Complaint with Complaint Id:21 has Been Resolve Kindly Share OTP, The OTP is 43 \n From Nuevas');
+        this.quicksms.get('msg')!.setValue(`Dear {#var#} , Your Complaint with Complaint Id: ${this.imgvalue} has Been Resolve Kindly Share OTP, The OTP is {#var#} \n From Nuevas`);
         break;
     }
     const textAreaCount = this.quicksms.get('msg')!.value;
@@ -119,6 +123,10 @@ export class QuickSmsComponent {
     this.isAllselect=false;
   }
 
+  getSelectedImage(event:any){
+    this.imgvalue = event.target.value
+    this.imgsrc = `../../assets/${this.imgvalue}`
+  }
 
 
   //calculating count of characters of message
@@ -170,8 +178,6 @@ export class QuickSmsComponent {
     }
   }
 
-
-
   UpdateTextAreaSnd(e: any) 
   {
     if (e.target.checked == true) {
@@ -181,15 +187,17 @@ export class QuickSmsComponent {
       });
     } else if (e.target.checked == false) {
       this.isPooselect = false
-
+      this.isAllselect = false
+      var allNUM = this.quicksms.get('mob')?.value
+      var reNUm = allNUM.replace(allNUM, this.textNumbers)
       this.quicksms.patchValue({
-        mob: '',
+        mob: reNUm,
       });
     }
   }
 
-
   UpdateTextAreaTrd(e: any) {
+    debugger
     if (e.target.checked == true) {
       this.isTextselect = true
       this.quicksms.patchValue({
@@ -197,9 +205,11 @@ export class QuickSmsComponent {
       });
     } else if (e.target.checked == false) {
       this.isTextselect = false
-
+      this.isAllselect = false
+      var allNUM = this.quicksms.get('mob')?.value
+      var reNUm = allNUM.replace(allNUM, this.poolNumbers)
       this.quicksms.patchValue({
-        mob: '',
+        mob: reNUm,
       });
     }
   }
@@ -225,7 +235,7 @@ export class QuickSmsComponent {
   
 
   SendMsg() {
-    debugger
+    
 
     let myArray:any[] = [];
 
@@ -240,14 +250,21 @@ export class QuickSmsComponent {
 
     return this.msgService.SendMsg(this.quicksms.value).subscribe((res: any) => {
         if (res.Success == true) 
-        {
+        {debugger
           alert(res.Message);
 
-          myArray.push(res);
-          localStorage.setItem('EMpData',JSON.stringify(myArray));
+          // localStorage.setItem('EMpData',JSON.stringify(myArray));
 
-          this.msgService.Username = this.quicksms.value.username;
-          localStorage.setItem('Username', this.msgService.Username);
+          this.msgService.setDataInJson(res).subscribe({
+            next:(res:any)=>{
+              alert("Data Saved in JSON SERVER "+ res.Message)
+              console.log(res);
+              
+            }
+          })
+
+          // this.msgService.Username = this.quicksms.value.username;
+          // localStorage.setItem('Username', this.msgService.Username);
         }
         else{
           alert(res.Message);

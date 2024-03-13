@@ -23,7 +23,7 @@ export class HeaderComponent {
       this.currentDate = new Date();
     }, 1000); 
 
-    this.msgService.localBalanceData();
+    this.msgService.localBalanceDataa();
     this.loadCount();
   
   }

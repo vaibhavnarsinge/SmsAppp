@@ -209,12 +209,15 @@
               <div class="overlay1" *ngIf="showFirst">
                 <h5  style="margin: 10px">Select Image</h5>
 
-                <select formControlName="img" >
+                <select formControlName="img" (change)="getSelectedImage($event)">
                   <option value="">--Select--</option>
-                  <option value="Image1">Image1</option>
-                  <option value="Image2">Image2</option>
-                  <option value="Image3">Image3</option>
+                  <option value="logogogog.jpg">Image1</option>
+                  <option value="downd.jpg">Image2</option>
+                  <option value="logosms.png">Image3</option>
                 </select>
+                <div>
+                  <img src={{imgsrc}} style="height: 20vh; width: 10vw;margin: 1vw 0 0 10vw;">
+                </div>
               </div>
               <div class="overlay2" *ngIf="showSecond">
                 <h5  style="margin: 10px">Select Video</h5>
@@ -234,24 +237,3 @@
   </div>
 </div>
 
-<!-- <h1>{{rData.Success}}</h1> -->
-
-
-
-<!-- 
-<div class="sdiv1 table-container">
-  <table class="custom-table"> 
-    <thead>
-      <tr>
-        <th >Sr No.</th>
-        <th *ngFor="let key of rData">{{key[key]}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of rData; let i = index">
-
-      <td *ngFor="let value of rDataKey">{{ item[value] }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>  -->

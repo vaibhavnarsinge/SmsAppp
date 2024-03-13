@@ -1,6 +1,28 @@
-<p>mis-report works!</p>
 <form action="">
     <!-- <h2 (click)="getdatafromlt()"></h2> -->
+    <h1>Report</h1>
 
+    <div class="sdiv1 table-container">
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    <th >Sr No.</th>
+    
+                    <th *ngFor="let key of userKeys">{{key}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of user; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{item.Success}}</td>
+                    <td>{{item.ErrorCode}}</td>
+                    <td>{{item.Message	}}</td>
+                    <td>{{item.MobileNo}}</td>
+                    <td>{{item.Status}}</td>
+                    <!-- <td>{{item.currentDate}}</td> -->
+                  </tr>
+            </tbody>
+        </table>
+    </div>
    
 </form>
