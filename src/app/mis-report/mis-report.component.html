@@ -3,7 +3,7 @@
     <h1>Report</h1>
 
     <div class="sdiv1 table-container">
-        <table class="custom-table">
+        <!-- <table class="custom-table">
             <thead>
                 <tr>
                     <th >Sr No.</th>
@@ -19,10 +19,38 @@
                     <td>{{item.Message	}}</td>
                     <td>{{item.MobileNo}}</td>
                     <td>{{item.Status}}</td>
-                    <!-- <td>{{item.currentDate}}</td> -->
                   </tr>
             </tbody>
-        </table>
+        </table> -->
+
+        <table>
+            <thead>
+              <tr>
+                <!-- Print table headers dynamically -->
+                <th *ngFor="let key of userKeys">{{ key }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Iterate over each item in alluser and print table rows dynamically -->
+              <tr *ngFor="let user of alluser">
+                <!-- Iterate over each key in userKeys and print table cells dynamically -->
+                <td *ngFor="let key of userKeys">{{ user[key] }}</td>
+              </tr>
+            </tbody>
+          </table>
+          
     </div>
    
 </form>
+
+
+
+<div *ngFor="let checkbox of checkboxes; let i = index">
+    <label>
+      <input type="checkbox" (change)="updateTextArea($event, i)" [checked]="checkbox.checked">
+      {{ checkbox.name }}
+    </label>
+  </div>
+  
+  <textarea rows="4" cols="50">{{textareaContent}}</textarea>
+  

@@ -86,20 +86,20 @@ export class QuickSmsComponent {
 
   //assigning template text to template Id
   updateText() 
-  {
+  {debugger
     switch (this.quicksms.controls['templateid'].value) 
     {
       case '1707161891201501738':
-        this.quicksms.get('msg')!.setValue(`Your My SMS verification Code id ${this.imgvalue}. Do not share this code with others Team Nuevas`);
+        this.quicksms.get('msg')!.setValue(`Your My SMS verification Code id ${this.imgsrc}. Do not share this code with others Team Nuevas`);
        
         break;
       case '1707161855199873979':
         this.selectedOptionText =
-        this.quicksms.get('msg')!.setValue(`Dear User your OTP is ${this.imgvalue} Kindly use OTP to validate your Registration. Team Trackzia`);
+        this.quicksms.get('msg')!.setValue(`Dear User your OTP is ${this.imgsrc} Kindly use OTP to validate your Registration. Team Trackzia`);
         break;
       case '1707161899992775140':
         this.selectedOptionText =
-        this.quicksms.get('msg')!.setValue(`Dear {#var#} , Your Complaint with Complaint Id: ${this.imgvalue} has Been Resolve Kindly Share OTP, The OTP is {#var#} \n From Nuevas`);
+        this.quicksms.get('msg')!.setValue(`Dear {#var#} , Your Complaint with Complaint Id: ${this.imgsrc} has Been Resolve Kindly Share OTP, The OTP is {#var#} \n From Nuevas`);
         break;
     }
     const textAreaCount = this.quicksms.get('msg')!.value;
@@ -110,6 +110,12 @@ export class QuickSmsComponent {
     this.calculateCharacterCount();
 
   }
+
+    // setting images link
+    getSelectedImage(event:any){
+      this.imgvalue = event.target.value
+      this.imgsrc = `http://localhost:4200/assets/${this.imgvalue}`
+    }
 
   //clear text of Mobile Number Textarea, and count of valid and invalid count
   clearTextarea() 
@@ -123,10 +129,7 @@ export class QuickSmsComponent {
     this.isAllselect=false;
   }
 
-  getSelectedImage(event:any){
-    this.imgvalue = event.target.value
-    this.imgsrc = `../../assets/${this.imgvalue}`
-  }
+
 
 
   //calculating count of characters of message
@@ -156,14 +159,14 @@ export class QuickSmsComponent {
   isTextselect:boolean=false;
   isAllselect:boolean=false;
 
-  poolNumbers:any = '9730023006,\n7028704745';
+  poolNumbers:any = '9730023006\n7028704745';
   textNumbers:any = '8805411737';
 
 
   UpdateTextAreaFirst(e: any) {
     if (e.target.checked == true) {
       this.quicksms.patchValue({
-        mob: [this.poolNumbers+',\n'+this.textNumbers],
+        mob: [this.poolNumbers+'\n'+this.textNumbers],
       });
 
       this.isPooselect = true
@@ -176,10 +179,14 @@ export class QuickSmsComponent {
       this.isPooselect = false
       this.isTextselect = false
     }
+
+
+    this.updateCounts(this.quicksms.get('mob')?.value);
+
   }
 
   UpdateTextAreaSnd(e: any) 
-  {
+  {debugger
     if (e.target.checked == true) {
       this.isPooselect = true
       this.quicksms.patchValue({
@@ -194,6 +201,10 @@ export class QuickSmsComponent {
         mob: reNUm,
       });
     }
+
+
+    this.updateCounts(this.quicksms.get('mob')?.value);
+
   }
 
   UpdateTextAreaTrd(e: any) {
@@ -201,7 +212,7 @@ export class QuickSmsComponent {
     if (e.target.checked == true) {
       this.isTextselect = true
       this.quicksms.patchValue({
-        mob: [this.textNumbers+',\n'+this.quicksms.get('mob')?.value],
+        mob: [this.textNumbers+'\n'+this.quicksms.get('mob')?.value],
       });
     } else if (e.target.checked == false) {
       this.isTextselect = false
@@ -212,6 +223,10 @@ export class QuickSmsComponent {
         mob: reNUm,
       });
     }
+
+
+    this.updateCounts(this.quicksms.get('mob')?.value);
+
   }
 
   updateCounts(value: string): void {

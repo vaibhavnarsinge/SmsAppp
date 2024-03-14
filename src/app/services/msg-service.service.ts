@@ -45,10 +45,15 @@ export class MsgServiceService {
     return this.http.post('http://localhost:3000/report',data)
   }
 
-  getDataInJson(){
-    debugger
-    return this.http.get('http://localhost:3000/report')
+  // getDataInJson(){
+  //   debugger
+  //   return this.http.get('http://localhost:3000/report')
+  // }
+
+  getDataInJson() {
+    return this.http.get('http://localhost:3000/report');
   }
+  
 
 
 
