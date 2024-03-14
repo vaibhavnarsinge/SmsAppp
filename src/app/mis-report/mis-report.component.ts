@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
 import { MsgServiceService } from '../services/msg-service.service';
+import * as XLSX from 'xlsx'
 
 
 
 
-interface CheckboxItem {
-  name: string;
-  numbers: number[];
-  checked: boolean;
-}
 @Component({
   selector: 'app-mis-report',
   templateUrl: './mis-report.component.html',
@@ -18,21 +14,13 @@ export class MisReportComponent {
   alluser: any;
   userKeys: string[] = [];
   user: any;
+  http: any;
+  ArrayReport:any=[];
+
 
   constructor(private msgService: MsgServiceService) {
 
-    // this.msgService.getDataInJson().subscribe((res: any) => {
-    //   debugger
-    //   this.alluser = JSON.parse(res);
-    //   if (this.alluser.length > 0) {
-    //     // Get keys from the first item assuming all items have the same structure
-    //     this.userKeys = Object.keys(this.alluser[0]);
-    //   }
-    //   console.log(res);
-    // });
-
-    this.msgService.getDataInJson().subscribe(
-      (res: any) => {
+    this.msgService.getDataInJson().subscribe((res: any) => {
         // Parse the JSON response
         this.alluser = res;
     
@@ -44,7 +32,6 @@ export class MisReportComponent {
           // Handle case where no data is received
           console.log("No data received");
         }
-    
         // Log the response
         console.log(res);
       },
@@ -53,41 +40,24 @@ export class MisReportComponent {
         console.error("Error fetching data:", error);
       }
     );
-    
-    
   }
+
 
   ngOnInit(): void {
-    debugger;
+    this.msgService.getDataInJson().subscribe((res: any) => {
+      // Parse the JSON response
+      this.ArrayReport = res;
+    })
+
   }
 
-
-
-
-
-  checkboxes: CheckboxItem[] = [
-    { name: 'Checkbox 1', numbers: [1, 2, 3], checked: false },
-    { name: 'Checkbox 2', numbers: [4, 5, 6], checked: false },
-    { name: 'Checkbox 3', numbers: [7, 8, 9], checked: false }
-  ];
-  textareaContent: string = '';
-
-  updateTextArea(event: any, checkboxIndex: number) {
-    this.checkboxes[checkboxIndex].checked = event.target.checked;
-    this.updateTextareaContent();
+  getReport():void{
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.ArrayReport);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb,ws,'Sheet1');
+    XLSX.writeFile(wb,'report.xlsx');
   }
-
-  updateTextareaContent() {
-    let content: string = '';
-
-    this.checkboxes.forEach(checkbox => {
-      if (checkbox.checked) {
-        content += checkbox.numbers.join(', ') + '\n';
-      }
-    });
-
-    this.textareaContent = content;
-  }
+ 
 }
 
 

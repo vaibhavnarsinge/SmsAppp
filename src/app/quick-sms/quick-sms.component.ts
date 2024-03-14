@@ -22,8 +22,7 @@ export class QuickSmsComponent {
   TotalCreditChages:  number = 0;
   phoneNumber: any;
   characterCount: number = 0;
-  imgvalue:any;
-  imgsrc:any;
+
  
   showFirst = true;
   showSecond = false;
@@ -56,7 +55,10 @@ export class QuickSmsComponent {
     });
   }
 
-  constructor( private msgService: MsgServiceService,private formbuilder: FormBuilder) {}
+  constructor( private msgService: MsgServiceService,
+    private formbuilder: FormBuilder) 
+    {
+  }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   showFirstdiv() 
   {
@@ -86,20 +88,20 @@ export class QuickSmsComponent {
 
   //assigning template text to template Id
   updateText() 
-  {debugger
+  {
     switch (this.quicksms.controls['templateid'].value) 
     {
       case '1707161891201501738':
-        this.quicksms.get('msg')!.setValue(`Your My SMS verification Code id ${this.imgsrc}. Do not share this code with others Team Nuevas`);
+        this.quicksms.get('msg')!.setValue(`Your My SMS verification Code id ${this.replaceVar()}. Do not share this code with others Team Nuevas`);
        
         break;
       case '1707161855199873979':
         this.selectedOptionText =
-        this.quicksms.get('msg')!.setValue(`Dear User your OTP is ${this.imgsrc} Kindly use OTP to validate your Registration. Team Trackzia`);
+        this.quicksms.get('msg')!.setValue(`Dear User your OTP is ${this.replaceVar()} Kindly use OTP to validate your Registration. Team Trackzia`);
         break;
       case '1707161899992775140':
         this.selectedOptionText =
-        this.quicksms.get('msg')!.setValue(`Dear {#var#} , Your Complaint with Complaint Id: ${this.imgsrc} has Been Resolve Kindly Share OTP, The OTP is {#var#} \n From Nuevas`);
+        this.quicksms.get('msg')!.setValue(`Dear {#var#} , Your Complaint with Complaint Id: ${this.replaceVar()} has Been Resolve Kindly Share OTP, The OTP is {#var#} \n From Nuevas`);
         break;
     }
     const textAreaCount = this.quicksms.get('msg')!.value;
@@ -108,13 +110,53 @@ export class QuickSmsComponent {
     this.characterCount = textareaLength
     this.textC = 1;
     this.calculateCharacterCount();
-
   }
+  replaceVar() {
+    if (this.imgsrc) {
+        return this.imgsrc;
+    } 
+    else if (this.videosrc) {
+        return this.videosrc;
+    } 
+    else {
+        return '{var}';
+    }
+}
+imgselectvalue:any;
+vdoselectvalue:any
+imgpath:any
+imgsrc:any;
+videopath:any
+videosrc:any
+videoAvailable:boolean=false;
+imageAvailable:boolean=false;
 
     // setting images link
     getSelectedImage(event:any){
-      this.imgvalue = event.target.value
-      this.imgsrc = `http://localhost:4200/assets/${this.imgvalue}`
+      debugger
+      if(event.target.value == ""){
+        this.imageAvailable = false
+      }
+      else{
+        this.imageAvailable = true
+      }
+      this.imgselectvalue = event.target.value
+      this.imgpath = `http://localhost:4200/assets/${this.imgselectvalue}`
+      this.imgsrc = `http://Google.com/${this.imgselectvalue}`
+    }
+    getSelectedVideo(event:any){
+      if(event.target.value == ""){
+        this.videoAvailable = false
+      }
+      else{
+        this.videoAvailable = true
+      }
+
+      this.vdoselectvalue = event.target.value
+
+      this.videopath = `http://localhost:4200/assets/${this.vdoselectvalue}`
+      this.videosrc = `http://Google.com/${this.vdoselectvalue}`
+
     }
 
   //clear text of Mobile Number Textarea, and count of valid and invalid count
@@ -165,68 +207,78 @@ export class QuickSmsComponent {
 
   UpdateTextAreaFirst(e: any) {
     if (e.target.checked == true) {
+      this.isAllselect = true
+      let selectedNumber = this.poolNumbers + '\n' + this.textNumbers;
+
       this.quicksms.patchValue({
-        mob: [this.poolNumbers+'\n'+this.textNumbers],
+        mob: selectedNumber
       });
+      this.updateCounts(selectedNumber)
 
       this.isPooselect = true
       this.isTextselect = true
 
-    } else if (e.target.checked == false) {
+    } else {
+      this.isAllselect = false
       this.quicksms.patchValue({
         mob: '',
       });
       this.isPooselect = false
       this.isTextselect = false
+      this.InvalidCount = 0;
+      this.validCount = 0;
     }
-
-
-    this.updateCounts(this.quicksms.get('mob')?.value);
-
   }
 
   UpdateTextAreaSnd(e: any) 
-  {debugger
+  {
     if (e.target.checked == true) {
       this.isPooselect = true
-      this.quicksms.patchValue({
-        mob: [this.poolNumbers+'\n'+this.quicksms.get('mob')?.value],
-      });
-    } else if (e.target.checked == false) {
+      let currentNumber = this.quicksms.get('mob')?.value;
+      if(!currentNumber.includes(this.poolNumbers)){
+        currentNumber ? currentNumber += '\n'+this.poolNumbers : currentNumber += this.poolNumbers;
+        this.quicksms.patchValue({
+          mob: currentNumber
+        });
+        this.updateCounts(currentNumber);
+      }
+     
+    } else {
       this.isPooselect = false
       this.isAllselect = false
-      var allNUM = this.quicksms.get('mob')?.value
-      var reNUm = allNUM.replace(allNUM, this.textNumbers)
+
+      const regex = new RegExp('(\\n)?' + this.poolNumbers+ '(\\n)?', 'g');
+      let replaceNum = this.quicksms.controls['mob'].value.replace(regex,'')
+     
       this.quicksms.patchValue({
-        mob: reNUm,
+        mob: replaceNum,
       });
     }
-
-
-    this.updateCounts(this.quicksms.get('mob')?.value);
-
   }
 
   UpdateTextAreaTrd(e: any) {
-    debugger
-    if (e.target.checked == true) {
+    
+    if (e.target.checked ) {
       this.isTextselect = true
-      this.quicksms.patchValue({
-        mob: [this.textNumbers+'\n'+this.quicksms.get('mob')?.value],
-      });
+      let currentNumber = this.quicksms.get('mob')?.value || '';
+      if(!currentNumber.includes(this.textNumbers)){
+        currentNumber ? currentNumber += '\n'+this.textNumbers : currentNumber += this.textNumbers;
+        this.quicksms.patchValue({
+          mob: currentNumber
+        });
+        this.updateCounts(currentNumber);
+
+      }
+      
     } else if (e.target.checked == false) {
       this.isTextselect = false
       this.isAllselect = false
-      var allNUM = this.quicksms.get('mob')?.value
-      var reNUm = allNUM.replace(allNUM, this.poolNumbers)
+      const regex = new RegExp('(\\n)?' + this.textNumbers+ '(\\n)?', 'g');
+      let replaceNum = this.quicksms.controls['mob'].value.replace(regex,'')
       this.quicksms.patchValue({
-        mob: reNUm,
+        mob: replaceNum,
       });
     }
-
-
-    this.updateCounts(this.quicksms.get('mob')?.value);
-
   }
 
   updateCounts(value: string): void {
@@ -265,18 +317,11 @@ export class QuickSmsComponent {
 
     return this.msgService.SendMsg(this.quicksms.value).subscribe((res: any) => {
         if (res.Success == true) 
-        {debugger
+        {
           alert(res.Message);
 
           // localStorage.setItem('EMpData',JSON.stringify(myArray));
-
-          this.msgService.setDataInJson(res).subscribe({
-            next:(res:any)=>{
-              alert("Data Saved in JSON SERVER "+ res.Message)
-              console.log(res);
-              
-            }
-          })
+         
 
           // this.msgService.Username = this.quicksms.value.username;
           // localStorage.setItem('Username', this.msgService.Username);
@@ -284,29 +329,27 @@ export class QuickSmsComponent {
         else{
           alert(res.Message);
         }
+
+        res["Messagee"] = this.quicksms.controls['msg'].value;
+        
+        res["DateTime"] = this.currentDate ;
+        this.msgService.setDataInJson(res).subscribe({
+          next:(res:any)=>{
+            alert("Data Saved in JSON SERVER "+ res.Message)
+            console.log(res);
+            
+          }
+        })
         console.log(res);
 
 
       });
   }
 
-
-  // npm install xlsx
-
-      // Call onFileSelected with the  event 
-
-  // importContacts(){
-  //   const dummyEvent = {
-  //     target: {
-  //       files: [new File([], 'dummyFile')]
-  //     }
-  //   };
-  //   this.onFileSelected(dummyEvent);
-
-  // }
   allExcelNumbers:any;
     
   onFileSelected(event: any): void {
+    
     const file: File = event.target.files[0];
     const reader: FileReader = new FileReader();
 
@@ -334,6 +377,7 @@ export class QuickSmsComponent {
 
 
   importContacts(): void {
+    
     // Update the 'mob' control with the mobileNumbersString
     this.quicksms.patchValue({ mob: this.allExcelNumbers });
   }

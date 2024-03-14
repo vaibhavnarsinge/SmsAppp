@@ -112,15 +112,18 @@
           </div>
         </div>
         <div class="outer-div">
-          <div style="display: flex; width:70%; space-between;">
-            <h3>Test Number</h3>
-            <input
-              formControlName="testmob"
-              type="number"
-              placeholder="9586457812"
-            />
-          </div>
-          <button>Test SMS</button>
+          <h3>Test Numbers</h3>
+          <textarea
+            cols="30"
+            rows="10" 
+            placeholder="Enter the Mobile Numbers"
+          ></textarea>
+          <!-- <div class="inner-div">
+            <span style="width: 16%">Mobile No Count :{{ validCount }}</span>
+            <span style="width: 21%; margin-left: 20%"
+              >Invalid Mobile No Count :{{ InvalidCount }}</span>
+          </div> -->
+          <button  (click)="clearTextarea()">Test SMS</button>
         </div>
       </form>
     </div>
@@ -211,23 +214,26 @@
 
                 <select formControlName="img" (change)="getSelectedImage($event)">
                   <option value="">--Select--</option>
-                  <option value="logogogog.jpg">Image1</option>
-                  <option value="downd.jpg">Image2</option>
-                  <option value="logosms.png">Image3</option>
+                  <option value="lg.jpg">Image1</option>
+                  <option value="dw.jpg">Image2</option>
+                  <option value="ls.png">Image3</option>
                 </select>
-                <div>
-                  <img src={{imgsrc}} style="height: 20vh; width: 10vw;margin: 1vw 0 0 10vw;">
+                <div *ngIf="imageAvailable">
+                  <img src={{imgpath}} style="height: 20vh; width: 10vw;margin: 1vw 0 0 10vw;">
                 </div>
               </div>
               <div class="overlay2" *ngIf="showSecond">
                 <h5  style="margin: 10px">Select Video</h5>
 
-                <select formControlName="vdo" >
+                <select formControlName="vdo" (change)="getSelectedVideo($event)">
                   <option value="">--Select--</option>
-                  <option value="Video1">Video1</option>
-                  <option value="Video2">Video2</option>
+                  <option value="movie.mp4">Video1</option>
+                  <option value="movie2.mp4">Video2</option>
                   <option value="Video3">Video3</option>
                 </select>
+                <div *ngIf="videoAvailable">
+                  <video  controls src={{videopath}} style="height: 22vh; width: 15vw;margin: 1vw 0 0 7vw;"></video>
+                </div>
               </div>
             </div>
           </div>

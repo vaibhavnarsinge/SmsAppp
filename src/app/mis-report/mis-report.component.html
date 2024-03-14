@@ -1,56 +1,41 @@
-<form action="">
+<div class="main">
+  <form action="">
     <!-- <h2 (click)="getdatafromlt()"></h2> -->
-    <h1>Report</h1>
-
-    <div class="sdiv1 table-container">
-        <!-- <table class="custom-table">
-            <thead>
-                <tr>
-                    <th >Sr No.</th>
-    
-                    <th *ngFor="let key of userKeys">{{key}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of user; let i = index">
-                    <td>{{ i + 1 }}</td>
-                    <td>{{item.Success}}</td>
-                    <td>{{item.ErrorCode}}</td>
-                    <td>{{item.Message	}}</td>
-                    <td>{{item.MobileNo}}</td>
-                    <td>{{item.Status}}</td>
-                  </tr>
-            </tbody>
-        </table> -->
-
-        <table>
+    <button (click)="getReport()">Download Report</button>
+    <div class="table-container">
+      <h4>View Quick SMS Report</h4>
+        <table   class="custom-table" >
             <thead>
               <tr>
                 <!-- Print table headers dynamically -->
-                <th *ngFor="let key of userKeys">{{ key }}</th>
+                <th >Sr No.</th>
+                <ng-container *ngFor="let key of userKeys">
+
+                  <th *ngIf="key !== 'id'">{{ key }}</th>
+                </ng-container>
+                <!-- <th>Download Data</th> -->
               </tr>
             </thead>
             <tbody>
               <!-- Iterate over each item in alluser and print table rows dynamically -->
-              <tr *ngFor="let user of alluser">
+              <tr *ngFor="let user of alluser; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{user.Success}}</td>
+                <td>{{user.ErrorCode}}</td>
+                <td>{{user.Message}}</td>
+                <td>{{user.MobileNo}}</td>
+                <td>{{user.Status}}</td>
+                <td>{{user.DateTime | date: 'MMM d, y h:mm a'}}</td>
                 <!-- Iterate over each key in userKeys and print table cells dynamically -->
-                <td *ngFor="let key of userKeys">{{ user[key] }}</td>
+                <!-- <ng-container *ngFor="let key of userKeys">
+                  <td *ngIf="key !== 'id'"   >{{ user[key] }}</td>
+                </ng-container> -->
+                <!-- <td><button>Report</button></td> -->
               </tr>
             </tbody>
           </table>
-          
     </div>
-   
 </form>
 
+</div>
 
-
-<div *ngFor="let checkbox of checkboxes; let i = index">
-    <label>
-      <input type="checkbox" (change)="updateTextArea($event, i)" [checked]="checkbox.checked">
-      {{ checkbox.name }}
-    </label>
-  </div>
-  
-  <textarea rows="4" cols="50">{{textareaContent}}</textarea>
-  
