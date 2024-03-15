@@ -305,6 +305,11 @@ imageAvailable:boolean=false;
     
 
     let myArray:any[] = [];
+    let messagee = this.quicksms.get("msg")?.value
+    let credit = this.TotalCreditChages
+    let date = this.currentDate
+    let senderID = this.quicksms.get("sender")?.value
+ 
 
     //assigning phone numbers (,) separated to mobile number formbuilder value
     let AllMobileNumbers: string = this.quicksms.get('mob')!.value;
@@ -330,9 +335,11 @@ imageAvailable:boolean=false;
           alert(res.Message);
         }
 
-        res["Messagee"] = this.quicksms.controls['msg'].value;
+        res["messagee"] =messagee;
+        res["credit"]= credit;
+        res["date"]= date;
+        res['senderID'] = senderID
         
-        res["DateTime"] = this.currentDate ;
         this.msgService.setDataInJson(res).subscribe({
           next:(res:any)=>{
             alert("Data Saved in JSON SERVER "+ res.Message)
