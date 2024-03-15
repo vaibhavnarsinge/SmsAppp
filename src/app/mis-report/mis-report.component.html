@@ -25,7 +25,7 @@
               <!-- Iterate over each item in alluser and print table rows dynamically -->
               <tbody>
             
-                    <tr  *ngFor="let user of alluser; let i = index">
+                    <tr  *ngFor="l    et user of alluser; let i = index">
                         <td>{{ i + 1 }}</td>
                         <td>{{ user.date | date: 'MMM d, y h:mm a' }}</td>
                         <td>{{ user.messagee }}</td>

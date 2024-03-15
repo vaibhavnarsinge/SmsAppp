@@ -3,6 +3,11 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+:root {
+  --blue: #808080;
+  --white: #ffffff; 
+}
 body{
     height: 100%;
     width: 100%;
@@ -18,7 +23,7 @@ body::-webkit-scrollbar {
   outline: 3px solid   rgb(255, 255, 255);
     width: 10px;
     height: 8px;
-    background-color: #ffffff; 
+    background-color: var(--blue)
   }
 
   body::-webkit-scrollbar-thumb {

@@ -10,6 +10,9 @@
 }
 
 .table-container {
+  border-radius: 8px;
+  box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
+    -1px -1px 5px -1px rgb(0, 61, 107);
   margin: 10vh ;
   width: 76vw;
   top :0;

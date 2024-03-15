@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MsgServiceService } from '../services/msg-service.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder,Validators, FormGroup } from '@angular/forms';
 import * as XLSX from 'xlsx';
 
 
@@ -31,15 +31,17 @@ export class QuickSmsComponent {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   quicksms!: FormGroup;
   sideform!:FormGroup;
+  submitted: boolean = false;
   ngOnInit(): void {
+    
     this.quicksms = this.formbuilder.group({
-      username: ['demotr'],
-      password: ['tr@1234'],
-      sender: [''],
-      templateid: [''],
-      mob: [''],
-      msg: [''],
-      coding: ['1'],
+      username: ['demotr', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+      password: ['tr@1234', [Validators.required,Validators.minLength(5)]],
+      sender: ['', [Validators.required]],
+      templateid: ['', [Validators.required]],
+      mob: ['', [Validators.required]],
+      msg: ['', [Validators.required]],
+      coding: ['', [Validators.required]],
       testmob:['']
     });
 
@@ -58,6 +60,7 @@ export class QuickSmsComponent {
   constructor( private msgService: MsgServiceService,
     private formbuilder: FormBuilder) 
     {
+
   }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   showFirstdiv() 
@@ -133,7 +136,7 @@ imageAvailable:boolean=false;
 
     // setting images link
     getSelectedImage(event:any){
-      debugger
+      
       if(event.target.value == ""){
         this.imageAvailable = false
       }
@@ -172,6 +175,35 @@ imageAvailable:boolean=false;
   }
 
 
+  hideMedia = true
+  hideChatbot = true
+  hideGroup = true
+  hideDiv3(){
+    if(this.hideMedia == true){
+      this.hideMedia = false;
+    }
+    else if(this.hideMedia == false){
+      this.hideMedia = true;
+    }
+  }
+  hideDiv2(){
+    if(this.hideChatbot == true){
+      this.hideChatbot = false;
+    }
+    else if(this.hideChatbot == false){
+      this.hideChatbot = true;
+    }
+  }
+  hideDiv1(){
+    if(this.hideGroup == true){
+      this.hideGroup = false;
+    }
+    else if(this.hideGroup == false){
+      this.hideGroup = true;
+    }
+  }
+
+  
 
 
   //calculating count of characters of message
@@ -303,14 +335,13 @@ imageAvailable:boolean=false;
 
   SendMsg() {
     
-
+    this.submitted = true;
     let myArray:any[] = [];
     let messagee = this.quicksms.get("msg")?.value
     let credit = this.TotalCreditChages
     let date = this.currentDate
     let senderID = this.quicksms.get("sender")?.value
  
-
     //assigning phone numbers (,) separated to mobile number formbuilder value
     let AllMobileNumbers: string = this.quicksms.get('mob')!.value;
     const phoneNumberArray = AllMobileNumbers.split('\n').map(number => number.trim()).filter(number => number !== '');
@@ -319,17 +350,10 @@ imageAvailable:boolean=false;
     const formattedPhoneNumbers = validPhoneNumbers.join(',');
     this.quicksms.get('mob')!.setValue(formattedPhoneNumbers);
 
-
     return this.msgService.SendMsg(this.quicksms.value).subscribe((res: any) => {
         if (res.Success == true) 
         {
           alert(res.Message);
-
-          // localStorage.setItem('EMpData',JSON.stringify(myArray));
-         
-
-          // this.msgService.Username = this.quicksms.value.username;
-          // localStorage.setItem('Username', this.msgService.Username);
         }
         else{
           alert(res.Message);
@@ -348,44 +372,39 @@ imageAvailable:boolean=false;
           }
         })
         console.log(res);
-
-
       });
   }
 
   allExcelNumbers:any;
     
   onFileSelected(event: any): void {
+    debugger
     
     const file: File = event.target.files[0];
     const reader: FileReader = new FileReader();
 
     reader.onload = (e: any) => {
-      const binaryString: string = e.target.result;
-      const workbook: XLSX.WorkBook = XLSX.read(binaryString, { type: 'binary' });
-      const sheetName: string = workbook.SheetNames[0];
-      const worksheet: XLSX.WorkSheet = workbook.Sheets[sheetName];
-      const contacts: any[] = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-
+      debugger
+      const binaryString: string = e.target.result; // storing binary data in string
+      const workbook: XLSX.WorkBook = XLSX.read(binaryString, { type: 'binary' }); // reading data in excel 
+      const sheetName: string = workbook.SheetNames[0]; // first sheet of workbook stored in sheetname
+      const worksheet: XLSX.WorkSheet = workbook.Sheets[sheetName]; // storing sheet present in sheetname
+      const contacts: any[] = XLSX.utils.sheet_to_json(worksheet, { header: 1 }); //this line convert data into json or js object
       // Extract mobile numbers from contacts (assuming they are in a specific column)
       const mobileNumbers: string[] = contacts.map(row => row[0]); // Change 0 to the column index where mobile numbers are located
-
       // Join mobile numbers with newline characters
       const mobileNumbersString: string = mobileNumbers.join('\n');
-
       // Set the mobile numbers string to the 'mob' control
       this.allExcelNumbers = mobileNumbersString
 
     };
-
     reader.readAsBinaryString(file);
   }
 
 
 
   importContacts(): void {
-    
-    // Update the 'mob' control with the mobileNumbersString
+        // Update the 'mob' control with the mobileNumbersString
     this.quicksms.patchValue({ mob: this.allExcelNumbers });
   }
 }
