@@ -11,43 +11,57 @@ import * as XLSX from 'xlsx'
   styleUrls: ['./mis-report.component.css'],
 })
 export class MisReportComponent {
-  alluser: any;
-  userKeys: string[] = [];
-  user: any;
-  http: any;
+  // alluser: any;
+  // userKeys: string[] = [];
+  // user: any;
+  // http: any;
   ArrayReport:any=[];
 
 
+  alluser: any[] = [];
+  userKeys: string[] = [];
+  selectedItem: any;
+  showDivsnd: boolean = false;
+  showDivfirst:boolean = true;
   constructor(private msgService: MsgServiceService) {
 
     this.msgService.getDataInJson().subscribe((res: any) => {
-        // Parse the JSON response
         this.alluser = res;
-    
-        // Check if data is received
+        
+
         if (this.alluser && this.alluser.length > 0) {
-          // Get keys from the first item assuming all items have the same structure
           this.userKeys = Object.keys(this.alluser[0]);
         } else {
-          // Handle case where no data is received
           console.log("No data received");
         }
-        // Log the response
         console.log(res);
+        
       },
       (error) => {
-        // Handle error
         console.error("Error fetching data:", error);
       }
     );
+    
   }
+  showDetail(item: any) {
+    this.selectedItem = item;
+    this.showDivsnd = !this.showDivsnd;
+    this.showDivfirst = false
+ 
+  }
+
+  backbutton() {
+    this.showDivsnd = false;
+    this.showDivfirst = true;
+  }
+  
 
 
   ngOnInit(): void {
-    this.msgService.getDataInJson().subscribe((res: any) => {
+    // this.msgService.getDataInJson().subscribe((res: any) => {
       // Parse the JSON response
-      this.ArrayReport = res;
-    })
+    //   this.ArrayReport = res;
+    // })
 
   }
 

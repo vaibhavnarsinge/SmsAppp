@@ -51,6 +51,7 @@ export class MsgServiceService {
   // }
 
   getDataInJson() {
+    
     return this.http.get('http://localhost:3000/report');
   }
   
