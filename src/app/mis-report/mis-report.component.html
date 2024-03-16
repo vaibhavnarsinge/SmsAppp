@@ -1,7 +1,81 @@
 <div class="main">
+<<<<<<< HEAD
 <div class="maainone">
   <div class="table-container" *ngIf="showDivfirst">
     <h4>View Quick SMS Report</h4>
+=======
+  <form action="">
+    <!-- <h2 (click)="getdatafromlt()"></h2> -->
+    <button class="getreport" (click)="getReport()">Download Report</button>
+    <div class="table-container" *ngIf="showTableone">
+      
+        <table   class="custom-table" >
+            <thead>
+             
+              <tr>
+                <!-- Print table headers dynamically -->
+                <th colspan="6">View Quick SMS Report</th>
+                </tr>
+                <tr>
+                <th >Sr No.</th>
+                <th>Date</th>
+                <th>Message</th>
+                <th>No. of SMS</th>
+                <th>Credits</th>
+                <th>View</th>
+                <!-- <th>Download Data</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Iterate over each item in alluser and print table rows dynamically -->
+              <tbody>
+            
+                    <tr  *ngFor="l    et user of alluser; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ user.date | date: 'MMM d, y h:mm a' }}</td>
+                        <td>{{ user.messagee }}</td>
+                        <td>{{ user.MobileNo.split(',').length }}</td>
+                        <td>{{ user.credit }}</td>
+                        <td><button class="tbbtn" (click)="getDetailedReport(user)">View</button></td>
+                    </tr>
+          
+            </tbody>
+          </table>
+    </div>
+    <div *ngIf="backbtn">
+      <button class="backbtn"  (click)="back()">  <img src="../../assets/arrow-back-regular-24.png" alt=""></button>
+
+    </div>
+    <div class="table-container" *ngIf="showTabletwo">
+          <table   class="custom-table" >
+            <thead>
+              <tr>
+                <!-- Print table headers dynamically -->
+                <th colspan="6">View Quick SMS Report</th>
+                </tr>
+              <tr>
+                <!-- Print table headers dynamically -->
+                <th >Sr No.</th>
+                <th>Date</th>
+                <th>Mobile No</th>
+                <th>Sender ID</th>
+                <th>Status</th>
+                <!-- <th>Download Data</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let rowData of selectedRowData; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ rowData.date }}</td>
+                <td>{{ rowData.MobileNo }}</td>
+                <td>{{ rowData.senderID }}</td>
+                <td>{{ rowData.Status }}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</form>
+>>>>>>> b71b4733da53186bec29106e0953e0375046febb
 
     <table class="custom-table">
       <thead>

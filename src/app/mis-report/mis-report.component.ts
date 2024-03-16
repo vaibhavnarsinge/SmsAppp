@@ -57,6 +57,41 @@ export class MisReportComponent {
   
 
 
+
+
+  showTabletwo = false;
+  showTableone = true;
+  selectedRowData: any[]=[];
+  rowData:any;
+  backbtn = false
+
+ 
+
+  
+  back(){
+    this.showTabletwo = false;
+    this.showTableone = true;
+    this.backbtn = false
+
+  }
+
+  getDetailedReport(rowData:any) {
+    this.backbtn = true
+    this.showTabletwo = true;
+    this.showTableone = false;
+
+    const mobileNumbers = rowData.MobileNo.split(',');
+    const statuses = rowData.Status.split(',');
+
+    this.selectedRowData = mobileNumbers.map((mobileNo: any, index: string | number) => ({
+      date: rowData.date,
+      MobileNo: mobileNo,
+      senderID: rowData.senderID,
+      Status: statuses[index],
+    }));
+  }
+  
+
   ngOnInit(): void {
     // this.msgService.getDataInJson().subscribe((res: any) => {
       // Parse the JSON response

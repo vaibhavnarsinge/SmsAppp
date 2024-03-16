@@ -5,17 +5,19 @@
         <h4>Send SMS</h4>
         <div class="outer-divv">
           <h3>Sender ID</h3>
-          <select formControlName="sender" >
+          <select formControlName="sender" [ngClass]="{'is-invalid':submitted && quicksms.get('sender')?.errors}" >
             <option value="">--Select--</option>
             <option value="NUEVAS">NUEVAS</option>
             <option value="TRKZIA">TRKZIA</option>
           </select>
+          <div *ngIf="submitted || quicksms.get('sender')?.invalid && (quicksms.get('sender')?.dirty || (quicksms.get('sender')?.touched))">
+            <div class="er1" *ngIf=" quicksms.get('sender')?.hasError('required')" ><span>Please Select Sender ID</span></div>
+          </div> 
           <!-- </div>
         <div class="outer-div"> 
       [(ngModel)]="selectedOption" -->
           <h3>Template</h3>
-          <select formControlName="templateid"
-            (change)="updateText()">
+          <select formControlName="templateid" (change)="updateText()"  [ngClass]="{'is-invalid':submitted && quicksms.get('templateid')?.errors}">
             <option value="">--Select--</option>
             <option value="1707161891201501738">
               Your My SMS verification Code id 12. Do not share this code with
@@ -30,16 +32,18 @@
               Kindly Share OTP, The OTP is 43 \n From Nuevas
             </option>
           </select>
+          <div *ngIf="submitted || quicksms.get('templateid')?.invalid && (quicksms.get('templateid')?.dirty || (quicksms.get('templateid')?.touched))">
+            <div class="er1" *ngIf=" quicksms.get('templateid')?.hasError('required')" ><span >Please Select Template </span></div>
+          </div> 
         </div>
         <div class="outer-div">
           <h3>Mobile NO</h3>
-          <textarea
-            
-            formControlName="mob"
-            cols="30"
-            rows="10"
-            placeholder="You can add upto 50,000 Phone Numbers"
-          ></textarea>
+          <textarea formControlName="mob" [ngClass]="{'is-invalid':submitted && quicksms.get('mob')?.errors}"
+            cols="30" rows="10" placeholder="You can add upto 50,000 Phone Numbers" >
+          </textarea>
+          <div *ngIf="submitted || quicksms.get('mob')?.invalid && (quicksms.get('mob')?.dirty || (quicksms.get('mob')?.touched))">
+            <div class="er1" *ngIf=" quicksms.get('mob')?.hasError('required')" ><span >Please Enter Mobile Numbers </span></div>
+          </div>
           <div class="inner-div">
             <span style="width: 16%">Mobile No Count :{{ validCount }}</span>
             <span style="width: 21%; margin-left: 20%"
@@ -64,13 +68,16 @@
             >
           </h3>
 
-          <textarea
-            [value]="selectedOptionText"
+          <textarea [value]="selectedOptionText"
             formControlName="msg"
             cols="30"
             rows="10"
+            [ngClass]="{'is-invalid':submitted && quicksms.get('msg')?.errors}"
             placeholder="You can add upto 500 characters"
           ></textarea>
+          <div *ngIf="submitted || quicksms.get('msg')?.invalid && (quicksms.get('msg')?.dirty || (quicksms.get('msg')?.touched))">
+            <div class="er1" *ngIf=" quicksms.get('msg')?.hasError('required')" ><span >Please Enter Message </span></div>
+          </div>
           <span style="width: 16%">SMS length : {{ characterCount }} Text :{{textC}}</span>
             <span style="width: 21%; margin-left: 61%">Total Credit Charge: {{TotalCreditChages}}</span>
         </div>
@@ -106,7 +113,7 @@
             </div>
           </div>
           <div>
-            <button style="width: 15%; margin-top: 10px" (click)="SendMsg()">
+            <button style="width: 15%; margin-top: 10px" type="submit" (click)="SendMsg()">
               Send
             </button>
           </div>
@@ -123,7 +130,7 @@
             <span style="width: 21%; margin-left: 20%"
               >Invalid Mobile No Count :{{ InvalidCount }}</span>
           </div> -->
-          <button  (click)="clearTextarea()">Test SMS</button>
+          <button type="submit"  (click)="clearTextarea()">Test SMS</button>
         </div>
       </form>
     </div>
@@ -134,8 +141,13 @@
         <div class="sdiv1">
           <h4>
             Select Option
+            <i
+              class="bx bxs-chevron-down"
+              style="margin-left: 21vw"
+              (click)="hideDiv1()"
+            ></i>
           </h4>
-          <div class="innerSdiv1">
+          <div class="innerSdiv1" *ngIf="hideGroup">
             
             <div class="sdiv1option" >
               <button (click)="showFirstdiv()" >
@@ -178,28 +190,35 @@
         <div class="sdiv1 sdiv12">
           <h4>
             Select ChatBot
-            <!-- <i
+            <i
               class="bx bxs-chevron-down"
-              style="margin-left: 22vw"
-              (click)="hideDiv1()"
-            ></i> -->
+              style="margin-left: 20vw"
+              (click)="hideDiv2()"
+            ></i>
           </h4>
-          <div class="innerSdiv1">
-            <h5  style="margin: 10px">Select Chatbot</h5>
-          <select formControlName="chatbot" >
-            <option value="">--Select--</option>
-            <option value="">ChatGPT</option>
-            <option value="">Google Bard</option>
-            <option value="">Microsoft Copilot</option>
-          </select>
+          <div *ngIf="hideChatbot">
+            <div class="innerSdiv1" >
+              <h5  style="margin: 10px">Select Chatbot</h5>
+            <select formControlName="chatbot" >
+              <option value="">--Select--</option>
+              <option value="">ChatGPT</option>
+              <option value="">Google Bard</option>
+              <option value="">Microsoft Copilot</option>
+            </select>
+            </div>
           </div>
         </div>
 
         <div class="sdiv1">
           <h4>
             Select Media
+            <i
+              class="bx bxs-chevron-down"
+              style="margin-left: 22vw"
+              (click)="hideDiv3()"
+            ></i>
           </h4>
-          <div class="innerSdiv1">
+          <div class="innerSdiv1" *ngIf="hideMedia">
             <div class="sdiv1option" >
               <button (click)="showFirstdiv()" >
                Image
@@ -209,7 +228,7 @@
               </button>
             </div>
             <div >
-              <div class="overlay1" *ngIf="showFirst">
+              <div class="overlay1" *ngIf="showFirst" >
                 <h5  style="margin: 10px">Select Image</h5>
 
                 <select formControlName="img" (change)="getSelectedImage($event)">

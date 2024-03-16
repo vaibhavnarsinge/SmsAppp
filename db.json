@@ -1,6 +1,7 @@
 {
   "report": [
     {
+<<<<<<< HEAD
       "Success": true,
       "ErrorCode": "000,000",
       "Message": "SMS Sent Successfully",
@@ -23,6 +24,30 @@
       "credit": 2,
       "DateTime": "2024-03-14T19:32:42.855Z",
       "id": "RvrQzeM"
+=======
+      "id": "a5b8",
+      "Success": true,
+      "ErrorCode": "000,000",
+      "Message": "SMS Sent Successfully",
+      "MobileNo": "7028704745,8805411737",
+      "Status": "Submited,Submited",
+      "messagee": "Your My SMS verification Code id {var}. Do not share this code with others Team Nuevas",
+      "credit": 2,
+      "date": "2024-03-15T04:48:34.138Z",
+      "senderID": "NUEVAS"
+    },
+    {
+      "id": "a5b8",
+      "Success": true,
+      "ErrorCode": "000,000",
+      "Message": "SMS Sent Successfully",
+      "MobileNo": "702876745,8805411737",
+      "Status": "delivered,Submited",
+      "messagee": "Your My SMS verification Code id {var}. Do not share this code with others Team Nuevas",
+      "credit": 2,
+      "date": "2024-03-15T04:48:34.138Z",
+      "senderID": "NUEVAS"
+>>>>>>> b71b4733da53186bec29106e0953e0375046febb
     }
   ]
 }
