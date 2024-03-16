@@ -20,14 +20,13 @@ body::-webkit-scrollbar {
   height: 2em;
   padding: 1em;
   margin: 1em auto;
-  outline: 3px solid   rgb(255, 255, 255);
     width: 10px;
     height: 8px;
-    background-color: var(--blue)
+    background-color: white
   }
 
   body::-webkit-scrollbar-thumb {
-    background: rgb(0, 64, 113);
+    background: rgb(83, 122, 0);
   }
 
   /* @media screen and (max-width: 415px) {
