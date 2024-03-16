@@ -251,11 +251,12 @@ span {
 
 }
  .innerSdiv1{
+  max-height: 500px;
   border-radius: 8px;
   box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
   -5px -5px 5px -1px rgba(255, 255, 255, 0.971);
   background-color: #cce3de;
-  margin: 1vw;
+  margin: 2.6vw 1vw 2.6vw 1vw;
   padding: 1vw;
   line-height: 0;
   min-height: 0vh;

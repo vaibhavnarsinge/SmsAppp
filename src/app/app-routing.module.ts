@@ -8,7 +8,7 @@ import { MisReportComponent } from './mis-report/mis-report.component';
 const routes: Routes = [
 
   {
-    path:'dashboard ',
+    path:'dashboard',
     component:DashboardComponent
   },
   {

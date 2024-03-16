@@ -15,7 +15,7 @@
   justify-content: space-between;
   align-items: center;
   height: 7vh;
-  padding: 1vw 0;
+  padding: 1.5vw 0 1.5vw 0;
   /* border-bottom:  1px solid rgba(0, 77, 103, 0.258); */
 }
 
@@ -23,18 +23,8 @@
   color: rgb(255, 255, 255);
   font-size: 1.2vw;
 }
-/*
-.upper-h .outer-ul h4 {
-  color: white;
-  font-size: 0.8vw;
-}
-.upper-h .outer-ul h4:hover {
-  color: rgb(255, 255, 255);
-  font-size: 0.8vw;
-} */
+
 .upper-h .outer-ul li:hover h4 {
-  /* box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
-  -5px -5px 5px -1px rgba(255, 255, 255, 0.7); */
   background-color: #004772;
   cursor: pointer;
 }
@@ -46,9 +36,6 @@
 }
 
 .balance-div li h4 {
-  /* box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
-    -5px -5px 5px -1px rgba(255, 255, 255, 0.7); */
-
   border-radius: 50px;
   background-color: transparent;
   font-size: 0.9vw;
@@ -59,13 +46,7 @@
   width: auto;
 }
 
-/* span {
-  margin-left: 2vw;
-  right: 0; */
-/* } */
 .rotate {
-  /* box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
-  -5px -5px 5px -1px rgba(255, 255, 255, 0.7); */
   border-radius: 50px;
   overflow: hidden;
   padding: 0px 10px;
@@ -87,27 +68,21 @@
   }
 }
 
-
-
 .profile-div {
   display: flex;
   width: 14vw;
   align-items: center;
-  /* margin-right: -11vw; */
   justify-content: space-between;
 }
 
-
 .notificationn{
   width: 2vw;
-  
 }
 
 /*     main nav          */
 
 .main-nav {
   background-color: #eaf4f4;
-
   height: 8vh;
   display: flex;
   justify-content: start;
@@ -121,10 +96,8 @@
 }
 
 li h4 {
-  /* font-family: "Prompt", sans-serif; */
   display: flex;
   justify-content: space-around;
-
   align-items: center;
   cursor: pointer;
   padding: 10px 0px;
@@ -176,7 +149,6 @@ li ul.dropdown li:hover {
   font-weight: 600;
   transform: scale(1);
   transition: transform 0.3s ease;
-  /* border-bottom: 1px solid rgba(0, 0, 0, 0.498); */
   color: rgb(255, 255, 255);
   z-index: 700;
 }
@@ -190,8 +162,4 @@ li:hover ul.dropdown {
 i {
   color: rgb(0, 89, 130);
   font-size: 1.2vw;
-}
-
-.img {
-  object-fit: cover;
 }
