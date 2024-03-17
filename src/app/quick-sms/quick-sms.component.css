@@ -599,7 +599,7 @@ h4 {
   }
   button {
   
-    width: 55px;
+    width: 10vw;
     height: 20px;
     font-size: 10px;
     right: 0;
@@ -685,11 +685,11 @@ h4 {
   margin-left: 22vw;
 }
 .bx{
-  margin-left: 64vw;
+  margin-left: 80vw;
   cursor: pointer;
 }
 .chatbx{
-  margin-left: 62vw;
+  margin-left: 90vw;
   cursor: pointer;
 }
 

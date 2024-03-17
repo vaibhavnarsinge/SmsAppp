@@ -42,4 +42,12 @@ export class HeaderComponent {
         this.count = res.SMSBalance;
       }})
 }
+
+
+
+menuvisible: boolean = true;
+  toggleMenu() {
+    debugger
+    this.menuvisible = !this.menuvisible;
+  }
 }

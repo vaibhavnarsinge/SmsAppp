@@ -1,7 +1,7 @@
 <div class="main-header">
   <div class="upper-h">
     <div class="balance-div">
-      <ul class="outer-ul">
+      <ul class="outer-ul curentdate">
         <li>
           <h4>{{ currentDate | date : "medium" }}</h4>
         </li>
@@ -28,7 +28,7 @@
       </ul>
     </div>
     <div class="rotate">
-      <h4 style="color: #ffffff; font-size: 1vw">
+      <h4>
         View DLT Approved Sender ID List in Support Section 🡺
       </h4>
     </div>
@@ -38,7 +38,7 @@
         <ul class="outer-ul" >
           <li>
             <h4 style="width: 0;">
-              <i class="bx bxs-help-circle" style="font-size: 1.6vw"></i>        
+              <i class="bx bxs-help-circle"></i>        
             </h4>
             <ul class="dropdown" style="text-align: left; margin-top: 2.4vw; width: 14vw;">
               <li>+91 8600987604</li>
@@ -54,28 +54,26 @@
         <i class="bx bxs-help-circle" style="font-size: 1.4vw"></i>
       </div> -->
       <div class="notificationn" style="position: relative">
-        <i class="bx bxs-envelope" style="font-size: 1.6vw"></i>
+        <i class="bx bxs-envelope"></i>
         <span
           style="
-            height: 15px;
             width: auto;
             font-size: 10px;
             padding: 2px;
             position: absolute;
             border-radius: 5px;
-            margin: -7px 0 0 -4px;
+           
             color: white;
-            background-color: rgba(223, 0, 0, 0.884);
           "
-          >10</span
+          >10&nbsp;</span
         >
       </div>
 
-      <div class="balance-div" style="width: 8vw; margin-right: 1vw;">
+      <div class="balance-div balancetwo " style="border: none;">
       <ul class="outer-ul" (click)="loadCount()">
         <li>
           <h4>
-            <i class="bx bxs-user-circle" style="font-size: 1.6vw"></i>
+            <i class="bx bxs-user-circle" ></i>
             Username
             <i class="bx bxs-chevron-down"></i>
           </h4>
@@ -92,7 +90,10 @@
   </div>
 
   <div class="main-nav">
-    <ul class="outer-ul">
+    <div class="menuicon" (click)="toggleMenu()">
+      <i class="bx bxs-dashboard"></i>
+    </div>
+    <ul class="outer-ul"  *ngIf="menuvisible">
       <li>
         <h4>
           <div  routerLink="/dashboard">
