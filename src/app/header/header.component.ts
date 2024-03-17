@@ -33,8 +33,8 @@ export class HeaderComponent {
   
   loadCount(){
     
-    this.Username  = this.msgService.Username;
-    // this.Username = 'demotr'
+    // this.Username  = this.msgService.Username;
+    this.Username = 'demotr'
 
     return this.msgService.GetBalance(this.Username).subscribe((res:any) => {
       if(res.Success == true){

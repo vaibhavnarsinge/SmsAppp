@@ -84,18 +84,29 @@ select {
   padding: 0.6vw;
   padding: 0.5vw;
 }
+.outer-div label{
+  width: 96%; font-size: 0.9vw; margin: 1px 0 0 0px;
+}
+.inner-div label{
+  width: 30px;
+}
 option {
   border: 1px solid rgba(0, 57, 80, 0.294);
   position: absolute;
   width: 5vw;
   outline: none;
 }
-/* style="width: 3%; margin: 0 1vw 0 0; box-shadow: none; height: 1vw" */
-/* .chbox{
-  width: 3%; margin: 1vw 1vw 0 0;
+.outer-div .mchbox{
+  width: 4%;
+  margin: 5px 0 0 10px;
+  box-shadow: none;
   height: 1vw;
-  border: 2px solid black;
-} */
+}
+
+.inner-div .schbox{
+  width: 3%; margin: 0; box-shadow: none; height: 1vw;
+}
+
 textarea {
   box-shadow: inset 2px 2px 5px -1px rgba(10, 99, 169, 0.16),
   inset -5px -5px 5px -1px rgba(255, 255, 255, 0.7);
@@ -191,6 +202,14 @@ h3 {
 label {
   font-size: 1.2vw;
 }
+
+input .date{
+  width: 40%; height: 5vh;
+}
+input .time{
+  width: 40%; height: 5vh; font-size: 1.2vw;
+}
+
 h4 {
   border-bottom: 1px solid rgba(0, 57, 80, 0.611);
   width: 100%;
@@ -209,6 +228,20 @@ span {
   width: 20vw;
   font-weight: 600;
 }
+.inner-div .invalidspan{
+  width: 21%; 
+  margin-left: 21%;
+  }
+  .inner-div .validspan{
+    width: 16%; 
+  }
+
+.outer-div .totalcreditspan{
+  width: 21%; margin-left: 61%;
+}
+
+ 
+ 
 
 .ScheduleContain {
   display: flex;
@@ -344,8 +377,320 @@ padding: 1vw 0 0 ;
   margin: 0vw 0 0 20vw;
   width: 30%;
 }
+.bx{
+  margin-left: 22vw;
+  cursor: pointer;
+}
+.chatbx{
+  margin-left: 21vw;
+  cursor: pointer;
+}
 
 
 
 
 
+
+@media (max-width: 450px ) {
+  /* … */
+  .main {
+    flex-direction: column;
+    background-color: #eaf4f4;
+    padding: 1vw 2vw;
+  }
+  .main-form {
+    width: 100%;
+    padding: 1vw;
+  }
+  .side-form {
+    width: 100%;
+    padding: 1vw;
+  }
+
+  h4 {
+    font-size: 15px;
+  }
+  h3 {
+    font-size: 10px;
+  }
+  select {
+    border-radius: 4px;
+    width: 100%;
+    font-size: 10px;
+  }
+  textarea {
+    border-radius: 4px;
+    padding: 7px;
+    width: 100%;
+    font-size: 10px;
+    height: 50px;
+  }
+  span{
+    margin: -2vw 0 0 0;
+    height: 10px;
+    font-size: 7px;
+    width: 100px;
+  }
+  .inner-div .invalidspan{
+   margin-left: -51%;
+   width: 27%;
+  }
+  .inner-div .validspan{
+    width: 20%; 
+  }
+ 
+  .outer-div .totalcreditspan{
+    width: 30%;    margin-left: 57%;
+    margin-top: -10px;
+  }
+  button {
+  
+    width: 55px;
+    height: 20px;
+    font-size: 10px;
+    right: 0;
+    margin: 0vw 0 0 70vw;
+  }
+  .clearTextBtn{
+    width: 54px;
+    height: 16px;
+    font-size: 9px;
+    right: 0;
+    margin: 2vw 0 0 70vw;
+  }
+  .outer-div .mchbox{
+    width: 4%;
+    margin: 0px 0 0 10px;
+    box-shadow: none;
+    height: 9px;
+  }
+  .inner-div .schbox{
+    margin: 0;
+    width: 4%;
+    box-shadow: none;
+    height: 10px;
+  }
+  .outer-div label{
+    width: 96%; font-size: 9px; margin: 0px 0 0 0px;
+  }
+  .inner-div label{
+    width: 30px;
+  }
+  .ScheduleContain input.date{
+    width: 40%; height: 20px;
+  }
+  .ScheduleContain input.time{
+    width: 40%; height: 20px; font-size: 1.2vw;
+  }
+  /* side form   */
+  .innerSdiv1{
+    margin: 2.6vw 5vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .sdiv1option {
+    margin: 10px 0 0 18vw;
+  }
+  .sdiv1{
+    margin:5px 0 ;
+  }
+  .sdiv12{
+    min-height: 0vh;
+    gap: 40px;
+    margin: 20px 0;
+    /* background-color: red; */
+  }
+
+  .sdiv1option button {
+    width: 200px;
+    padding: 15px;
+    font-size: 10px;
+  }
+  .overlay1,
+.overlay2 {
+  padding: 1vw;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #fff;
+}
+.over1 input {
+  margin: -8px 5px 0 0;
+  overflow: hidden;
+  width: 3%;
+}
+.over1 h5 {
+  font-size: 10px;
+}
+h4 {
+  font-size: 13px;
+  text-align: start;
+}
+.bx{
+  margin-left: 22vw;
+}
+.bx{
+  margin-left: 64vw;
+  cursor: pointer;
+}
+.chatbx{
+  margin-left: 62vw;
+  cursor: pointer;
+}
+
+}
+
+
+
+
+
+@media (max-width: 900px ) {
+  /* … */
+  .main {
+    flex-direction: column;
+    background-color: #eaf4f4;
+    padding: 1vw 2vw;
+  }
+  .main-form {
+    width: 100%;
+    padding: 1vw;
+  }
+  .side-form {
+    width: 100%;
+    padding: 1vw;
+  }
+
+  h4 {
+    font-size: 15px;
+  }
+  h3 {
+    font-size: 10px;
+  }
+  select {
+    border-radius: 4px;
+    width: 100%;
+    font-size: 10px;
+  }
+  textarea {
+    border-radius: 4px;
+    padding: 7px;
+    width: 100%;
+    font-size: 10px;
+    height: 50px;
+  }
+  span{
+    margin: -2vw 0 0 0;
+    height: 10px;
+    font-size: 7px;
+    width: 100px;
+  }
+  .inner-div .invalidspan{
+   margin-left: -51%;
+   width: 27%;
+  }
+  .inner-div .validspan{
+    width: 20%; 
+  }
+ 
+  .outer-div .totalcreditspan{
+    width: 30%;    margin-left: 57%;
+    margin-top: -10px;
+  }
+  button {
+  
+    width: 55px;
+    height: 20px;
+    font-size: 10px;
+    right: 0;
+    margin: 0vw 0 0 70vw;
+  }
+  .clearTextBtn{
+    width: 54px;
+    height: 16px;
+    font-size: 9px;
+    right: 0;
+    margin: 2vw 0 0 70vw;
+  }
+  .outer-div .mchbox{
+    width: 4%;
+    margin: 0px 0 0 10px;
+    box-shadow: none;
+    height: 9px;
+  }
+  .inner-div .schbox{
+    margin: 0;
+    width: 4%;
+    box-shadow: none;
+    height: 10px;
+  }
+  .outer-div label{
+    width: 96%; font-size: 9px; margin: 0px 0 0 0px;
+  }
+  .inner-div label{
+    width: 30px;
+  }
+  .ScheduleContain input.date{
+    width: 40%; height: 20px;
+  }
+  .ScheduleContain input.time{
+    width: 40%; height: 20px; font-size: 1.2vw;
+  }
+  /* side form   */
+  .innerSdiv1{
+    margin: 2.6vw 5vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .sdiv1option {
+    margin: 10px 0 0 18vw;
+  }
+  .sdiv1{
+    margin:5px 0 ;
+  }
+  .sdiv12{
+    min-height: 0vh;
+    gap: 40px;
+    margin: 20px 0;
+    /* background-color: red; */
+  }
+
+  .sdiv1option button {
+    width: 200px;
+    padding: 15px;
+    font-size: 10px;
+  }
+  .overlay1,
+.overlay2 {
+  padding: 1vw;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #fff;
+}
+.over1 input {
+  margin: -8px 5px 0 0;
+  overflow: hidden;
+  width: 3%;
+}
+.over1 h5 {
+  font-size: 10px;
+}
+h4 {
+  font-size: 13px;
+  text-align: start;
+}
+.bx{
+  margin-left: 22vw;
+}
+.bx{
+  margin-left: 64vw;
+  cursor: pointer;
+}
+.chatbx{
+  margin-left: 62vw;
+  cursor: pointer;
+}
+
+}
