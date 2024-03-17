@@ -11,8 +11,7 @@ import * as XLSX from 'xlsx';
 })
 export class QuickSmsComponent {
   isChecked: boolean = false;
-  showFirstt: boolean = true;
-  showSecondd: boolean = false;
+
   validCount: number = 0;
   InvalidCount: number = 0;
   rData: any;
@@ -24,8 +23,7 @@ export class QuickSmsComponent {
   characterCount: number = 0;
 
  
-  showFirst = true;
-  showSecond = false;
+
   currentDate: Date = new Date();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,16 +61,32 @@ export class QuickSmsComponent {
 
   }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+showFirst = true;
+showSecond = false;
+showFirstt: boolean = true;
+showSecondd: boolean = false;
+
   showFirstdiv() 
   {
     this.showFirst = true;
     this.showSecond = false;
   }
 
-  showSeconddiv() 
+  showSecondiv() 
   {
     this.showFirst = false;
     this.showSecond = true;
+  }
+  showFirstddiv() 
+  {
+    this.showFirstt = true;
+    this.showSecondd = false;
+  }
+
+  showSeconddiv() 
+  {
+    this.showFirstt = false;
+    this.showSecondd = true;
   }
 
   doSomething() 
@@ -331,8 +345,6 @@ imageAvailable:boolean=false;
     this.TotalCreditChages = this.validCount * this.textC;
   }
 
-  
-
   SendMsg() {
     
     this.submitted = true;
@@ -376,32 +388,26 @@ imageAvailable:boolean=false;
   }
 
   allExcelNumbers:any;
-    
   onFileSelected(event: any): void {
-    debugger
-    
     const file: File = event.target.files[0];
     const reader: FileReader = new FileReader();
 
     reader.onload = (e: any) => {
-      debugger
+      
       const binaryString: string = e.target.result; // storing binary data in string
       const workbook: XLSX.WorkBook = XLSX.read(binaryString, { type: 'binary' }); // reading data in excel 
       const sheetName: string = workbook.SheetNames[0]; // first sheet of workbook stored in sheetname
       const worksheet: XLSX.WorkSheet = workbook.Sheets[sheetName]; // storing sheet present in sheetname
       const contacts: any[] = XLSX.utils.sheet_to_json(worksheet, { header: 1 }); //this line convert data into json or js object
       // Extract mobile numbers from contacts (assuming they are in a specific column)
-      const mobileNumbers: string[] = contacts.map(row => row[0]); // Change 0 to the column index where mobile numbers are located
+      const mobileNumbers: string[] = contacts.slice(1).map(row => row[0]); // Skip the first row (header) and then extract mobile numbers
       // Join mobile numbers with newline characters
       const mobileNumbersString: string = mobileNumbers.join('\n');
       // Set the mobile numbers string to the 'mob' control
       this.allExcelNumbers = mobileNumbersString
-
     };
     reader.readAsBinaryString(file);
   }
-
-
 
   importContacts(): void {
         // Update the 'mob' control with the mobileNumbersString

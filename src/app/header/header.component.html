@@ -62,7 +62,6 @@
             padding: 2px;
             position: absolute;
             border-radius: 5px;
-           
             color: white;
           "
           >10&nbsp;</span
@@ -185,8 +184,13 @@
         <ul class="dropdown">
           <li>My Profile</li>
         </ul>
-      </li>
+      </li>      
     </ul>
+    
+      <div [ngStyle]="dynamicStyles">
+        <button style="z-index: 9999;"  (click)="toggleMode()">Toggle Mode</button>
+      </div>
+    
   </div>
 </div>
 

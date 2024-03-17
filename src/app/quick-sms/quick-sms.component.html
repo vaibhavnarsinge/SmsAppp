@@ -72,7 +72,7 @@
           <div *ngIf="submitted || quicksms.get('msg')?.invalid && (quicksms.get('msg')?.dirty || (quicksms.get('msg')?.touched))">
             <div class="er1" *ngIf=" quicksms.get('msg')?.hasError('required')" ><span >Please Enter Message </span></div>
           </div>
-          <span style="width: 16%">SMS length : {{ characterCount }} Text :{{textC}}</span>
+          <span class="smslengthspan" >SMS length : {{ characterCount }} Text :{{textC}}</span>
             <span class="totalcreditspan" >Total Credit Charge: {{TotalCreditChages}}</span>
         </div>
         <div class="outer-div">
@@ -148,7 +148,7 @@
               <button (click)="showFirstdiv()" >
                Groups
               </button>
-              <button (click)="showSeconddiv()">
+              <button (click)="showSecondiv()">
                 Choose File(.xlx,.txt,.csv)
               </button>
             </div>
@@ -213,7 +213,7 @@
           </h4>
           <div class="innerSdiv1" *ngIf="hideMedia">
             <div class="sdiv1option" >
-              <button (click)="showFirstdiv()" >
+              <button (click)="showFirstddiv()" >
                Image
               </button>
               <button (click)="showSeconddiv()" >
@@ -221,7 +221,7 @@
               </button>
             </div>
             <div >
-              <div class="overlay1" *ngIf="showFirst" >
+              <div class="overlay1" *ngIf="showFirstt" >
                 <h3  style="margin: 10px">Select Image</h3>
 
                 <select formControlName="img" (change)="getSelectedImage($event)">
@@ -234,7 +234,7 @@
                   <img src={{imgpath}} style="height: 20vh; width: 10vw;margin: 1vw 0 0 10vw;">
                 </div>
               </div>
-              <div class="overlay2" *ngIf="showSecond">
+              <div class="overlay2" *ngIf="showSecondd">
                 <h3 style="margin: 10px">Select Video</h3>
 
                 <select formControlName="vdo" (change)="getSelectedVideo($event)">

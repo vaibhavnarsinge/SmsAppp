@@ -7,7 +7,7 @@
   min-height: 85vh;
   width: 100%;
   position: relative;
-  background-color: #eaf4f4;
+  background-color: var(--mainbgc)
 
 }
 
@@ -19,8 +19,7 @@
 .contentt form {
   height: 100%;
   border-radius: 8px;
-  background-color: #eaf4f4;
-  /* padding: 0.5vw 0vw; */
+  background-color: var(--mainbgc);
   box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
     -1px -1px 5px -1px rgb(0, 61, 107);
   display: flex;
@@ -40,12 +39,6 @@
 }
 
 .contentt form .outer-div {
- 
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: start; */
-  /* flex-direction: column; */
-  /* gap: 12px; */
   line-height: 3vh;
   margin: 0.8vw 0vw;
   padding: 0.5vw 1vw;
@@ -53,21 +46,16 @@
   border-radius: 8px;
   box-shadow: 5px 5px 5px -1px rgba(10, 100, 169, 0.572),
   -5px -5px 5px -1px rgba(10, 99, 169, 0.16);
-  background-color: #eaf4f4;
+  background-color: var(--mainbgc);
 }
 .contentt form .outer-divv {
-  /* display: flex;
-  justify-content: flex-start;
-  align-items: center;*/
   border-radius: 8px;
   box-shadow: 5px 5px 5px -1px rgba(10, 100, 169, 0.572),
   -5px -5px 5px -1px rgba(10, 99, 169, 0.16);
-
   margin: 1.4vw 0vw;
-  /* border:1.5px solid rgba(0, 80, 57, 0.782); */
   padding: 1vw;
   width: 90%;
-  background-color: #eaf4f4;
+  background-color: var(--mainbgc);
 }
 .contentt form .outer-divv h3 {
   width: 29%;
@@ -143,9 +131,6 @@ select:focus {
 }
 button {
   border-radius: 8px;
-  /* background-color: #002b31f8; */
-  /* box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
-    -5px -5px 5px -1px rgba(0, 87, 104, 0.7); */
   background-color:  #008cafdc;
   padding: 0.8vw;
   border: none;
@@ -164,9 +149,6 @@ button {
 
 .clearTextBtn{
   border-radius: 8px;
-  /* background-color: #002b31f8; */
-  /* box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
-    -5px -5px 5px -1px rgba(0, 87, 104, 0.7); */
   background-color: rgb(160, 56, 56);
   padding: 0.8vw;
   border: none;
@@ -187,17 +169,14 @@ button {
 }
 button:hover {
   background-color: rgb(0, 89, 130);
-  /* box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
-    -1px -1px 5px -1px rgb(0, 61, 107); */
     transform: scale(1.1);
     transition: transform 0.1s ease-out;
 }
 h3 {
   font-size: 1vw;
   font-weight: 600;
-  /* text-align: center; */
   width: 100%;
-  color: #003031;
+  color: var(--allfontcolor);
 }
 label {
   font-size: 1.2vw;
@@ -213,13 +192,13 @@ input .time{
 h4 {
   border-bottom: 1px solid rgba(0, 57, 80, 0.611);
   width: 100%;
-  background-color: rgb(0, 89, 130);
+  background-color: var(--headingcolor);
   padding: 0.5vw 1vw;
   font-size: 1.4vw;
   text-align: center;
   border-top-left-radius: 8px; 
   border-top-right-radius: 8px; 
-  color: #ffffff;
+  color: var(--mainbgc);
 }
 
 span {
@@ -231,13 +210,20 @@ span {
 .inner-div .invalidspan{
   width: 21%; 
   margin-left: 21%;
+  color: var(--allfontcolor);
   }
   .inner-div .validspan{
     width: 16%; 
+    color: var(--allfontcolor);
   }
 
 .outer-div .totalcreditspan{
   width: 21%; margin-left: 61%;
+  color: var(--allfontcolor);
+}
+.outer-div .smslengthspan{
+  width: 16%;
+  color: var(--allfontcolor);
 }
 
  
@@ -277,7 +263,7 @@ span {
   border-radius: 8px;
   box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
     -1px -1px 5px -1px rgb(0, 61, 107);
-  background-color: #eaf4f4;
+  background-color: var(--mainbgc);
   width: 100%;
   margin:  0 0  1.4vw 0; 
   min-height: 0vh;
@@ -286,9 +272,9 @@ span {
  .innerSdiv1{
   max-height: 500px;
   border-radius: 8px;
-  box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
-  -5px -5px 5px -1px rgba(255, 255, 255, 0.971);
-  background-color: #cce3de;
+  box-shadow: 5px 5px 5px -1px rgba(10, 100, 169, 0.572),
+  -5px -5px 5px -1px rgba(10, 99, 169, 0.16);
+  background-color: var(--mainbgc);
   margin: 2.6vw 1vw 2.6vw 1vw;
   padding: 1vw;
   line-height: 0;
@@ -310,31 +296,25 @@ span {
     -1px -1px 5px -1px rgb(0, 61, 107);
   border: none;
   font-size: 0.9vw;
-  font-weight: 600;
   padding: 3vh 1vw;
-  background-color: #004759;
   width: 50%;
+  background-color: var(--headingcolor);
+  font-weight: 600;
+  color:  var(--mainbgc);
 }
 
 .sdiv12{
   min-height: 0vh;
   gap: 20px;
-  /* background-color: red; */
 }
 .sdiv1option .clicked {
   background-color: rgb(35, 0, 140); /* Change to your desired color */
   color: white; /* Change to your desired color */
 }
 
-.sdiv1option button{
-  background-color: white;
-  color: black;
-}
 .overlay1,
 .overlay2 {
   border: 1px solid rgba(0, 57, 80, 0.294);
-  /* box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
-  -1px -1px 5px -1px rgb(0, 61, 107); */
   box-shadow: inset 5px 5px 5px -1px rgba(10, 99, 169, 0.16),
   inset -5px -5px 5px -1px rgba(255, 255, 255, 0.7);
   border-radius: 8px;
@@ -350,6 +330,9 @@ span {
   display: flex;
   text-align: center;
 }
+.over1 h5{
+  color: var(--allfontcolor);;
+}
 .over1 input {
   margin: -8px 5px 0 0;
   overflow: hidden;
@@ -363,9 +346,11 @@ span {
   margin-left: 10px;
   text-decoration: none;
 }
+.over21 h5{
+  color: var(--allfontcolor);
+}
 .overlay2 .cfile {
 padding: 1vw 0 0 ;
-  /* border: 1px solid rgba(0, 0, 0, 0.411); */
 }
 .overlay2 .cfile input {
   width: auto;

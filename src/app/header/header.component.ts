@@ -47,7 +47,39 @@ export class HeaderComponent {
 
 menuvisible: boolean = true;
   toggleMenu() {
-    debugger
+    
     this.menuvisible = !this.menuvisible;
+  }
+
+
+  isDarkMode: boolean = false;
+
+  toggleMode() {
+    this.isDarkMode = !this.isDarkMode;
+    this.updateStyles();
+  }
+
+  updateStyles() {
+    if (this.isDarkMode) {
+      document.documentElement.style.setProperty('--allfontcolor', 'white');
+      document.documentElement.style.setProperty('--mainbgc', 'black');
+      document.documentElement.style.setProperty('--headingcolor', 'white');
+
+    } else {
+      document.documentElement.style.setProperty('--allfontcolor', '#000000');
+      document.documentElement.style.setProperty('--mainbgc', '#f6ffff');
+      document.documentElement.style.setProperty('--headingcolor', 'rgb(0, 89, 130)');
+
+    }
+  }
+
+  get dynamicStyles() {
+    return {
+      '--allfontcolor': this.isDarkMode ? 'white' : '#000000',
+      '--mainbgc': this.isDarkMode ? 'black' : '#f6ffff',
+      '--headingcolor': this.isDarkMode ? 'white' : 'rgb(0, 89, 130)'
+
+
+    };
   }
 }
