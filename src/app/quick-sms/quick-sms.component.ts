@@ -11,7 +11,6 @@ import * as XLSX from 'xlsx';
 })
 export class QuickSmsComponent {
   isChecked: boolean = false;
-
   validCount: number = 0;
   InvalidCount: number = 0;
   rData: any;
@@ -21,9 +20,6 @@ export class QuickSmsComponent {
   TotalCreditChages:  number = 0;
   phoneNumber: any;
   characterCount: number = 0;
-
- 
-
   currentDate: Date = new Date();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -193,28 +189,13 @@ imageAvailable:boolean=false;
   hideChatbot = true
   hideGroup = true
   hideDiv3(){
-    if(this.hideMedia == true){
-      this.hideMedia = false;
-    }
-    else if(this.hideMedia == false){
-      this.hideMedia = true;
-    }
+    this.hideMedia = !this.hideMedia;
   }
   hideDiv2(){
-    if(this.hideChatbot == true){
-      this.hideChatbot = false;
-    }
-    else if(this.hideChatbot == false){
-      this.hideChatbot = true;
-    }
+    this.hideChatbot = !this.hideChatbot;
   }
   hideDiv1(){
-    if(this.hideGroup == true){
-      this.hideGroup = false;
-    }
-    else if(this.hideGroup == false){
-      this.hideGroup = true;
-    }
+    this.hideGroup = !this.hideGroup;
   }
 
   
@@ -242,14 +223,11 @@ imageAvailable:boolean=false;
     }) 
   }
 
-
   isPooselect:boolean=false;
   isTextselect:boolean=false;
   isAllselect:boolean=false;
-
   poolNumbers:any = '9730023006\n7028704745';
   textNumbers:any = '8805411737';
-
 
   UpdateTextAreaFirst(e: any) {
     if (e.target.checked == true) {
@@ -313,7 +291,6 @@ imageAvailable:boolean=false;
           mob: currentNumber
         });
         this.updateCounts(currentNumber);
-
       }
       
     } else if (e.target.checked == false) {

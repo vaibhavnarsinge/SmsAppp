@@ -76,9 +76,13 @@
   padding: 0px 10px;
   height: 4vh;
   width: 40vw;
+  transition: all 0.5s ease-out;
+
 }
 
 .upper-h .rotate h4 {
+  transition: all 0.5s ease-out;
+
   font-size: 1vw;
   display: inline-block;
   white-space: nowrap;
@@ -106,6 +110,26 @@
 }
 
 /*     main nav          */
+
+.themebtn{
+  background-color: var(--mainbgc);
+  color: var(--headingcolor);
+  border: none;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  border-radius: 8px;
+  border: 1px solid var(--headingcolor);
+  padding: 0.5vw;
+  margin: 2vh 0 0 20vw;
+  font-size: 1vw;
+  font-weight: 600;
+  outline: none;
+  height: 2vw;
+  cursor: pointer;
+  z-index: 9999;
+}
+
 .menuicon{
   display: none;
 }
@@ -138,10 +162,13 @@ li h4 {
   text-align: center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  transition: all 0.5s ease-out;
+
 }
 li:hover h4 {
-  background-color: #ffffff;
+  background-color: #0095d5;
   cursor: pointer;
+  transition: all 0.5s ease-out;
   color: black;
 }
 
@@ -152,6 +179,8 @@ li h4 div {
 }
 
 li ul.dropdown {
+  transition: all 0.5s ease-out;
+
   width: 14vw;
   position: absolute;
   margin-top: 5vh;
@@ -181,12 +210,16 @@ li ul.dropdown li:hover {
   transition: transform 0.3s ease;
   color: rgb(255, 255, 255);
   z-index: 700;
+  transition: all 0.3s ease-out;
+
 }
 
 li:hover ul.dropdown {
   transition: ease-in 2s;
   display: block;
   z-index: 99;
+  transition: all 0.5s ease-out;
+
 }
 
 i {

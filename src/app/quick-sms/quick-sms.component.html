@@ -142,7 +142,7 @@
               (click)="hideDiv1()"
             ></i>
           </h4>
-          <div class="innerSdiv1" *ngIf="hideGroup">
+          <div class="innerSdiv1"  *ngIf="hideGroup">
             
             <div class="sdiv1option" >
               <button (click)="showFirstdiv()" >
@@ -189,8 +189,8 @@
               (click)="hideDiv2()"
             ></i>
           </h4>
-          <div *ngIf="hideChatbot">
-            <div class="innerSdiv1" >
+        
+            <div class="innerSdiv1"  *ngIf="hideChatbot">
               <h3  style="margin: 10px">Select Chatbot</h3>
             <select formControlName="chatbot" >
               <option value="">--Select--</option>
@@ -199,7 +199,7 @@
               <option value="">Microsoft Copilot</option>
             </select>
             </div>
-          </div>
+         
         </div>
 
         <div class="sdiv1">

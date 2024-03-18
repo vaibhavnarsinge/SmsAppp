@@ -14,9 +14,13 @@
 .main-form {
   width: 55%;
   padding: 1vw;
+  transition: ease 1s;
+
 }
 
 .contentt form {
+  transition: ease 1s;
+
   height: 100%;
   border-radius: 8px;
   background-color: var(--mainbgc);
@@ -29,6 +33,8 @@
   width: 100%;
 }
 .inner-div {
+  transition: ease 1s;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -39,6 +45,8 @@
 }
 
 .contentt form .outer-div {
+  transition: ease 1s;
+
   line-height: 3vh;
   margin: 0.8vw 0vw;
   padding: 0.5vw 1vw;
@@ -49,6 +57,8 @@
   background-color: var(--mainbgc);
 }
 .contentt form .outer-divv {
+  transition: ease 1s;
+
   border-radius: 8px;
   box-shadow: 5px 5px 5px -1px rgba(10, 100, 169, 0.572),
   -5px -5px 5px -1px rgba(10, 99, 169, 0.16);
@@ -267,7 +277,7 @@ span {
   width: 100%;
   margin:  0 0  1.4vw 0; 
   min-height: 0vh;
-
+  transition: ease 1s;
 }
  .innerSdiv1{
   max-height: 500px;
@@ -279,6 +289,7 @@ span {
   padding: 1vw;
   line-height: 0;
   min-height: 0vh;
+  transition: ease 0.3s;
 }
 
 .sdiv1option {

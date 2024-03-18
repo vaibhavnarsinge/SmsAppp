@@ -24,18 +24,14 @@
   border-radius: 8px;
   box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
     -1px -1px 5px -1px rgb(0, 61, 107);
-  margin: 10vh ;
+  margin: 10vh;
   width: 76vw;
-  top :0;
+  top: 0;
   border: 3px solid #002a37;
   background-color: #006883;
   min-height: 30vh;
-  overflow-x: auto; 
+  overflow-x: auto;
 }
-
-
-
-
 
 .custom-table {
   width: 100%;
@@ -70,7 +66,7 @@
   font-size: 1vw;
   font-weight: 500;
 }
-.custom-table tbody tr td{
+.custom-table tbody tr td {
   padding: 0.5vw;
 }
 .custom-table tbody tr:nth-child(even) {
@@ -99,12 +95,11 @@
   border-radius: 8px;
   cursor: pointer;
 }
-.getreport:hover{
+.getreport:hover {
   background-color: #006d88;
-
 }
 
-.tbbtn{
+.tbbtn {
   margin: 1vw;
 
   display: flex;
@@ -120,7 +115,7 @@
   border-radius: 8px;
   cursor: pointer;
 }
-.backbtn{
+.backbtn {
   margin: 6vh 12vw -50px 5vw;
 
   display: flex;
@@ -137,10 +132,57 @@
   cursor: pointer;
 }
 
+@media (max-width: 450px) {
+  .table-container {
+    border-radius: 8px;
+    box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
+      -1px -1px 5px -1px rgb(0, 61, 107);
+    margin: 10vh;
+    width: 76vw;
+    top: 0;
+    border: 3px solid #002a37;
+    background-color: #006883;
+    height: 70vh;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+  .table-container::-webkit-scrollbar {
+    display: block;
 
+    overflow: auto;
+    height: 2em;
 
-@media (max-width: 450px ) {
+    outline: 0px;
+    width: 5px;
+    height: 8px;
+    background-color: #ffffff00;
+  }
 
+  .table-container .custom-table tbody tr td:nth-child(2) {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
 
-  
+  .getreport {
+    margin: 10vh 12vw 0 2vw;
+  }
+
+  .backbtn {
+    margin: 6vh 12vw -50px 15vw;
+    width: 6vw;
+  }
+  .custom-table th {
+    font-size: 10px;
+  }
+  .custom-table tbody tr {
+    background-color: red;
+    font-size: 10px;
+  }
+  .getreport {
+    font-size: 10px;
+  }
+  .tbbtn {
+    font-size: 10px;
+    width: 8vw;
+  }
 }
