@@ -24,10 +24,7 @@
   font-size: 1.2vw;
 }
 
-/* .upper-h .outer-ul li:hover h4 {
-  background-color: #004772;
-  cursor: pointer;
-} */
+
 
 .upper-h .profile-div .profile .outer-ul  li h4 i{
   font-size: 1.6vw;
@@ -400,6 +397,26 @@ ul.dropdown li {
   color: rgb(0, 35, 52);
   padding: 6px 5px;
   border: 1px solid rgb(184, 184, 184);
+}
+
+.themebtn{
+  background-color: var(--mainbgc);
+  color: var(--headingcolor);
+  border: none;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  position: absolute;
+  border-radius: 8px;
+  border: 1px solid var(--headingcolor);
+  padding: 0.5vw;
+  margin: 2vh -20vw 0 42vw;
+  font-size: 10px;
+  font-weight: 600;
+  outline: none;
+  height: 4vw;
+  cursor: pointer;
+  z-index: 9999;
 }
 
 }

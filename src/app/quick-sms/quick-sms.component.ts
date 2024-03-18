@@ -144,9 +144,15 @@ videosrc:any
 videoAvailable:boolean=false;
 imageAvailable:boolean=false;
 
+  // Array of images
+  images = [
+    { name: 'Image1', value: 'lg.jpg' },
+    { name: 'Image2', value: 'dw.jpg' },
+    { name: 'Image3', value: 'ls.png' }
+  ];
+
     // setting images link
     getSelectedImage(event:any){
-      
       if(event.target.value == ""){
         this.imageAvailable = false
       }
@@ -157,6 +163,14 @@ imageAvailable:boolean=false;
       this.imgpath = `http://localhost:4200/assets/${this.imgselectvalue}`
       this.imgsrc = `http://Google.com/${this.imgselectvalue}`
     }
+
+      // Array of Video
+    videos = [
+      { name: 'Video1', value: 'movie.mp4' },
+      { name: 'Video2', value: 'movie2.mp4' },
+      { name: 'Video3', value: 'movie3.mp4' }
+    ];
+
     getSelectedVideo(event:any){
       if(event.target.value == ""){
         this.videoAvailable = false
@@ -164,9 +178,7 @@ imageAvailable:boolean=false;
       else{
         this.videoAvailable = true
       }
-
       this.vdoselectvalue = event.target.value
-
       this.videopath = `http://localhost:4200/assets/${this.vdoselectvalue}`
       this.videosrc = `http://Google.com/${this.vdoselectvalue}`
 
@@ -204,12 +216,11 @@ imageAvailable:boolean=false;
   //calculating count of characters of message
   calculateCharacterCount() 
   {
-    this.quicksms.get('msg')!.valueChanges.subscribe(value => {
+    debugger
+    this.quicksms.get('msg')?.valueChanges.subscribe(value => {
       this.characterCount = value.length;
       // this.characterCount = value.length;
 
-    //this logic is used for if first msg is 160 chracter then textC = 1,
-    //after that after every 140 characters textC should increase by 1
     if (this.characterCount == 0) {
       this.textC = 0;
     } else if (this.characterCount < 160) {

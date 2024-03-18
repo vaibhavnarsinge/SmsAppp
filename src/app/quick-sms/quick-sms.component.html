@@ -62,7 +62,7 @@
             >
           </h3>
 
-          <textarea [value]="selectedOptionText"
+          <textarea [value]="selectedOptionText" (input)="calculateCharacterCount()"
             formControlName="msg"
             cols="30"
             rows="10"
@@ -223,12 +223,9 @@
             <div >
               <div class="overlay1" *ngIf="showFirstt" >
                 <h3  style="margin: 10px">Select Image</h3>
-
                 <select formControlName="img" (change)="getSelectedImage($event)">
                   <option value="">--Select--</option>
-                  <option value="lg.jpg">Image1</option>
-                  <option value="dw.jpg">Image2</option>
-                  <option value="ls.png">Image3</option>
+                  <option *ngFor="let image of images" [value]="image.value">{{image.name}}</option>
                 </select>
                 <div *ngIf="imageAvailable">
                   <img src={{imgpath}} style="height: 20vh; width: 10vw;margin: 1vw 0 0 10vw;">
@@ -239,9 +236,7 @@
 
                 <select formControlName="vdo" (change)="getSelectedVideo($event)">
                   <option value="">--Select--</option>
-                  <option value="movie.mp4">Video1</option>
-                  <option value="movie2.mp4">Video2</option>
-                  <option value="Video3">Video3</option>
+                  <option *ngFor="let video of videos" [value]="video.value">{{video.name}}</option>
                 </select>
                 <div *ngIf="videoAvailable">
                   <video  controls src={{videopath}} style="height: 22vh; width: 15vw;margin: 1vw 0 0 7vw;"></video>

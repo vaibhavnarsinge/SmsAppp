@@ -164,7 +164,7 @@
   }
 
   .getreport {
-    margin: 10vh 12vw 0 2vw;
+    margin: 12vh 12vw 0 2vw;
   }
 
   .backbtn {
@@ -179,6 +179,8 @@
     font-size: 10px;
   }
   .getreport {
+    height: 30px;
+    width: 110px;
     font-size: 10px;
   }
   .tbbtn {
