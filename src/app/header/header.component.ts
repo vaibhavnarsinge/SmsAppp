@@ -62,16 +62,20 @@ menuvisible: boolean = true;
   updateStyles() {
     if (this.isDarkMode) {
       document.documentElement.style.setProperty('--allfontcolor', 'white');
-      document.documentElement.style.setProperty('--mainbgc', 'black');
-      document.documentElement.style.setProperty('--headingcolor', 'white');
-
+      document.documentElement.style.setProperty('--mainbgc', '#1a1a1a'); // Dark background color
+      document.documentElement.style.setProperty('--headingcolor', 'white'); // Updated heading color for dark mode
+      document.documentElement.style.setProperty('--boxshadowblueForm', 'none'); // Removed box shadow for dark mode
+      document.documentElement.style.setProperty('--borderForm', '1px solid white'); // Added border for dark mode
+  
     } else {
       document.documentElement.style.setProperty('--allfontcolor', '#000000');
       document.documentElement.style.setProperty('--mainbgc', '#f6ffff');
       document.documentElement.style.setProperty('--headingcolor', 'rgb(0, 89, 130)');
-
+      document.documentElement.style.setProperty('--boxshadowblueForm', '1px 1px 5px -1px rgb(0, 61, 107), -1px -1px 5px -1px rgb(0, 61, 107)'); // Original box shadow
+      document.documentElement.style.setProperty('--borderForm', 'none'); // Original border
     }
   }
+  
 
   get dynamicStyles() {
     return {

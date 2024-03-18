@@ -8,12 +8,17 @@
   --allfontcolor: #000000;
   --mainbgc: #f6ffff;
   --headingcolor:rgb(0, 89, 130);
+  --boxshadowblueForm:1px 1px 5px -1px rgb(0, 61, 107),
+  -1px -1px 5px -1px rgb(0, 61, 107);
+  --borderForm:none;
 }
 
 .dark-mode {
   --allfontcolor: white;
   --mainbgc: black;
   --headingcolor:white;
+  --boxshadowblueForm:none;
+  --borderForm:1px solid white;
 }
 
 body {

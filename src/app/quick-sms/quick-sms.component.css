@@ -7,7 +7,7 @@
   min-height: 85vh;
   width: 100%;
   position: relative;
-  background-color: var(--mainbgc)
+  background-color: var(--mainbgc);
 
 }
 
@@ -20,12 +20,12 @@
 
 .contentt form {
   transition: ease 1s;
-
   height: 100%;
   border-radius: 8px;
   background-color: var(--mainbgc);
-  box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
-    -1px -1px 5px -1px rgb(0, 61, 107);
+  box-shadow: var(--boxshadowblueForm);
+  border: var(--borderForm);
+ 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,26 +46,28 @@
 
 .contentt form .outer-div {
   transition: ease 1s;
+  box-shadow: var(--boxshadowblueForm);
+  border: var(--borderForm);
+  background-color: var(--mainbgc);
 
   line-height: 3vh;
   margin: 0.8vw 0vw;
   padding: 0.5vw 1vw;
   width: 90%;
   border-radius: 8px;
-  box-shadow: 5px 5px 5px -1px rgba(10, 100, 169, 0.572),
-  -5px -5px 5px -1px rgba(10, 99, 169, 0.16);
-  background-color: var(--mainbgc);
+
 }
 .contentt form .outer-divv {
   transition: ease 1s;
 
   border-radius: 8px;
-  box-shadow: 5px 5px 5px -1px rgba(10, 100, 169, 0.572),
-  -5px -5px 5px -1px rgba(10, 99, 169, 0.16);
+  box-shadow: var(--boxshadowblueForm);
+  border: var(--borderForm);
+  background-color: var(--mainbgc);
+
   margin: 1.4vw 0vw;
   padding: 1vw;
   width: 90%;
-  background-color: var(--mainbgc);
 }
 .contentt form .outer-divv h3 {
   width: 29%;
@@ -271,8 +273,8 @@ span {
 
 .sdiv1 {
   border-radius: 8px;
-  box-shadow: 1px 1px 5px -1px rgb(0, 61, 107),
-    -1px -1px 5px -1px rgb(0, 61, 107);
+  box-shadow: var(--boxshadowblueForm);
+  border: var(--borderForm);
   background-color: var(--mainbgc);
   width: 100%;
   margin:  0 0  1.4vw 0; 
@@ -280,11 +282,12 @@ span {
   transition: ease 1s;
 }
  .innerSdiv1{
+  box-shadow: var(--boxshadowblueForm);
+  border: var(--borderForm);
+  background-color: var(--mainbgc);
+
   max-height: 500px;
   border-radius: 8px;
-  box-shadow: 5px 5px 5px -1px rgba(10, 100, 169, 0.572),
-  -5px -5px 5px -1px rgba(10, 99, 169, 0.16);
-  background-color: var(--mainbgc);
   margin: 2.6vw 1vw 2.6vw 1vw;
   padding: 1vw;
   line-height: 0;
@@ -342,7 +345,7 @@ span {
   text-align: center;
 }
 .over1 h5{
-  color: var(--allfontcolor);;
+  color: black
 }
 .over1 input {
   margin: -8px 5px 0 0;
